@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7FA Sales Framework - Visual Training</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        /* Boulder Section */
+        .boulder-section {
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #3d3d5c;
+        }
+
+        .boulder-title {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .boulder-visual {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .boulder-scenario {
+            text-align: center;
+            padding: 20px;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .boulder-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+
+        .wrong { color: #ff4757; }
+        .right { color: #2ed573; }
+
+        .boulder-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .boulder-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .vs-divider {
+            font-size: 2rem;
+            color: #ffd93d;
+            font-weight: bold;
+        }
+
+        /* Call Flow Section */
+        .flow-section {
+            margin-bottom: 40px;
+        }
+
+        .flow-title {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: stretch;
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #3d3d5c;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .flow-step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .step-number {
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .step-desc {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .step-time {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Color coding for steps */
+        .step-intro { background: linear-gradient(90deg, #667eea, #764ba2); }
+        .step-frame { background: linear-gradient(90deg, #f093fb, #f5576c); }
+        .step-discover { background: linear-gradient(90deg, #4facfe, #00f2fe); }
+        .step-doors { background: linear-gradient(90deg, #43e97b, #38f9d7); }
+        .step-tie { background: linear-gradient(90deg, #fa709a, #fee140); }
+        .step-offer { background: linear-gradient(90deg, #a8edea, #fed6e3); }
+        .step-temp1 { background: linear-gradient(90deg, #ff9a9e, #fecfef); }
+        .step-stack { background: linear-gradient(90deg, #ffecd2, #fcb69f); }
+        .step-future { background: linear-gradient(90deg, #d299c2, #fef9d7); }
+        .step-price { background: linear-gradient(90deg, #89f7fe, #66a6ff); }
+        .step-temp2 { background: linear-gradient(90deg, #fddb92, #d1fdff); }
+        .step-close { background: linear-gradient(90deg, #2ed573, #7bed9f); }
+        .step-adt { background: linear-gradient(90deg, #ff6b6b, #feca57); }
+
+        /* Technique Cards */
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .technique-card {
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #3d3d5c;
+        }
+
+        .technique-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .technique-icon {
+            font-size: 2.5rem;
+        }
+
+        .technique-title {
+            font-size: 1.4rem;
+            color: #ffd93d;
+        }
+
+        .technique-content {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .technique-example {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+
+        /* Temp Check Visual */
+        .temp-check-visual {
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #3d3d5c;
+        }
+
+        .temp-title {
+            font-size: 1.8rem;
+            color: #ffd93d;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .scale-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .scale-numbers {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .scale-num {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .scale-low { background: linear-gradient(135deg, #ff4757, #ff6b81); }
+        .scale-mid { background: linear-gradient(135deg, #ffd93d, #ffa502); }
+        .scale-high { background: linear-gradient(135deg, #2ed573, #7bed9f); }
+
+        .response-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .response-card {
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .response-card.low {
+            background: rgba(255, 71, 87, 0.2);
+            border: 2px solid #ff4757;
+        }
+
+        .response-card.high {
+            background: rgba(46, 213, 115, 0.2);
+            border: 2px solid #2ed573;
+        }
+
+        .response-range {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .response-action {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .response-script {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+            color: #ccc;
+            text-align: left;
+        }
+
+        /* Stacking Loop Visual */
+        .stack-visual {
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #3d3d5c;
+        }
+
+        .stack-title {
+            font-size: 1.8rem;
+            color: #7bed9f;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .loop-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .loop-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .loop-arrow {
+            font-size: 2rem;
+            color: #ffd93d;
+        }
+
+        .loop-decision {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .decision-path {
+            text-align: center;
+        }
+
+        .decision-label {
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .decision-yes { background: #2ed573; color: #000; }
+        .decision-no { background: #ff4757; }
+
+        .loop-note {
+            background: rgba(255, 217, 61, 0.2);
+            border: 2px dashed #ffd93d;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+            max-width: 500px;
+        }
+
+        /* ADT Section */
+        .adt-section {
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #3d3d5c;
+        }
+
+        .adt-title {
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .adt-letters {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .adt-letter {
+            text-align: center;
+            flex: 1;
+            min-width: 250px;
+            max-width: 350px;
+        }
+
+        .letter-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .letter-a { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .letter-d { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .letter-t { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+        .letter-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffd93d;
+        }
+
+        .letter-desc {
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .letter-example {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        /* Memory Hooks */
+        .memory-section {
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #3d3d5c;
+        }
+
+        .memory-title {
+            font-size: 1.8rem;
+            color: #00d4ff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .memory-card {
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid #00d4ff;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .memory-phrase {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ffd93d;
+            margin-bottom: 15px;
+        }
+
+        .memory-meaning {
+            color: #ccc;
+        }
+
+        /* Quick Reference */
+        .quick-ref {
+            background: linear-gradient(145deg, #1a472a 0%, #0d2818 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 2px solid #2ed573;
+        }
+
+        .quick-title {
+            font-size: 1.8rem;
+            color: #2ed573;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-item {
+            background: rgba(46, 213, 115, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .quick-num {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2ed573;
+        }
+
+        .quick-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .flow-step:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>7FA SALES FRAMEWORK</h1>
+        <p class="subtitle">Visual Training Guide | Master the Close</p>
+
+        <!-- Boulder Philosophy -->
+        <div class="boulder-section">
+            <div class="boulder-title">
+                <span>THE BOULDER ANALOGY</span>
+            </div>
+            <div class="boulder-visual">
+                <div class="boulder-scenario">
+                    <div class="boulder-icon wrong">😰🪨⬆️</div>
+                    <div class="boulder-label wrong">DON'T DO THIS</div>
+                    <div class="boulder-desc">YOU pushing THEIR boulder up the hill.<br>You're exhausted. They're watching.</div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="boulder-scenario">
+                    <div class="boulder-icon right">🪨⬆️😊</div>
+                    <div class="boulder-label right">DO THIS</div>
+                    <div class="boulder-desc">THEY push the boulder. You ask questions.<br>At the top, you help them tip it over.</div>
+                </div>
+            </div>
+            <p style="text-align: center; color: #aaa; font-size: 1.1rem; margin-top: 20px;">
+                <em>"If they're not willing to push the boulder, are they going to do the work?"</em>
+            </p>
+        </div>
+
+        <!-- Call Flow -->
+        <div class="flow-section">
+            <h2 class="flow-title">THE 13-PHASE CALL FLOW</h2>
+            <div class="flow-container">
+                <div class="flow-step">
+                    <div class="step-number step-intro">1</div>
+                    <div class="step-content">
+                        <div class="step-title">INTRODUCTION + RAPPORT</div>
+                        <div class="step-desc">Geographic icebreaker, find connection, use humor. "Where are you calling from?"</div>
+                        <div class="step-time">2 minutes</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-frame">2</div>
+                    <div class="step-content">
+                        <div class="step-title">FRAMING + EXPECTATIONS</div>
+                        <div class="step-desc">Set the rules. Get agreement to be transparent. "No BS, cards on the table—cool?"</div>
+                        <div class="step-time">1-2 minutes</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-discover">3</div>
+                    <div class="step-content">
+                        <div class="step-title">DISCOVERY (WHY CHAIN)</div>
+                        <div class="step-desc">Why are we on this call? Keep asking WHY until you hit emotion. Use mirrors & labels.</div>
+                        <div class="step-time">5-10 minutes</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-doors">4</div>
+                    <div class="step-content">
+                        <div class="step-title">CLOSE DOORS</div>
+                        <div class="step-desc">Pre-handle objections: Decision maker? Burned before? Budget ready? Timeline?</div>
+                        <div class="step-time">During discovery</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-tie">5</div>
+                    <div class="step-content">
+                        <div class="step-title">TIE DOWNS</div>
+                        <div class="step-desc">Use THEIR words. Make pain concrete. "Earlier you said..." Hold them accountable.</div>
+                        <div class="step-time">Throughout call</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-offer">6</div>
+                    <div class="step-content">
+                        <div class="step-title">PRESENT THE OFFER</div>
+                        <div class="step-desc">Match THEIR pain to the solution. Show how it fixes THEIR specific problems. NO PRICE YET.</div>
+                        <div class="step-time">3-5 minutes</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-temp1">7</div>
+                    <div class="step-content">
+                        <div class="step-title">TEMP CHECK #1 (PRE-PRICE)</div>
+                        <div class="step-desc">"On a scale of 1-10, where are you?" Separate money from solution if needed.</div>
+                        <div class="step-time">Key moment</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-stack">8</div>
+                    <div class="step-content">
+                        <div class="step-title">STACK THE OFFER (LOOP)</div>
+                        <div class="step-desc">List everything included. "Does that make sense?" Question → Answer → RESTACK. Repeat 5-6x if needed.</div>
+                        <div class="step-time">Until clear</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-future">9</div>
+                    <div class="step-content">
+                        <div class="step-title">FORECAST THE FUTURE</div>
+                        <div class="step-desc">Paint what happens AFTER they buy. Onboarding, first call, 90-day plan. Make it real.</div>
+                        <div class="step-time">1-2 minutes</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-price">10</div>
+                    <div class="step-content">
+                        <div class="step-title">DROP THE PRICE + SHUT UP</div>
+                        <div class="step-desc">"The investment is $X per month." Then SILENCE. Even if 2 minutes. Hold the tension.</div>
+                        <div class="step-time">Critical moment</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-temp2">11</div>
+                    <div class="step-content">
+                        <div class="step-title">TEMP CHECK #2 (POST-PRICE)</div>
+                        <div class="step-desc">"Now that you know everything and the investment—scale of 1-10, does this solve your problem?"</div>
+                        <div class="step-time">Confirmation</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-close">12</div>
+                    <div class="step-content">
+                        <div class="step-title">ASSUMPTIVE CLOSE</div>
+                        <div class="step-desc">"Most people pay with Visa, MasterCard, or American Express. Which one?" Type the payment in yourself.</div>
+                        <div class="step-time">Close it</div>
+                    </div>
+                </div>
+
+                <div class="flow-step">
+                    <div class="step-number step-adt">13</div>
+                    <div class="step-content">
+                        <div class="step-title">IF OBJECTION → ADT</div>
+                        <div class="step-desc">Agree → Duplicate → Transition with question. Set 3-day follow-up if needed.</div>
+                        <div class="step-time">If needed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Techniques -->
+        <h2 class="flow-title" style="margin-top: 50px;">KEY TECHNIQUES</h2>
+        <div class="techniques-grid">
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">🔗</div>
+                    <div class="technique-title">THE WHY CHAIN</div>
+                </div>
+                <div class="technique-content">
+                    Keep asking WHY until you hit emotional truth. Go 5-6 levels deep.
+                </div>
+                <div class="technique-example">
+                    "I want $5M" → "Why $5M?" → "To support my team" → "Why support your team?" → "Because I've been failing them" → NOW you have emotion.
+                </div>
+            </div>
+
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">🪞</div>
+                    <div class="technique-title">MIRRORS</div>
+                </div>
+                <div class="technique-content">
+                    Repeat the last 1-3 words as a question. Gets them to elaborate without you asking.
+                </div>
+                <div class="technique-example">
+                    Them: "I've been stuck for two years."<br>
+                    You: "Two years?"<br>
+                    Them: "Yeah, ever since we lost our biggest client..."
+                </div>
+            </div>
+
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">🏷️</div>
+                    <div class="technique-title">LABELS</div>
+                </div>
+                <div class="technique-content">
+                    Name their emotion. Validates and deepens the conversation.
+                </div>
+                <div class="technique-example">
+                    "It sounds like you've been frustrated with this for a while..."<br>
+                    "It seems like this is really important to you..."
+                </div>
+            </div>
+
+            <div class="technique-card">
+                <div class="technique-header">
+                    <div class="technique-icon">🚪</div>
+                    <div class="technique-title">CLOSING DOORS</div>
+                </div>
+                <div class="technique-content">
+                    Pre-handle objections BEFORE you present the offer. If they've been burned, find the POSITIVE from that experience.
+                </div>
+                <div class="technique-example">
+                    "What good things came out of that program?"<br>
+                    "So taking that action DID yield some positive results..."<br>
+                    Door = Closed. Move on.
+                </div>
+            </div>
+        </div>
+
+        <!-- Temp Check Visual -->
+        <div class="temp-check-visual">
+            <h2 class="temp-title">THE TEMP CHECK</h2>
+            <div class="scale-container">
+                <div class="scale-numbers">
+                    <div class="scale-num scale-low">1</div>
+                    <div class="scale-num scale-low">2</div>
+                    <div class="scale-num scale-low">3</div>
+                    <div class="scale-num scale-low">4</div>
+                    <div class="scale-num scale-mid">5</div>
+                    <div class="scale-num scale-mid">6</div>
+                    <div class="scale-num scale-mid">7</div>
+                    <div class="scale-num scale-high">8</div>
+                    <div class="scale-num scale-high">9</div>
+                    <div class="scale-num scale-high">10</div>
+                </div>
+            </div>
+            <div class="response-cards">
+                <div class="response-card low">
+                    <div class="response-range">1-7</div>
+                    <div class="response-action">Choose ONE (not both!):</div>
+                    <div class="response-script">
+                        "Is there any part of the offer that was unclear?"<br><br>
+                        OR<br><br>
+                        "What would make it a 10?"
+                    </div>
+                    <p style="margin-top: 15px; color: #ff6b6b; font-weight: bold;">Don't make the soup too salty!</p>
+                </div>
+                <div class="response-card high">
+                    <div class="response-range">8-10</div>
+                    <div class="response-action">Let them sell themselves:</div>
+                    <div class="response-script">
+                        "Why not a 3? Why not a 4?"<br><br>
+                        They push the boulder. They explain why this IS right for them.
+                    </div>
+                    <p style="margin-top: 15px; color: #2ed573; font-weight: bold;">They're doing the work now!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stacking Loop -->
+        <div class="stack-visual">
+            <h2 class="stack-title">THE STACKING LOOP</h2>
+            <div class="loop-diagram">
+                <div class="loop-box">STACK THE OFFER<br><small>"Here's everything you get..."</small></div>
+                <div class="loop-arrow">↓</div>
+                <div class="loop-box">"DOES THAT MAKE SENSE?"</div>
+                <div class="loop-arrow">↓</div>
+                <div class="loop-decision">
+                    <div class="decision-path">
+                        <div class="decision-label decision-no">QUESTION?</div>
+                        <div class="loop-arrow">↓</div>
+                        <div style="color: #ccc;">Answer it</div>
+                        <div class="loop-arrow">↓</div>
+                        <div style="color: #ffd93d; font-weight: bold;">RESTACK</div>
+                        <div class="loop-arrow" style="transform: rotate(180deg);">↺</div>
+                    </div>
+                    <div class="decision-path">
+                        <div class="decision-label decision-yes">YES, CLEAR</div>
+                        <div class="loop-arrow">↓</div>
+                        <div style="color: #2ed573; font-weight: bold; font-size: 1.2rem;">DROP THE PRICE</div>
+                    </div>
+                </div>
+                <div class="loop-note">
+                    <strong>Henry's Secret:</strong> "I've done this 5-6 times on one call."<br>
+                    Keep restacking until there are NO questions left.
+                </div>
+            </div>
+        </div>
+
+        <!-- ADT Framework -->
+        <div class="adt-section">
+            <h2 class="adt-title">"I NEED TO THINK ABOUT IT" → ADT FRAMEWORK</h2>
+            <div class="adt-letters">
+                <div class="adt-letter">
+                    <div class="letter-circle letter-a">A</div>
+                    <div class="letter-name">AGREE</div>
+                    <div class="letter-desc">Use only ONE phrase (not both)</div>
+                    <div class="letter-example">"I'm with you"<br>OR<br>"I get it"</div>
+                </div>
+                <div class="adt-letter">
+                    <div class="letter-circle letter-d">D</div>
+                    <div class="letter-name">DUPLICATE</div>
+                    <div class="letter-desc">Reflect back what they said</div>
+                    <div class="letter-example">"Sounds like you want to take some time to think this over"</div>
+                </div>
+                <div class="adt-letter">
+                    <div class="letter-circle letter-t">T</div>
+                    <div class="letter-name">TRANSITION</div>
+                    <div class="letter-desc">Ask a calibrated question</div>
+                    <div class="letter-example">"Is there anything else—other than needing time—that's stopping you from moving forward today?"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Hooks -->
+        <div class="memory-section">
+            <h2 class="memory-title">MEMORY HOOKS - REMEMBER THESE</h2>
+            <div class="memory-grid">
+                <div class="memory-card">
+                    <div class="memory-phrase">"Don't push their boulder"</div>
+                    <div class="memory-meaning">Let THEM do the work. You ask questions.</div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-phrase">"Don't make the soup too salty"</div>
+                    <div class="memory-meaning">Choose ONE technique, not multiple at once.</div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-phrase">"Why not a 3?"</div>
+                    <div class="memory-meaning">When they're 8+, let them sell themselves.</div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-phrase">"SHUT UP after price"</div>
+                    <div class="memory-meaning">Silence. Even if 2 minutes. Hold the tension.</div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-phrase">"Most people pay with..."</div>
+                    <div class="memory-meaning">Assumptive close. People do what others do.</div>
+                </div>
+                <div class="memory-card">
+                    <div class="memory-phrase">"Transformation stories"</div>
+                    <div class="memory-meaning">Not "testimonials"—transformation stories.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Reference Numbers -->
+        <div class="quick-ref">
+            <h2 class="quick-title">QUICK NUMBERS</h2>
+            <div class="quick-grid">
+                <div class="quick-item">
+                    <div class="quick-num">2 min</div>
+                    <div class="quick-label">Rapport + Frame</div>
+                </div>
+                <div class="quick-item">
+                    <div class="quick-num">5 min</div>
+                    <div class="quick-label">Discovery (find the WHY)</div>
+                </div>
+                <div class="quick-item">
+                    <div class="quick-num">2x</div>
+                    <div class="quick-label">Temp Checks (pre & post price)</div>
+                </div>
+                <div class="quick-item">
+                    <div class="quick-num">5-6x</div>
+                    <div class="quick-label">Max Restacks</div>
+                </div>
+                <div class="quick-item">
+                    <div class="quick-num">3 days</div>
+                    <div class="quick-label">Follow-up deadline</div>
+                </div>
+                <div class="quick-item">
+                    <div class="quick-num">8+</div>
+                    <div class="quick-label">Ready to close</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Seven Figure Agency | Sales Framework v1.0 | December 2025</p>
+            <p style="margin-top: 10px;">Sources: Alex Portugal (Sep 2025) + Henry Adams (Oct 2025)</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henry Buyout Proposal - SFA Leadership Review</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .meta {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        .meta span {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .section {
+            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid #3d3d5c;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title.highlight {
+            color: #2ed573;
+        }
+
+        .section-title.alert {
+            color: #ffd93d;
+        }
+
+        .section-title.action {
+            color: #ff6b6b;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .item-label {
+            color: #ccc;
+        }
+
+        .item-value {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .item-value.money {
+            color: #2ed573;
+        }
+
+        .item-value.cost {
+            color: #ff6b6b;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .comparison-box {
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .comparison-box.old {
+            background: rgba(255, 71, 87, 0.15);
+            border: 2px solid #ff4757;
+        }
+
+        .comparison-box.new {
+            background: rgba(46, 213, 115, 0.15);
+            border: 2px solid #2ed573;
+        }
+
+        .comparison-label {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .comparison-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .comparison-box.old .comparison-value {
+            color: #ff6b6b;
+        }
+
+        .comparison-box.new .comparison-value {
+            color: #2ed573;
+        }
+
+        .comparison-note {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 8px;
+        }
+
+        .highlight-box {
+            background: rgba(46, 213, 115, 0.1);
+            border: 2px solid #2ed573;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .highlight-box .big-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2ed573;
+        }
+
+        .highlight-box .label {
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        .reason-list {
+            list-style: none;
+        }
+
+        .reason-list li {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            border-radius: 0 10px 10px 0;
+            color: #ccc;
+        }
+
+        .reason-list li strong {
+            color: #fff;
+        }
+
+        .approval-box {
+            background: linear-gradient(145deg, #1a472a 0%, #0d2818 100%);
+            border: 2px solid #2ed573;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .approval-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(46, 213, 115, 0.3);
+        }
+
+        .approval-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #2ed573;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2ed573;
+            font-size: 1.2rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .summary-row .label {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .summary-row .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge.leverage {
+            background: #ffd93d;
+            color: #000;
+        }
+
+        @media (max-width: 600px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HENRY BUYOUT PROPOSAL</h1>
+        <div class="meta">
+            <span><strong>Prepared by:</strong> Esteban Baez</span>
+            <span><strong>Date:</strong> January 18, 2026</span>
+            <span><strong>For:</strong> Leadership Team Review & Approval</span>
+        </div>
+
+        <!-- Background -->
+        <div class="section">
+            <div class="section-title">Background</div>
+            <p style="color: #ccc; line-height: 1.7;">
+                RepStack reached out about buying out Henry's contract. They're losing money on him - paying him $1,422/month while we only pay them $680/month. They have a 15% raise policy every 6 months, so their losses keep growing. <span class="badge leverage">They want out</span>
+            </p>
+        </div>
+
+        <!-- Buyout Cost -->
+        <div class="section">
+            <div class="section-title alert">Buyout Cost</div>
+            <div class="item-row">
+                <span class="item-label">RepStack asking</span>
+                <span class="item-value cost">$3,000</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Their normal rate</span>
+                <span class="item-value" style="color: #888;">$10,000</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Our target</span>
+                <span class="item-value money">$1,000 - $1,500</span>
+            </div>
+            <p style="color: #888; font-size: 0.9rem; margin-top: 15px; font-style: italic;">
+                They're losing ~$742/month, so they're motivated to settle low.
+            </p>
+        </div>
+
+        <!-- Current vs Proposed -->
+        <div class="section">
+            <div class="section-title">What We Were Paying</div>
+            <div class="summary-row">
+                <span class="label">Monthly to RepStack</span>
+                <span class="value" style="color: #ff6b6b;">$680/mo</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Henry's Current Earnings</div>
+            <div class="item-row">
+                <span class="item-label">Base from RepStack</span>
+                <span class="item-value">$1,422/month</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Commissions from us</span>
+                <span class="item-value">$1,500 - $5,000/month</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Average commissions</span>
+                <span class="item-value">~$3,500/month</span>
+            </div>
+            <div class="highlight-box">
+                <div class="big-number">~$4,900/mo</div>
+                <div class="label">Henry's Current Total (Average)</div>
+            </div>
+        </div>
+
+        <!-- Proposed Structure -->
+        <div class="section">
+            <div class="section-title highlight">Proposed Compensation Structure</div>
+            <div class="item-row">
+                <span class="item-label">Base Salary</span>
+                <span class="item-value money">$1,200/month</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Bonus at 10 sales</span>
+                <span class="item-value money">$300</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Bonus at 13 sales (+3 more)</span>
+                <span class="item-value money">+$200 = $500 total</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Insurance</span>
+                <span class="item-value" style="color: #888;">Henry covers (~$500/year)</span>
+            </div>
+            <div class="item-row">
+                <span class="item-label">Commissions</span>
+                <span class="item-value">Unchanged</span>
+            </div>
+        </div>
+
+        <!-- Henry's New Total -->
+        <div class="section">
+            <div class="section-title highlight">Henry's New Total (Average Month)</div>
+            <div class="summary-row">
+                <span class="label">Base</span>
+                <span class="value" style="color: #2ed573;">$1,200</span>
+            </div>
+            <div class="summary-row">
+                <span class="label">+ Average Commissions</span>
+                <span class="value" style="color: #2ed573;">$3,500</span>
+            </div>
+            <div class="summary-row">
+                <span class="label">+ Bonus (hitting targets)</span>
+                <span class="value" style="color: #2ed573;">$500</span>
+            </div>
+            <div class="highlight-box">
+                <div class="big-number">$5,200/mo</div>
+                <div class="label">MORE than he's making now ($4,900)</div>
+                <p style="color: #2ed573; margin-top: 15px; font-size: 1.1rem;">The upside is built in - he just has to earn it.</p>
+            </div>
+        </div>
+
+        <!-- Cost to SFA -->
+        <div class="section">
+            <div class="section-title action">Cost to SFA</div>
+            <div class="comparison-grid">
+                <div class="comparison-box old">
+                    <div class="comparison-label">OLD (RepStack)</div>
+                    <div class="comparison-value">$680/mo</div>
+                    <div class="comparison-note">Just placement fee</div>
+                </div>
+                <div class="comparison-box new">
+                    <div class="comparison-label">NEW (Direct)</div>
+                    <div class="comparison-value">$1,200/mo</div>
+                    <div class="comparison-note">Base + bonuses + commissions (unchanged)</div>
+                </div>
+            </div>
+            <div class="summary-row" style="margin-top: 20px;">
+                <span class="label">One-time Buyout</span>
+                <span class="value" style="color: #ffd93d;">$1,000 - $1,500</span>
+            </div>
+        </div>
+
+        <!-- Why This Works -->
+        <div class="section">
+            <div class="section-title">Why This Works</div>
+            <ul class="reason-list">
+                <li><strong>1.</strong> Henry can earn MORE than he's making now if he hits his numbers (which he already does)</li>
+                <li><strong>2.</strong> We're not giving a raise for a lateral move - we're giving earning potential</li>
+                <li><strong>3.</strong> Henry knows his job is at risk if this doesn't happen</li>
+                <li><strong>4.</strong> He said he makes "really good money for his country" - he's motivated</li>
+            </ul>
+        </div>
+
+        <!-- Approval -->
+        <div class="section">
+            <div class="section-title action">Approval Requested</div>
+            <div class="approval-box">
+                <div class="approval-item">
+                    <div class="checkbox"></div>
+                    <span>Approval on $1,200 base + bonus structure</span>
+                </div>
+                <div class="approval-item">
+                    <div class="checkbox"></div>
+                    <span>Approval to negotiate buyout up to $1,500</span>
+                </div>
+                <div class="approval-item">
+                    <div class="checkbox"></div>
+                    <span>Green light to finalize with Henry and Alina</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Seven Figure Agency | Internal Document</p>
+            <p style="margin-top: 10px; color: #888;">Please confirm approval or let me know if you'd like to discuss.</p>
+        </div>
+    </div>
+</body>
+</html>

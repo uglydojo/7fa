@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Marketing Manager - Seven Figure Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* SFA Header */
+        .sfa-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #cc0000;
+        }
+
+        .sfa-brand {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #cc0000;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        h1 span {
+            color: #cc0000;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        /* Section Cards */
+        .section {
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 1px solid #333;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #cc0000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: #cc0000;
+            border-radius: 2px;
+        }
+
+        /* Lists */
+        ul {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        ul li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #ccc;
+        }
+
+        ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #cc0000;
+            font-weight: bold;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(204, 0, 0, 0.1);
+            border-left: 4px solid #cc0000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .highlight-box strong {
+            color: #cc0000;
+        }
+
+        /* Info Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            background: rgba(204, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th {
+            background: #cc0000;
+            color: #fff;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #333;
+            color: #ccc;
+        }
+
+        .comparison-table tr:hover td {
+            background: rgba(204, 0, 0, 0.1);
+        }
+
+        /* Test Project Section */
+        .test-section {
+            background: linear-gradient(145deg, #0d1a0d 0%, #0a140a 100%);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            border: 2px solid #2ed573;
+        }
+
+        .test-title {
+            font-size: 1.5rem;
+            color: #2ed573;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .test-title::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: #2ed573;
+            border-radius: 2px;
+        }
+
+        /* Task Cards */
+        .task-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+
+        .task-number {
+            display: inline-block;
+            background: #cc0000;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .task-title {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .task-subtitle {
+            color: #cc0000;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+        }
+
+        /* Links */
+        a {
+            color: #cc0000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(145deg, #cc0000 0%, #990000 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .cta-email {
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 15px 30px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 2px solid #cc0000;
+            margin-top: 20px;
+        }
+
+        .footer .sfa-footer-brand {
+            color: #cc0000;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .section, .test-section, .cta-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SFA Branded Header -->
+        <div class="sfa-header">
+            <div class="sfa-brand">SEVEN FIGURE AGENCY</div>
+            <h1>MARKETING <span>MANAGER</span></h1>
+        </div>
+        <p class="subtitle">Full-Time | Remote (US-Based) | Join Our Leadership Team</p>
+
+        <!-- Quick Info -->
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Location</div>
+                <div class="info-value">Remote (US)</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Type</div>
+                <div class="info-value">Full-Time</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Travel</div>
+                <div class="info-value">Miami 3-4x/Year</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Reports To</div>
+                <div class="info-value">COO</div>
+            </div>
+        </div>
+
+        <!-- About the Role -->
+        <div class="section">
+            <h2 class="section-title">About the Role</h2>
+            <p style="color: #ccc; margin-bottom: 20px;">
+                The Marketing Manager is responsible for strategy, content creation, and execution of all social media activities across Seven Figure Agency's platforms. This is a leadership-level role requiring independent decision-making, brand voice understanding, and the ability to manage real-time content during live events. You'll report to the COO and work closely with the Head of Sales & Business Development.
+            </p>
+            <div class="highlight-box">
+                <strong>This is NOT a coordinator role.</strong> The Marketing Manager creates strategy and content, not just executes tasks given to them. You'll own the social presence and drive results.
+            </div>
+        </div>
+
+        <!-- What You'll Do -->
+        <div class="section">
+            <h2 class="section-title">What You'll Do</h2>
+
+            <h3 style="color: #fff; margin: 20px 0 10px 0;">Content Strategy & Planning</h3>
+            <ul>
+                <li>Develop weekly/monthly content calendars</li>
+                <li>Plan platform-specific content (Instagram, Facebook, LinkedIn, YouTube)</li>
+                <li>Align content with marketing campaigns, intensives, and launches</li>
+                <li>Identify content opportunities from member wins, testimonials, sessions</li>
+            </ul>
+
+            <h3 style="color: #fff; margin: 20px 0 10px 0;">Content Creation</h3>
+            <ul>
+                <li>Write all social media posts (captions, hooks, CTAs)</li>
+                <li>Create platform-appropriate variations (carousel for IG, text-heavy for FB, professional for LinkedIn)</li>
+                <li>Select photos and graphics for posts</li>
+                <li>Write captions for short-form video content (Reels, TikTok, Shorts)</li>
+            </ul>
+
+            <h3 style="color: #fff; margin: 20px 0 10px 0;">Brand Voice & Tone</h3>
+            <ul>
+                <li>Maintain Josh's voice and tone across all platforms</li>
+                <li>Maintain Yesenia's voice for her personal profiles</li>
+                <li>Understand and apply the 7FA brand guidelines</li>
+                <li>Present speakers and members as "heroes" in content</li>
+            </ul>
+
+            <h3 style="color: #fff; margin: 20px 0 10px 0;">Intensive & Event Coverage</h3>
+            <ul>
+                <li>Real-time posting during Member Intensives (3-4x per year in Miami)</li>
+                <li>Cover all sessions with before/during/after posts</li>
+                <li>Post award winner announcements</li>
+                <li>Tag speakers, members, and companies appropriately</li>
+                <li>Work extended hours during intensive week (awards are after-hours)</li>
+            </ul>
+        </div>
+
+        <!-- Platforms You'll Manage -->
+        <div class="section">
+            <h2 class="section-title">Platforms You'll Manage</h2>
+            <ul>
+                <li>Josh Nelson personal (Facebook, LinkedIn, Instagram)</li>
+                <li>Yesenia personal profiles</li>
+                <li>7FA Facebook Page</li>
+                <li>DMAS Facebook Group</li>
+                <li>Member Facebook Group</li>
+                <li>Agency Provider Facebook Group</li>
+                <li>LinkedIn company page</li>
+                <li>Instagram account</li>
+            </ul>
+        </div>
+
+        <!-- Requirements -->
+        <div class="section">
+            <h2 class="section-title">Requirements</h2>
+            <ul>
+                <li>Strong copywriting ability</li>
+                <li>Understanding of social media algorithms and best practices</li>
+                <li>Experience with coaching/education industry preferred</li>
+                <li>Ability to match brand voice and tone</li>
+                <li>Photo/visual selection judgment</li>
+                <li>Platform expertise (Meta, LinkedIn, Instagram, YouTube)</li>
+                <li>Self-directed work style (not needing constant direction)</li>
+                <li>US-based with ability to travel to Miami 3-4x per year (~5 days each trip)</li>
+            </ul>
+        </div>
+
+        <!-- Tools -->
+        <div class="section">
+            <h2 class="section-title">Tools You'll Use</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-value">Meta Business Suite</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">Vista Social</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">LinkedIn</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">Instagram</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">ChatGPT/Claude</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-value">Google Drive</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SM Manager vs Coordinator -->
+        <div class="section">
+            <h2 class="section-title">Marketing Manager vs Coordinator</h2>
+            <table class="comparison-table">
+                <tr>
+                    <th>Marketing Manager (This Role)</th>
+                    <th>Coordinator</th>
+                </tr>
+                <tr>
+                    <td>Creates strategy</td>
+                    <td>Executes given tasks</td>
+                </tr>
+                <tr>
+                    <td>Writes content</td>
+                    <td>Posts provided content</td>
+                </tr>
+                <tr>
+                    <td>Makes decisions independently</td>
+                    <td>Needs direction</td>
+                </tr>
+                <tr>
+                    <td>Selects photos/assets</td>
+                    <td>Uses selected assets</td>
+                </tr>
+                <tr>
+                    <td>Plans calendar</td>
+                    <td>Follows calendar</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- TEST PROJECT SECTION -->
+        <div class="test-section">
+            <h2 class="test-title">Test Project: Member Intensive Posting</h2>
+            <p style="color: #ccc; margin-bottom: 20px;">
+                Thank you for your interest in joining the Seven Figure Agency team. Below is your test assignment designed to evaluate your ability to understand event context, write high-quality social media posts, and present speakers as "heroes."
+            </p>
+
+            <div class="highlight-box" style="border-color: #2ed573; background: rgba(46, 213, 115, 0.1);">
+                <strong style="color: #2ed573;">You will be evaluated on:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Quality of writing and tone match</li>
+                    <li>Understanding of member vs prospect messaging</li>
+                    <li>Photo selection judgment</li>
+                    <li>Caption creativity for short-form video</li>
+                    <li>Attention to detail and following instructions</li>
+                </ul>
+            </div>
+
+            <!-- Task 1 -->
+            <div class="task-card">
+                <h3 class="task-title"><span class="task-number">1</span> Session Posts - Josh Nelson</h3>
+
+                <p class="task-subtitle">Session Details:</p>
+                <p style="color: #ccc;"><strong>Title:</strong> "The Podcast Prospecting Play: How To Turn Your Podcast Into A Client Magnet"</p>
+                <p style="color: #ccc;"><strong>Speaker:</strong> Josh Nelson</p>
+                <p style="color: #ccc; margin-top: 10px;">
+                    Transform your podcast into a true client-generation engine. Discover how to consistently book 15+ strategy sessions each month by using your podcast as an appointment-setting tool rather than just a content platform.
+                </p>
+
+                <p style="color: #ccc; margin-top: 15px;"><strong>Photo Folder:</strong> <a href="https://drive.google.com/drive/folders/16wwL384cyrbg35IE8ZkjC73Ckl4t2iDl?usp=drive_link" target="_blank">Access Photos Here</a></p>
+
+                <p class="task-subtitle">Create THREE posts:</p>
+                <ul>
+                    <li><strong>Member-Facing - Before Session:</strong> Announce the session, inform, excite, prompt members to join</li>
+                    <li><strong>Member-Facing - After Session:</strong> Recap the session, make the speaker the hero, highlight key takeaways</li>
+                    <li><strong>Prospect-Facing - After Session:</strong> Showcase value to non-members, create tasteful FOMO, soft CTA</li>
+                </ul>
+                <p style="color: #888; margin-top: 10px;"><em>Select up to 5 photos from the folder for each "After" post.</em></p>
+            </div>
+
+            <!-- Task 2 -->
+            <div class="task-card">
+                <h3 class="task-title"><span class="task-number">2</span> Short-Form Video Captions</h3>
+
+                <p style="color: #ccc;">Watch this clip from the Podcast Prospecting Play session where Josh brings member Sean Dennin on stage:</p>
+                <p style="color: #ccc; margin: 15px 0;"><strong>Video:</strong> <a href="https://drive.google.com/file/d/1gI09-Y2wSHvN0tdVaNDGAjX_pknGiFVw/view?usp=sharing" target="_blank">Watch Video Here</a></p>
+
+                <p class="task-subtitle">Create THREE caption variations for TikTok/Reels/Shorts:</p>
+                <ul>
+                    <li><strong>Hook-driven caption</strong> - Grab attention immediately</li>
+                    <li><strong>Value-driven caption</strong> - Lead with the insight</li>
+                    <li><strong>Community/culture-driven caption</strong> - Highlight the 7FA community</li>
+                </ul>
+                <p style="color: #888; margin-top: 10px;"><em>Captions should be short, punchy, and platform-friendly.</em></p>
+            </div>
+
+            <!-- Task 3 -->
+            <div class="task-card">
+                <h3 class="task-title"><span class="task-number">3</span> Session Posts - Member Speakers</h3>
+
+                <p class="task-subtitle">Session Details:</p>
+                <p style="color: #ccc;"><strong>Title:</strong> "The NEW Facebook Ads Approach: Landing Clients With No Manual Targeting"</p>
+                <p style="color: #ccc;"><strong>Speakers:</strong> Nick Hoard & Michael Ray (Patient Care Marketing Pros)</p>
+                <p style="color: #ccc; margin-top: 10px;">
+                    Forget the old manual targeting tricks. Facebook has changed, and so should your strategy. Nick and Michael will unveil their brand-new approach to generating client appointments that is outperforming anything they have tried before.
+                </p>
+
+                <p style="color: #ccc; margin-top: 15px;"><strong>Photo Folder:</strong> <a href="https://drive.google.com/drive/folders/1Ai_LI1m-UNj6o612wprOo8KpJunHCYcM?usp=drive_link" target="_blank">Access Photos Here</a></p>
+
+                <p class="task-subtitle">Create THREE posts (same format as Task 1):</p>
+                <ul>
+                    <li><strong>Member-Facing - Before Session</strong></li>
+                    <li><strong>Member-Facing - After Session</strong></li>
+                    <li><strong>Prospect-Facing - After Session</strong></li>
+                </ul>
+                <p style="color: #888; margin-top: 10px;"><em>Select up to 5 photos from the folder for each "After" post.</em></p>
+            </div>
+
+            <!-- Task 4 -->
+            <div class="task-card">
+                <h3 class="task-title"><span class="task-number">4</span> Award Winner Posts</h3>
+
+                <p style="color: #ccc;">Create social media posts celebrating agency winners. Write TWO versions for each winner:</p>
+                <ul>
+                    <li><strong>Member-facing version</strong></li>
+                    <li><strong>Prospect-facing version</strong> (avoid specific revenue numbers for larger milestones - use "multimillion-dollar agency" language)</li>
+                </ul>
+
+                <p class="task-subtitle">Winners:</p>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 10px;">
+                    <p style="color: #fff;"><strong>1. Neil & Amy Trickett</strong> - Practice Promotions</p>
+                    <p style="color: #2ed573;">Agency of the Year</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 10px;">
+                    <p style="color: #fff;"><strong>2. Alex Van Leeuwen</strong> - HVAC Marketers</p>
+                    <p style="color: #2ed573;">Seven Figure Agency</p>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin-top: 10px;">
+                    <p style="color: #fff;"><strong>3. Travis Weathers & Garrett Tacoronte</strong> - Rotate Digital</p>
+                    <p style="color: #2ed573;">5 Million Dollar Agency (use "multimillion-dollar" for prospects)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEST PROJECT 2: Content Calendar -->
+        <div class="test-section">
+            <h2 class="test-title">Test Project 2: Content Calendar Exercise</h2>
+            <p style="color: #ccc; margin-bottom: 20px;">
+                This test evaluates your ability to think strategically about content planning, platform-specific execution, and audience targeting.
+            </p>
+
+            <div class="highlight-box" style="border-color: #2ed573; background: rgba(46, 213, 115, 0.1);">
+                <strong style="color: #2ed573;">You will be evaluated on:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Platform-specific thinking (what works on LinkedIn vs Instagram vs Stories)</li>
+                    <li>Posting cadence (not just what, but when)</li>
+                    <li>Audience awareness (members vs prospects)</li>
+                    <li>FOMO and urgency tactics</li>
+                    <li>Creativity and brand voice alignment</li>
+                </ul>
+            </div>
+
+            <div class="task-card">
+                <h3 class="task-title">The Scenario</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">
+                    You're the Marketing Manager at Seven Figure Agency. Below is a list of content themes and events happening in one week. Your job is to create a content calendar that maps out what to post, when, and on which platform.
+                </p>
+
+                <p class="task-subtitle">Week of February 10-14, 2026</p>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Day</th>
+                        <th>Event/Theme</th>
+                    </tr>
+                    <tr>
+                        <td>Monday</td>
+                        <td>New member spotlight (Devon Clark joined, runs a home services agency at $25K MRR)</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>Josh's Tuesday Training drops (topic: "How to Run a 15-Minute Sales Call")</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
+                        <td>Testimonial video from existing member (Forrest Schwartz, grew from $40K to $80K MRR)</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>March Intensive early bird deadline reminder (event is March 2-3 in Miami)</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>Weekend engagement post (community-focused)</td>
+                    </tr>
+                </table>
+
+                <p class="task-subtitle">Platforms to Cover:</p>
+                <ul>
+                    <li>Instagram (Feed + Stories + Reels)</li>
+                    <li>Facebook (Page + Group)</li>
+                    <li>YouTube (Shorts + Community tab)</li>
+                    <li>LinkedIn</li>
+                </ul>
+            </div>
+
+            <div class="task-card">
+                <h3 class="task-title">Your Deliverable</h3>
+                <p style="color: #ccc;">Create a content calendar in table or list format. For each post, include:</p>
+                <ul>
+                    <li><strong>Day and time</strong> to post</li>
+                    <li><strong>Platform</strong> (be specific: IG Feed vs IG Stories vs IG Reels)</li>
+                    <li><strong>Content type</strong> (photo, carousel, video, text post, story)</li>
+                    <li><strong>Hook or caption concept</strong> (first line or headline)</li>
+                    <li><strong>Call to action</strong> (what do you want them to do?)</li>
+                </ul>
+
+                <p class="task-subtitle">Example Entry:</p>
+                <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; margin: 10px 0;">
+                    <p style="color: #ccc; margin: 0;"><strong>Monday 10am | IG Feed | Photo + caption</strong></p>
+                    <p style="color: #ccc; margin: 5px 0 0 0;"><em>Hook:</em> "New member alert. Meet Devon Clark..."</p>
+                    <p style="color: #ccc; margin: 5px 0 0 0;"><em>CTA:</em> "Drop a welcome in the comments"</p>
+                </div>
+
+                <p class="task-subtitle">Important Notes:</p>
+                <ul>
+                    <li><strong>Plan multiple posts per day</strong> — Each theme can be posted across several platforms, not just once. Think about how the same content gets adapted for different channels.</li>
+                    <li><strong>Audience matters:</strong> Facebook Group = existing members only. Facebook Page, LinkedIn, Instagram = prospects can see these. Tailor your messaging accordingly.</li>
+                    <li><strong>Use platform features:</strong> Stories have polls, countdowns, and question stickers. Reels need hooks in the first 2 seconds. LinkedIn favors text-heavy or carousel posts. Show us you know the differences.</li>
+                    <li><strong>Be specific with timing:</strong> Don't just say "morning." Tell us 9am, 10am, etc. and why that time makes sense for that platform.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TEST PROJECT 3: Data Interpretation -->
+        <div class="test-section">
+            <h2 class="test-title">Test Project 3: Data Interpretation Exercise</h2>
+            <p style="color: #ccc; margin-bottom: 20px;">
+                This test evaluates your ability to analyze marketing data, identify patterns, and make strategic recommendations.
+            </p>
+
+            <div class="highlight-box" style="border-color: #2ed573; background: rgba(46, 213, 115, 0.1);">
+                <strong style="color: #2ed573;">You will be evaluated on:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Ability to read and interpret marketing data</li>
+                    <li>Strategic thinking (not just what, but why)</li>
+                    <li>Prioritization skills (what matters most)</li>
+                    <li>Actionable recommendations (not vague suggestions)</li>
+                    <li>Understanding of full-funnel marketing</li>
+                </ul>
+            </div>
+
+            <div class="task-card">
+                <h3 class="task-title">The Data</h3>
+
+                <p class="task-subtitle">Social Media Metrics (Last 30 Days)</p>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Platform</th>
+                        <th>Followers</th>
+                        <th>New Followers</th>
+                        <th>Engagement Rate</th>
+                        <th>Top Post Type</th>
+                    </tr>
+                    <tr>
+                        <td>Instagram</td>
+                        <td>12,400</td>
+                        <td>+320</td>
+                        <td>3.2%</td>
+                        <td>Reels</td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Page</td>
+                        <td>8,200</td>
+                        <td>+85</td>
+                        <td>1.8%</td>
+                        <td>Video</td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Group</td>
+                        <td>2,100</td>
+                        <td>+45</td>
+                        <td>8.5%</td>
+                        <td>Text posts</td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn</td>
+                        <td>4,600</td>
+                        <td>+210</td>
+                        <td>4.1%</td>
+                        <td>Carousels</td>
+                    </tr>
+                    <tr>
+                        <td>YouTube</td>
+                        <td>3,800</td>
+                        <td>+95</td>
+                        <td>2.9%</td>
+                        <td>Shorts</td>
+                    </tr>
+                </table>
+
+                <p class="task-subtitle">Email Metrics (Last 30 Days)</p>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>List Size</td>
+                        <td>18,500</td>
+                    </tr>
+                    <tr>
+                        <td>Open Rate</td>
+                        <td>24%</td>
+                    </tr>
+                    <tr>
+                        <td>Click Rate</td>
+                        <td>3.1%</td>
+                    </tr>
+                    <tr>
+                        <td>Unsubscribes</td>
+                        <td>142</td>
+                    </tr>
+                    <tr>
+                        <td>Best Performing Email</td>
+                        <td>"3 Mistakes Killing Your Agency's Growth" (38% open rate)</td>
+                    </tr>
+                </table>
+
+                <p class="task-subtitle">Website Metrics (Last 30 Days)</p>
+                <table class="comparison-table">
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Sessions</td>
+                        <td>8,200</td>
+                    </tr>
+                    <tr>
+                        <td>Top Traffic Source</td>
+                        <td>Organic (42%)</td>
+                    </tr>
+                    <tr>
+                        <td>Top Landing Page</td>
+                        <td>/blog/agency-pricing-guide</td>
+                    </tr>
+                    <tr>
+                        <td>Bounce Rate</td>
+                        <td>62%</td>
+                    </tr>
+                    <tr>
+                        <td>Avg Session Duration</td>
+                        <td>2:15</td>
+                    </tr>
+                    <tr>
+                        <td>Conversions (booked calls)</td>
+                        <td>47</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="task-card">
+                <h3 class="task-title">Questions to Answer</h3>
+                <p style="color: #ccc; margin-bottom: 15px;">Answer each question in 2-5 sentences. Be specific and reference the data. We want to see your reasoning, not just your conclusions.</p>
+                <ul>
+                    <li><strong>1. What's working?</strong> Identify 2-3 things the data says we should do MORE of. Point to specific metrics that support your answer.</li>
+                    <li><strong>2. What's not working?</strong> Identify 1-2 areas that need attention or improvement. What numbers tell you something is underperforming?</li>
+                    <li><strong>3. Quick wins:</strong> What are 2-3 specific actions you could implement in the next 7 days to improve results? Be concrete (e.g., "Post 3 carousels on LinkedIn" not "Improve LinkedIn presence").</li>
+                    <li><strong>4. Platform focus:</strong> If you had to pick ONE platform to double down on for the next 90 days, which would it be and why? Consider growth potential, engagement, and where your target audience (agency owners) spends time.</li>
+                    <li><strong>5. Email insight:</strong> The email "3 Mistakes Killing Your Agency's Growth" had a 38% open rate vs the 24% average. What does this tell you about what resonates with the audience? Give us 2-3 ways you'd apply this insight across other channels (social, content, future emails).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Apply?</h2>
+            <p class="cta-text">Complete all three test projects above and send your submission along with your resume to:</p>
+            <div class="cta-email">Esteban@sevenfigureagency.com</div>
+        </div>
+
+        <div class="footer">
+            <p class="sfa-footer-brand">SEVEN FIGURE AGENCY</p>
+            <p>Marketing Manager Position | February 2026</p>
+        </div>
+    </div>
+</body>
+</html>

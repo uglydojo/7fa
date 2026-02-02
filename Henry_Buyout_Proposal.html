@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
     <title>Henry Buyout Proposal - SFA Leadership Review</title>
     <style>
         * {
@@ -13,7 +15,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: #fff;
             min-height: 100vh;
             padding: 40px 20px;
@@ -24,14 +26,31 @@
             margin: 0 auto;
         }
 
+        /* SFA Header */
+        .sfa-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #cc0000;
+        }
+
+        .sfa-brand {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #cc0000;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
         h1 {
             text-align: center;
             font-size: 2.2rem;
             margin-bottom: 10px;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #fff;
+        }
+
+        h1 span {
+            color: #cc0000;
         }
 
         .meta {
@@ -47,16 +66,16 @@
         }
 
         .section {
-            background: linear-gradient(145deg, #2d2d44 0%, #1f1f35 100%);
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 25px;
-            border: 1px solid #3d3d5c;
+            border: 1px solid #333;
         }
 
         .section-title {
             font-size: 1.4rem;
-            color: #00d4ff;
+            color: #cc0000;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -68,11 +87,11 @@
         }
 
         .section-title.alert {
-            color: #ffd93d;
+            color: #ff6b6b;
         }
 
         .section-title.action {
-            color: #ff6b6b;
+            color: #cc0000;
         }
 
         .item-row {
@@ -178,8 +197,8 @@
         .reason-list li {
             padding: 15px;
             margin: 10px 0;
-            background: rgba(0, 212, 255, 0.1);
-            border-left: 4px solid #00d4ff;
+            background: rgba(204, 0, 0, 0.1);
+            border-left: 4px solid #cc0000;
             border-radius: 0 10px 10px 0;
             color: #ccc;
         }
@@ -189,8 +208,8 @@
         }
 
         .approval-box {
-            background: linear-gradient(145deg, #1a472a 0%, #0d2818 100%);
-            border: 2px solid #2ed573;
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border: 2px solid #cc0000;
             border-radius: 15px;
             padding: 25px;
         }
@@ -200,7 +219,7 @@
             align-items: center;
             gap: 15px;
             padding: 12px 0;
-            border-bottom: 1px solid rgba(46, 213, 115, 0.3);
+            border-bottom: 1px solid rgba(204, 0, 0, 0.3);
         }
 
         .approval-item:last-child {
@@ -210,12 +229,12 @@
         .checkbox {
             width: 24px;
             height: 24px;
-            border: 2px solid #2ed573;
+            border: 2px solid #cc0000;
             border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #2ed573;
+            color: #cc0000;
             font-size: 1.2rem;
         }
 
@@ -244,6 +263,14 @@
             padding: 30px;
             color: #666;
             font-size: 0.85rem;
+            border-top: 2px solid #cc0000;
+            margin-top: 20px;
+        }
+
+        .footer .sfa-footer-brand {
+            color: #cc0000;
+            font-weight: bold;
+            font-size: 1rem;
         }
 
         .badge {
@@ -255,8 +282,8 @@
         }
 
         .badge.leverage {
-            background: #ffd93d;
-            color: #000;
+            background: #cc0000;
+            color: #fff;
         }
 
         @media (max-width: 600px) {
@@ -271,38 +298,43 @@
 </head>
 <body>
     <div class="container">
-        <h1>HENRY BUYOUT PROPOSAL</h1>
+        <!-- SFA Branded Header -->
+        <div class="sfa-header">
+            <div class="sfa-brand">SEVEN FIGURE AGENCY</div>
+            <h1>HENRY <span>BUYOUT</span> PROPOSAL</h1>
+        </div>
+
         <div class="meta">
             <span><strong>Prepared by:</strong> Esteban Baez</span>
-            <span><strong>Date:</strong> January 18, 2026</span>
-            <span><strong>For:</strong> Leadership Team Review & Approval</span>
+            <span><strong>Date:</strong> January 20, 2026</span>
+            <span><strong>Status:</strong> ✅ COMPLETED — Monday, February 2, 2026</span>
         </div>
 
         <!-- Background -->
         <div class="section">
             <div class="section-title">Background</div>
             <p style="color: #ccc; line-height: 1.7;">
-                RepStack reached out about buying out Henry's contract. They're losing money on him - paying him $1,422/month while we only pay them $680/month. They have a 15% raise policy every 6 months, so their losses keep growing. <span class="badge leverage">They want out</span>
+                RepStack reached out about buying out Henry's contract. They're losing money on him - paying him $1,422/month while we pay them $1,360/month ($680 x 2). They have a 15% raise policy every 6 months, so their losses keep growing. <span class="badge leverage">They want out</span>
             </p>
         </div>
 
         <!-- Buyout Cost -->
         <div class="section">
-            <div class="section-title alert">Buyout Cost</div>
+            <div class="section-title highlight">Buyout Cost — AGREED</div>
             <div class="item-row">
-                <span class="item-label">RepStack asking</span>
-                <span class="item-value cost">$3,000</span>
+                <span class="item-label">RepStack original ask</span>
+                <span class="item-value" style="color: #888; text-decoration: line-through;">$3,000</span>
             </div>
             <div class="item-row">
                 <span class="item-label">Their normal rate</span>
                 <span class="item-value" style="color: #888;">$10,000</span>
             </div>
             <div class="item-row">
-                <span class="item-label">Our target</span>
-                <span class="item-value money">$1,000 - $1,500</span>
+                <span class="item-label">Final Agreed Amount</span>
+                <span class="item-value money">$2,250 ✅</span>
             </div>
-            <p style="color: #888; font-size: 0.9rem; margin-top: 15px; font-style: italic;">
-                They're losing ~$742/month, so they're motivated to settle low.
+            <p style="color: #2ed573; font-size: 0.9rem; margin-top: 15px; font-style: italic;">
+                Negotiated down from $3,000. Buyout completed Monday, February 2, 2026.
             </p>
         </div>
 
@@ -311,7 +343,7 @@
             <div class="section-title">What We Were Paying</div>
             <div class="summary-row">
                 <span class="label">Monthly to RepStack</span>
-                <span class="value" style="color: #ff6b6b;">$680/mo</span>
+                <span class="value" style="color: #ff6b6b;">$1,360/mo ($680 x 2)</span>
             </div>
         </div>
 
@@ -337,10 +369,10 @@
 
         <!-- Proposed Structure -->
         <div class="section">
-            <div class="section-title highlight">Proposed Compensation Structure</div>
+            <div class="section-title highlight">Approved Compensation Structure</div>
             <div class="item-row">
                 <span class="item-label">Base Salary</span>
-                <span class="item-value money">$1,200/month</span>
+                <span class="item-value money">$1,500/month</span>
             </div>
             <div class="item-row">
                 <span class="item-label">Bonus at 10 sales</span>
@@ -365,7 +397,7 @@
             <div class="section-title highlight">Henry's New Total (Average Month)</div>
             <div class="summary-row">
                 <span class="label">Base</span>
-                <span class="value" style="color: #2ed573;">$1,200</span>
+                <span class="value" style="color: #2ed573;">$1,500</span>
             </div>
             <div class="summary-row">
                 <span class="label">+ Average Commissions</span>
@@ -376,7 +408,7 @@
                 <span class="value" style="color: #2ed573;">$500</span>
             </div>
             <div class="highlight-box">
-                <div class="big-number">$5,200/mo</div>
+                <div class="big-number">$5,500/mo</div>
                 <div class="label">MORE than he's making now ($4,900)</div>
                 <p style="color: #2ed573; margin-top: 15px; font-size: 1.1rem;">The upside is built in - he just has to earn it.</p>
             </div>
@@ -388,18 +420,18 @@
             <div class="comparison-grid">
                 <div class="comparison-box old">
                     <div class="comparison-label">OLD (RepStack)</div>
-                    <div class="comparison-value">$680/mo</div>
-                    <div class="comparison-note">Just placement fee</div>
+                    <div class="comparison-value">$1,360/mo</div>
+                    <div class="comparison-note">$680 x 2 placement fee</div>
                 </div>
                 <div class="comparison-box new">
                     <div class="comparison-label">NEW (Direct)</div>
-                    <div class="comparison-value">$1,200/mo</div>
+                    <div class="comparison-value">$1,500/mo</div>
                     <div class="comparison-note">Base + bonuses + commissions (unchanged)</div>
                 </div>
             </div>
             <div class="summary-row" style="margin-top: 20px;">
-                <span class="label">One-time Buyout</span>
-                <span class="value" style="color: #ffd93d;">$1,000 - $1,500</span>
+                <span class="label">One-time Buyout (PAID)</span>
+                <span class="value" style="color: #2ed573;">$2,250 ✅</span>
             </div>
         </div>
 
@@ -416,26 +448,26 @@
 
         <!-- Approval -->
         <div class="section">
-            <div class="section-title action">Approval Requested</div>
-            <div class="approval-box">
+            <div class="section-title highlight">Approved by Leadership</div>
+            <div class="approval-box" style="border-color: #2ed573;">
                 <div class="approval-item">
-                    <div class="checkbox"></div>
-                    <span>Approval on $1,200 base + bonus structure</span>
+                    <div class="checkbox" style="border-color: #2ed573; color: #2ed573;">✓</div>
+                    <span>$1,500 base + bonus structure</span>
                 </div>
                 <div class="approval-item">
-                    <div class="checkbox"></div>
-                    <span>Approval to negotiate buyout up to $1,500</span>
+                    <div class="checkbox" style="border-color: #2ed573; color: #2ed573;">✓</div>
+                    <span>Henry covers insurance</span>
                 </div>
                 <div class="approval-item">
-                    <div class="checkbox"></div>
+                    <div class="checkbox" style="border-color: #2ed573; color: #2ed573;">✓</div>
                     <span>Green light to finalize with Henry and Alina</span>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <p>Seven Figure Agency | Internal Document</p>
-            <p style="margin-top: 10px; color: #888;">Please confirm approval or let me know if you'd like to discuss.</p>
+            <p class="sfa-footer-brand">SEVEN FIGURE AGENCY</p>
+            <p style="margin-top: 10px; color: #2ed573;">Approved at EOS Annual | January 20, 2026<br>Buyout Completed | February 2, 2026 | $2,250</p>
         </div>
     </div>
 </body>

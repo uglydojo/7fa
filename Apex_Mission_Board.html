@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>APEX Mission Board | Seven Figure Agency</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Noto+Sans+JP:wght@700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --sfa-red: #cc0000;
+            --sfa-red-dark: #990000;
+            --sfa-red-glow: rgba(204, 0, 0, 0.3);
+            --gold: #ffd93d;
+            --gold-dark: #e6c235;
+            --green: #2ed573;
+            --green-glow: rgba(46, 213, 115, 0.3);
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1a1a1a;
+            --border: #252525;
+            --text: #ffffff;
+            --text-secondary: #999;
+            --text-muted: #555;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* === BACKGROUND PATTERN === */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 0%, rgba(204,0,0,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(204,0,0,0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === HEADER === */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .sfa-brand {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: var(--sfa-red);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .kanji-accent {
+            font-family: 'Noto Sans JP', serif;
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(204, 0, 0, 0.06);
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .apex-title {
+            font-size: 52px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 1;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .apex-title span {
+            background: linear-gradient(135deg, var(--sfa-red) 0%, #ff3333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* === APEX PILLARS === */
+        .pillars {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: 24px 0 32px;
+        }
+
+        .pillar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .pillar:hover {
+            border-color: var(--sfa-red);
+            background: rgba(204, 0, 0, 0.05);
+        }
+
+        .pillar-letter {
+            color: var(--sfa-red);
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        .pillar-word {
+            color: var(--text-secondary);
+        }
+
+        /* === RANK & PROGRESS === */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 36px;
+            padding: 24px 30px;
+            background: linear-gradient(135deg, var(--bg-card) 0%, #111 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .rank-section {
+            text-align: left;
+        }
+
+        .rank-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .rank-name {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1.2;
+        }
+
+        .rank-name.rank-ronin { color: #888; }
+        .rank-name.rank-samurai { color: #ff6b6b; }
+        .rank-name.rank-shogun { color: var(--sfa-red); }
+        .rank-name.rank-daimyo { color: #ff8c00; }
+        .rank-name.rank-apex { color: var(--gold); }
+        .rank-name.rank-legend { color: var(--green); }
+
+        .stats-divider {
+            width: 1px;
+            height: 50px;
+            background: var(--border);
+        }
+
+        .progress-section {
+            text-align: right;
+        }
+
+        .progress-numbers {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .progress-numbers .done {
+            color: var(--green);
+        }
+
+        .progress-numbers .slash {
+            color: var(--text-muted);
+            font-weight: 300;
+            margin: 0 2px;
+        }
+
+        .progress-numbers .total {
+            color: var(--text-secondary);
+        }
+
+        .progress-label {
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* === XP BAR === */
+        .xp-bar-container {
+            margin-bottom: 40px;
+        }
+
+        .xp-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .xp-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+        }
+
+        .xp-percent {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .xp-bar {
+            height: 8px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .xp-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--sfa-red) 0%, var(--sfa-red) 60%, var(--green) 100%);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .xp-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* === RANK MILESTONES === */
+        .rank-milestones {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .milestone {
+            font-size: 9px;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            transition: color 0.3s;
+            text-align: center;
+        }
+
+        .milestone.active {
+            color: var(--gold);
+        }
+
+        .milestone.cleared {
+            color: var(--text-secondary);
+        }
+
+        /* === MISSION TIERS === */
+        .tier {
+            margin-bottom: 28px;
+        }
+
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tier-icon {
+            font-size: 20px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        .tier-info {
+            flex: 1;
+        }
+
+        .tier-name {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tier-meta {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .tier-count {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+
+        .tier-count.complete {
+            color: var(--green);
+            border-color: rgba(46, 213, 115, 0.3);
+            background: rgba(46, 213, 115, 0.05);
+        }
+
+        /* === TASK ITEMS === */
+        .task {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .task:hover {
+            border-color: #333;
+            background: var(--bg-card-hover);
+            transform: translateX(4px);
+        }
+
+        .task.completed {
+            opacity: 0.45;
+            border-color: rgba(46, 213, 115, 0.15);
+        }
+
+        .task.completed:hover {
+            opacity: 0.65;
+        }
+
+        .task.completed .task-text {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        .task.completed .task-detail {
+            text-decoration: line-through;
+        }
+
+        /* Completion flash */
+        .task.just-completed {
+            animation: taskComplete 0.6s ease;
+        }
+
+        @keyframes taskComplete {
+            0% { border-color: var(--border); }
+            30% { border-color: var(--green); box-shadow: 0 0 20px var(--green-glow); }
+            100% { border-color: rgba(46, 213, 115, 0.15); box-shadow: none; }
+        }
+
+        .task.just-uncompleted {
+            animation: taskUncomplete 0.4s ease;
+        }
+
+        @keyframes taskUncomplete {
+            0% { border-color: rgba(46, 213, 115, 0.15); }
+            30% { border-color: var(--sfa-red); }
+            100% { border-color: var(--border); }
+        }
+
+        .checkbox {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border: 2px solid #333;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            margin-top: 1px;
+        }
+
+        .task:hover .checkbox {
+            border-color: var(--sfa-red);
+        }
+
+        .task.completed .checkbox {
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .checkbox svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .task.completed .checkbox svg {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .task-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .task-text {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.4;
+            transition: all 0.3s;
+        }
+
+        .task-detail {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 3px;
+            line-height: 1.4;
+            transition: all 0.3s;
+        }
+
+        .task-xp {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+            margin-top: 2px;
+        }
+
+        /* === COMPLETION CELEBRATION === */
+        .celebration {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, rgba(46, 213, 115, 0.05) 0%, rgba(204, 0, 0, 0.05) 100%);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            border-radius: 20px;
+            animation: celebrationPulse 2s infinite;
+        }
+
+        .celebration.show {
+            display: block;
+        }
+
+        @keyframes celebrationPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(46, 213, 115, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(46, 213, 115, 0.2); }
+        }
+
+        .celebration-kanji {
+            font-family: 'Noto Sans JP', serif;
+            font-size: 60px;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .celebration-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--green);
+            margin-bottom: 6px;
+        }
+
+        .celebration-sub {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-brand {
+            font-size: 10px;
+            letter-spacing: 5px;
+            color: var(--sfa-red);
+            font-weight: 700;
+        }
+
+        .footer-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* === KATANA DIVIDER === */
+        .katana-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0;
+            color: var(--text-muted);
+        }
+
+        .katana-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--border) 50%, transparent 100%);
+        }
+
+        .katana-symbol {
+            font-size: 10px;
+            letter-spacing: 4px;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            .container { padding: 20px 14px 40px; }
+            .apex-title { font-size: 36px; }
+            .pillars { flex-wrap: wrap; }
+            .pillar { padding: 6px 12px; font-size: 10px; }
+            .stats-bar { grid-template-columns: 1fr; gap: 16px; text-align: center; padding: 20px; }
+            .rank-section, .progress-section { text-align: center; }
+            .stats-divider { width: 100%; height: 1px; }
+            .task { padding: 12px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="kanji-accent">頂</div>
+        <div class="sfa-brand">SEVEN FIGURE AGENCY</div>
+        <div class="apex-title">TEAM <span>APEX</span></div>
+        <div class="subtitle">Mission Board &mdash; Saturday, February 7, 2026</div>
+    </div>
+
+    <!-- APEX PILLARS -->
+    <div class="pillars">
+        <div class="pillar"><span class="pillar-letter">A</span><span class="pillar-word">Accountable</span></div>
+        <div class="pillar"><span class="pillar-letter">P</span><span class="pillar-word">Peak Performance</span></div>
+        <div class="pillar"><span class="pillar-letter">E</span><span class="pillar-word">Excellence</span></div>
+        <div class="pillar"><span class="pillar-letter">X</span><span class="pillar-word">10X</span></div>
+    </div>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="rank-section">
+            <div class="rank-label">Current Rank</div>
+            <div class="rank-name" id="rankName">Ronin</div>
+        </div>
+        <div class="stats-divider"></div>
+        <div class="progress-section">
+            <div class="progress-numbers">
+                <span class="done" id="doneCount">0</span><span class="slash">/</span><span class="total" id="totalCount">25</span>
+            </div>
+            <div class="progress-label">Missions Complete</div>
+        </div>
+    </div>
+
+    <!-- XP BAR -->
+    <div class="xp-bar-container">
+        <div class="xp-bar-header">
+            <span class="xp-label">APEX PROGRESS</span>
+            <span class="xp-percent" id="xpPercent">0%</span>
+        </div>
+        <div class="xp-bar">
+            <div class="xp-fill" id="xpFill" style="width: 0%"></div>
+        </div>
+        <div class="rank-milestones">
+            <div class="milestone active" data-threshold="0">Ronin</div>
+            <div class="milestone" data-threshold="20">Samurai</div>
+            <div class="milestone" data-threshold="40">Shogun</div>
+            <div class="milestone" data-threshold="60">Daimyo</div>
+            <div class="milestone" data-threshold="80">Apex</div>
+            <div class="milestone" data-threshold="100">Legend</div>
+        </div>
+    </div>
+
+    <!-- TIER 1: QUICK WINS -->
+    <div class="tier" data-tier="quick-wins">
+        <div class="tier-header">
+            <div class="tier-icon">&#9889;</div>
+            <div class="tier-info">
+                <div class="tier-name">Quick Wins</div>
+                <div class="tier-meta">Under 5 minutes each - warm up the blade</div>
+            </div>
+            <div class="tier-count" id="count-0">0/6</div>
+        </div>
+        <div class="task" data-id="1" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Post Marketing Manager response to Justin</div>
+                <div class="task-detail">Already drafted in handoff - paste in leadership channel</div>
+            </div>
+            <div class="task-xp">+10 XP</div>
+        </div>
+        <div class="task" data-id="2" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Respond to Josh re: 4 videos</div>
+                <div class="task-detail">Facebook ads rotation - quick Slack reply with next steps</div>
+            </div>
+            <div class="task-xp">+10 XP</div>
+        </div>
+        <div class="task" data-id="3" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Send Henry's salary agreement to Josh</div>
+                <div class="task-detail">Forward to close out compensation</div>
+            </div>
+            <div class="task-xp">+10 XP</div>
+        </div>
+        <div class="task" data-id="4" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Message Cesar: calculate ROAS</div>
+                <div class="task-detail">Needs Precision access fixed - for marketing meeting</div>
+            </div>
+            <div class="task-xp">+10 XP</div>
+        </div>
+        <div class="task" data-id="5" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Nudge Tommy: document phone sales workflow</div>
+                <div class="task-detail">Off track - due March 15</div>
+            </div>
+            <div class="task-xp">+10 XP</div>
+        </div>
+        <div class="task" data-id="6" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Post January celebration message</div>
+                <div class="task-detail">Celebrate 10 closes on Slack</div>
+            </div>
+            <div class="task-xp">+10 XP</div>
+        </div>
+    </div>
+
+    <!-- TIER 2: SCHEDULING -->
+    <div class="tier" data-tier="scheduling">
+        <div class="tier-header">
+            <div class="tier-icon">&#128197;</div>
+            <div class="tier-info">
+                <div class="tier-name">Scheduling</div>
+                <div class="tier-meta">5-15 minutes each - set the battlefield</div>
+            </div>
+            <div class="tier-count" id="count-1">0/3</div>
+        </div>
+        <div class="task" data-id="7" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Schedule Sales & Membership L10</div>
+                <div class="task-detail">End of month - create calendar invite</div>
+            </div>
+            <div class="task-xp">+15 XP</div>
+        </div>
+        <div class="task" data-id="8" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Schedule Marketing Manager interview</div>
+                <div class="task-detail">1hr block: 30 min Esteban, then Josh + Yesenia if vibe check passes</div>
+            </div>
+            <div class="task-xp">+15 XP</div>
+        </div>
+        <div class="task" data-id="9" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Schedule AI assistant demo for team</div>
+                <div class="task-detail">Pick a day next week</div>
+            </div>
+            <div class="task-xp">+15 XP</div>
+        </div>
+    </div>
+
+    <!-- TIER 3: QUICK TASKS -->
+    <div class="tier" data-tier="quick-tasks">
+        <div class="tier-header">
+            <div class="tier-icon">&#128171;</div>
+            <div class="tier-info">
+                <div class="tier-name">Quick Tasks</div>
+                <div class="tier-meta">10-20 minutes each - sharpen the edge</div>
+            </div>
+            <div class="tier-count" id="count-2">0/5</div>
+        </div>
+        <div class="task" data-id="10" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Resend 4 bounced emails with corrected addresses</div>
+                <div class="task-detail">Jacob, Rahul, Frank, Mark - addresses in handoff</div>
+            </div>
+            <div class="task-xp">+20 XP</div>
+        </div>
+        <div class="task" data-id="11" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Update Arash Eskandari's profile</div>
+                <div class="task-detail">Quick update in system</div>
+            </div>
+            <div class="task-xp">+20 XP</div>
+        </div>
+        <div class="task" data-id="12" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Acknowledge Cesar's content reports</div>
+                <div class="task-detail">FYI items on Slack - quick response</div>
+            </div>
+            <div class="task-xp">+20 XP</div>
+        </div>
+        <div class="task" data-id="13" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Respond to Jeremy re: hot leads</div>
+                <div class="task-detail">50K-83K/month prospect - coordinate next steps</div>
+            </div>
+            <div class="task-xp">+20 XP</div>
+        </div>
+        <div class="task" data-id="14" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">First check-in with Forrest Schwartz</div>
+                <div class="task-detail">$105K MRR Elite member - make sure he's getting value</div>
+            </div>
+            <div class="task-xp">+20 XP</div>
+        </div>
+    </div>
+
+    <div class="katana-divider">
+        <div class="katana-line"></div>
+        <div class="katana-symbol">&#9876;&#65039;</div>
+        <div class="katana-line"></div>
+    </div>
+
+    <!-- TIER 4: MODERATE EFFORT -->
+    <div class="tier" data-tier="moderate">
+        <div class="tier-header">
+            <div class="tier-icon">&#9881;&#65039;</div>
+            <div class="tier-info">
+                <div class="tier-name">Moderate Effort</div>
+                <div class="tier-meta">20-45 minutes each - test your discipline</div>
+            </div>
+            <div class="tier-count" id="count-3">0/4</div>
+        </div>
+        <div class="task" data-id="15" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Plug in February goals in Precision</div>
+                <div class="task-detail">Scorecard data entry</div>
+            </div>
+            <div class="task-xp">+30 XP</div>
+        </div>
+        <div class="task" data-id="16" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Fix Launchpad totals in Precision</div>
+                <div class="task-detail">Inaccurate - need Henry's closes inputted</div>
+            </div>
+            <div class="task-xp">+30 XP</div>
+        </div>
+        <div class="task" data-id="17" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Set up guest tracking process with Cesar</div>
+                <div class="task-detail">Cesar notifies Brett for non-paying invited guest badge prep</div>
+            </div>
+            <div class="task-xp">+30 XP</div>
+        </div>
+        <div class="task" data-id="18" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Add registration step to sales onboarding SOP</div>
+                <div class="task-detail">Cesar registers via Accelerate/Elite form, notifies Brett</div>
+            </div>
+            <div class="task-xp">+30 XP</div>
+        </div>
+    </div>
+
+    <!-- TIER 5: HEAVY LIFTS -->
+    <div class="tier" data-tier="heavy">
+        <div class="tier-header">
+            <div class="tier-icon">&#128293;</div>
+            <div class="tier-info">
+                <div class="tier-name">Heavy Lifts</div>
+                <div class="tier-meta">45+ minutes each - prove you are Apex</div>
+            </div>
+            <div class="tier-count" id="count-4">0/7</div>
+        </div>
+        <div class="task" data-id="19" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Complete January end-of-month sales report</div>
+                <div class="task-detail">Post on Slack for sales team - 10 closed, $12,550 Henry revenue</div>
+            </div>
+            <div class="task-xp">+50 XP</div>
+        </div>
+        <div class="task" data-id="20" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Start February weekly sales reports</div>
+                <div class="task-detail">Create template and post first week on Slack</div>
+            </div>
+            <div class="task-xp">+50 XP</div>
+        </div>
+        <div class="task" data-id="21" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Update Marketing Manager role posting</div>
+                <div class="task-detail">Add Yesenia's + Josh's requirement lists into description</div>
+            </div>
+            <div class="task-xp">+50 XP</div>
+        </div>
+        <div class="task" data-id="22" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Feed candidate test results back to AI</div>
+                <div class="task-detail">Build objective scoring system for Marketing Manager candidates</div>
+            </div>
+            <div class="task-xp">+50 XP</div>
+        </div>
+        <div class="task" data-id="23" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Reach out to Viral Coach</div>
+                <div class="task-detail">Content strategy help: only 1,200 views max, no trending sounds, weak CTAs</div>
+            </div>
+            <div class="task-xp">+50 XP</div>
+        </div>
+        <div class="task" data-id="24" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Transfer data to Precision</div>
+                <div class="task-detail">Migrate relevant data into Precision platform</div>
+            </div>
+            <div class="task-xp">+50 XP</div>
+        </div>
+        <div class="task" data-id="25" onclick="toggleTask(this)">
+            <div class="checkbox"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="task-content">
+                <div class="task-text">Map out July/November guest process</div>
+                <div class="task-detail">Full process design - due April for Cody's team</div>
+            </div>
+            <div class="task-xp">+50 XP</div>
+        </div>
+    </div>
+
+    <!-- CELEBRATION -->
+    <div class="celebration" id="celebration">
+        <div class="celebration-kanji">&#20253;&#35500;</div>
+        <div class="celebration-title">APEX LEGEND ACHIEVED</div>
+        <div class="celebration-sub">All 25 missions complete. You are the standard.</div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-brand">SEVEN FIGURE AGENCY</div>
+        <div class="footer-sub">Team Apex Mission Board &bull; February 2026</div>
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY = 'apex-missions-feb2026';
+    const TOTAL_TASKS = 25;
+
+    const TIERS = [
+        { count: 6, id: 'count-0' },
+        { count: 3, id: 'count-1' },
+        { count: 5, id: 'count-2' },
+        { count: 4, id: 'count-3' },
+        { count: 7, id: 'count-4' }
+    ];
+
+    const RANKS = [
+        { threshold: 0,   name: 'Ronin',    class: 'rank-ronin' },
+        { threshold: 20,  name: 'Samurai',   class: 'rank-samurai' },
+        { threshold: 40,  name: 'Shogun',    class: 'rank-shogun' },
+        { threshold: 60,  name: 'Daimyo',    class: 'rank-daimyo' },
+        { threshold: 80,  name: 'Apex Warrior', class: 'rank-apex' },
+        { threshold: 100, name: 'Apex Legend', class: 'rank-legend' }
+    ];
+
+    // Load state
+    function getState() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch { return {}; }
+    }
+
+    function saveState(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function toggleTask(el) {
+        const id = el.dataset.id;
+        const state = getState();
+        const wasCompleted = !!state[id];
+
+        if (wasCompleted) {
+            delete state[id];
+            el.classList.remove('completed', 'just-completed');
+            el.classList.add('just-uncompleted');
+            setTimeout(() => el.classList.remove('just-uncompleted'), 400);
+        } else {
+            state[id] = true;
+            el.classList.add('completed', 'just-completed');
+            el.classList.remove('just-uncompleted');
+            setTimeout(() => el.classList.remove('just-completed'), 600);
+        }
+
+        saveState(state);
+        updateUI();
+    }
+
+    function updateUI() {
+        const state = getState();
+        const done = Object.keys(state).length;
+        const percent = Math.round((done / TOTAL_TASKS) * 100);
+
+        // Update counts
+        document.getElementById('doneCount').textContent = done;
+        document.getElementById('totalCount').textContent = TOTAL_TASKS;
+        document.getElementById('xpPercent').textContent = percent + '%';
+        document.getElementById('xpFill').style.width = percent + '%';
+
+        // Update rank
+        let currentRank = RANKS[0];
+        for (const rank of RANKS) {
+            if (percent >= rank.threshold) currentRank = rank;
+        }
+        const rankEl = document.getElementById('rankName');
+        rankEl.textContent = currentRank.name;
+        rankEl.className = 'rank-name ' + currentRank.class;
+
+        // Update milestones
+        document.querySelectorAll('.milestone').forEach(m => {
+            const t = parseInt(m.dataset.threshold);
+            m.classList.remove('active', 'cleared');
+            if (percent >= t && percent < (t + 20 > 100 ? 101 : t + 20)) m.classList.add('active');
+            else if (percent >= t) m.classList.add('cleared');
+        });
+        // Special handling for 100%
+        if (percent === 100) {
+            document.querySelectorAll('.milestone').forEach(m => {
+                m.classList.add('cleared');
+                if (m.dataset.threshold === '100') { m.classList.remove('cleared'); m.classList.add('active'); }
+            });
+        }
+
+        // Update tier counts
+        let taskIndex = 0;
+        TIERS.forEach((tier, i) => {
+            let tierDone = 0;
+            for (let j = 0; j < tier.count; j++) {
+                taskIndex++;
+                if (state[taskIndex]) tierDone++;
+            }
+            const countEl = document.getElementById(tier.id);
+            countEl.textContent = tierDone + '/' + tier.count;
+            if (tierDone === tier.count) countEl.classList.add('complete');
+            else countEl.classList.remove('complete');
+        });
+
+        // Restore task states
+        document.querySelectorAll('.task').forEach(t => {
+            if (state[t.dataset.id]) t.classList.add('completed');
+            else t.classList.remove('completed');
+        });
+
+        // Celebration
+        document.getElementById('celebration').classList.toggle('show', done === TOTAL_TASKS);
+    }
+
+    // Init
+    updateUI();
+</script>
+
+</body>
+</html>

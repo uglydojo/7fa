@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Publish Page Skill | Seven Figure Agency</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --sfa-red: #cc0000;
+            --sfa-red-dark: #990000;
+            --sfa-red-glow: rgba(204, 0, 0, 0.3);
+            --gold: #ffd93d;
+            --green: #2ed573;
+            --green-glow: rgba(46, 213, 115, 0.3);
+            --blue: #4a9eff;
+            --purple: #a855f7;
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1a1a1a;
+            --border: #252525;
+            --text: #ffffff;
+            --text-secondary: #999;
+            --text-muted: #555;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 0%, rgba(204,0,0,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 100%, rgba(204,0,0,0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 28px 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === HEADER === */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .sfa-brand {
+            font-size: 13px;
+            letter-spacing: 6px;
+            color: var(--sfa-red);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        h1 span {
+            color: var(--sfa-red);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .icon {
+            font-size: 1.2rem;
+        }
+
+        /* === CARDS === */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: #333;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .card p, .card li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--sfa-red);
+            font-weight: 700;
+        }
+
+        /* === FLOW DIAGRAM === */
+        .flow {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 20px 0;
+        }
+
+        .flow-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .flow-number {
+            background: var(--sfa-red);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .flow-content h4 {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .flow-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            padding: 4px 0;
+        }
+
+        /* === SKILL GRID === */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+        }
+
+        .skill-card .skill-name {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            font-family: monospace;
+            color: var(--gold);
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* === EXAMPLE BOX === */
+        .example-box {
+            background: linear-gradient(135deg, rgba(204,0,0,0.08), rgba(204,0,0,0.02));
+            border: 1px solid rgba(204,0,0,0.2);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .example-box .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--sfa-red);
+            margin-bottom: 12px;
+        }
+
+        .example-box .dialogue {
+            margin-bottom: 12px;
+        }
+
+        .example-box .speaker {
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+        }
+
+        .example-box .speaker.user { color: var(--blue); }
+        .example-box .speaker.claude { color: var(--green); }
+
+        .example-box .message {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-left: 12px;
+            border-left: 2px solid var(--border);
+            margin-bottom: 10px;
+        }
+
+        /* === PAGES BUILT === */
+        .pages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .page-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-item .page-name {
+            font-weight: 600;
+        }
+
+        .page-item .page-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .page-item .page-badge {
+            background: rgba(46, 213, 115, 0.1);
+            color: var(--green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* === TECH STACK === */
+        .tech-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tech-row:last-child { border-bottom: none; }
+
+        .tech-icon {
+            font-size: 1.4rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .tech-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .tech-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* === PRIVACY BADGE === */
+        .privacy-section {
+            background: linear-gradient(135deg, rgba(46,213,115,0.06), rgba(46,213,115,0.02));
+            border: 1px solid rgba(46,213,115,0.15);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .privacy-layers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .privacy-layer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .privacy-layer .shield {
+            color: var(--green);
+            font-size: 1.2rem;
+        }
+
+        .privacy-layer .layer-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .privacy-layer .layer-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* === HIGHLIGHT STAT === */
+        .stat-row {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-box .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--sfa-red);
+        }
+
+        .stat-box .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* === SETUP STEPS === */
+        .setup-code {
+            background: #111;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--green);
+            overflow-x: auto;
+            margin: 8px 0;
+        }
+
+        .setup-code .comment {
+            color: var(--text-muted);
+        }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer .sfa-brand {
+            margin-bottom: 6px;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 640px) {
+            h1 { font-size: 2rem; }
+            .skill-grid { grid-template-columns: 1fr; }
+            .stat-row { flex-direction: column; }
+            .page-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="sfa-brand">SEVEN FIGURE AGENCY</div>
+            <h1>THE <span>/PUBLISH-PAGE</span> SKILL</h1>
+            <p class="subtitle">From idea to live branded page in under 60 seconds. No designer. No developer. No waiting.</p>
+        </div>
+
+        <!-- STATS -->
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="stat-value">&lt; 60s</div>
+                <div class="stat-label">DEPLOY TIME</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">$0</div>
+                <div class="stat-label">HOSTING COST</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value">1</div>
+                <div class="stat-label">SENTENCE TO TRIGGER</div>
+            </div>
+        </div>
+
+        <!-- WHAT IT DOES -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> What It Does</div>
+            <div class="card">
+                <p>You say <strong>"publish page for [topic]"</strong> and Claude builds a fully branded, professional HTML page and deploys it live to the web. You get back a shareable link. Done.</p>
+                <br>
+                <p>It handles everything: content structure, brand colors, fonts, layout, responsive design, privacy settings, git commit, and deployment. All from a single sentence.</p>
+            </div>
+        </div>
+
+        <!-- HOW IT WORKS -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> How It Works</div>
+            <div class="flow">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <div class="flow-content">
+                        <h4>You describe the page</h4>
+                        <p>"Publish page for Q1 sales report" or "Build a page showing the team scoreboard"</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">|</div>
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <div class="flow-content">
+                        <h4>Claude asks two questions</h4>
+                        <p>Which brand? (SFA or Ugly Dojo) and Public or private?</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">|</div>
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <div class="flow-content">
+                        <h4>Claude builds the HTML</h4>
+                        <p>Pulls from stored brand guidelines (colors, fonts, templates) and structures the content into a clean, professional layout</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">|</div>
+                <div class="flow-step">
+                    <div class="flow-number">4</div>
+                    <div class="flow-content">
+                        <h4>Auto-deploys via git push</h4>
+                        <p>Commits the file and pushes to GitHub. Cloudflare Pages auto-deploys. Live in under 60 seconds.</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">|</div>
+                <div class="flow-step">
+                    <div class="flow-number">5</div>
+                    <div class="flow-content">
+                        <h4>You get a permanent link</h4>
+                        <p>Share it with the team, drop it in Slack, bookmark it. It's yours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LIVE EXAMPLE -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> Live Example</div>
+            <div class="example-box">
+                <div class="label">REAL CONVERSATION</div>
+                <div class="dialogue">
+                    <div class="speaker user">Esteban:</div>
+                    <div class="message">"Publish page for the APEX Mission Board. I want to track all my to-dos with a gamified scoreboard."</div>
+                </div>
+                <div class="dialogue">
+                    <div class="speaker claude">Claude:</div>
+                    <div class="message">"SFA branding, internal only. Building it now..."</div>
+                </div>
+                <div class="dialogue">
+                    <div class="speaker claude">Claude:</div>
+                    <div class="message">"Done. Here's your link: 7fa.pages.dev/Apex_Mission_Board.html"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGES BUILT SO FAR -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> Pages Built So Far</div>
+            <div class="pages-list">
+                <div class="page-item">
+                    <div>
+                        <div class="page-name">APEX Mission Board</div>
+                        <div class="page-desc">Gamified personal scoreboard tracking 23 tasks with XP and rank system</div>
+                    </div>
+                    <div class="page-badge">LIVE</div>
+                </div>
+                <div class="page-item">
+                    <div>
+                        <div class="page-name">Sales Framework Training</div>
+                        <div class="page-desc">Visual training guide for the sales team - Boulder Training methodology</div>
+                    </div>
+                    <div class="page-badge">LIVE</div>
+                </div>
+                <div class="page-item">
+                    <div>
+                        <div class="page-name">Marketing Manager Job Posting</div>
+                        <div class="page-desc">Job posting with embedded test projects for candidates</div>
+                    </div>
+                    <div class="page-badge">LIVE</div>
+                </div>
+                <div class="page-item">
+                    <div>
+                        <div class="page-name">Henry Buyout Proposal</div>
+                        <div class="page-desc">Leadership decision document for the RepStack buyout</div>
+                    </div>
+                    <div class="page-badge">LIVE</div>
+                </div>
+                <div class="page-item">
+                    <div>
+                        <div class="page-name">This Page</div>
+                        <div class="page-desc">Meta: a page about the skill that builds pages</div>
+                    </div>
+                    <div class="page-badge">LIVE</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- USE CASES -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> When to Use It</div>
+            <div class="card">
+                <ul>
+                    <li>Leadership proposals that need clean presentation</li>
+                    <li>Internal reports and scorecards to share with the team</li>
+                    <li>Job postings and candidate-facing documents</li>
+                    <li>Training guides and visual frameworks</li>
+                    <li>Any content that looks better as a polished page than a Google Doc</li>
+                    <li>When you need a permanent, shareable link in under a minute</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- SUPPORTED BRANDS -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> Supported Brands</div>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <div class="skill-name" style="color: var(--sfa-red);">Seven Figure Agency</div>
+                    <p>Red and black theme. Outfit font. Professional, bold, high-contrast. Used for all internal SFA documents and team resources.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">Ugly Dojo</div>
+                    <p>Yellow and black theme. Black Han Sans headers. Martial arts aesthetic. Used for Ugly Dojo brand content and resources.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIVACY -->
+        <div class="privacy-section">
+            <div class="section-title" style="border: none; padding: 0; margin-bottom: 8px;"><span class="icon">~</span> Privacy by Default</div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px;">Every page is private by default. Three layers of protection:</p>
+            <div class="privacy-layers">
+                <div class="privacy-layer">
+                    <span class="shield">+</span>
+                    <div>
+                        <div class="layer-name">robots.txt</div>
+                        <div class="layer-desc">Tells search engines not to crawl the site</div>
+                    </div>
+                </div>
+                <div class="privacy-layer">
+                    <span class="shield">+</span>
+                    <div>
+                        <div class="layer-name">noindex meta tags</div>
+                        <div class="layer-desc">Tells search engines not to add pages to their index</div>
+                    </div>
+                </div>
+                <div class="privacy-layer">
+                    <span class="shield">+</span>
+                    <div>
+                        <div class="layer-name">Direct link only</div>
+                        <div class="layer-desc">No public directory. You need the exact URL to access it.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECH STACK -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> Tech Stack</div>
+            <div class="card">
+                <div class="tech-row">
+                    <div class="tech-label">Claude Code</div>
+                    <div class="tech-desc">AI assistant that builds the HTML and manages deployment</div>
+                </div>
+                <div class="tech-row">
+                    <div class="tech-label">GitHub</div>
+                    <div class="tech-desc">Version control. Every page is committed and tracked.</div>
+                </div>
+                <div class="tech-row">
+                    <div class="tech-label">Cloudflare Pages</div>
+                    <div class="tech-desc">Free hosting with unlimited bandwidth. Auto-deploys on git push.</div>
+                </div>
+                <div class="tech-row">
+                    <div class="tech-label">HTML/CSS</div>
+                    <div class="tech-desc">Pure static pages. No frameworks, no dependencies, no maintenance.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HOW TO SET IT UP -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> How to Set It Up Yourself</div>
+            <div class="card">
+                <h3>Step 1: Install Claude Code</h3>
+                <p>Install the Claude Code CLI from Anthropic. This is the terminal-based AI assistant that powers the skill.</p>
+                <div class="setup-code">
+                    <span class="comment"># Install Claude Code</span><br>
+                    npm install -g @anthropic-ai/claude-code
+                </div>
+            </div>
+            <div class="card">
+                <h3>Step 2: Create a GitHub repo</h3>
+                <p>Create a repo for your pages. This is where your HTML files live.</p>
+                <div class="setup-code">
+                    <span class="comment"># Create and init repo</span><br>
+                    mkdir my-pages && cd my-pages<br>
+                    git init && git remote add origin [your-repo-url]
+                </div>
+            </div>
+            <div class="card">
+                <h3>Step 3: Connect to Cloudflare Pages</h3>
+                <p>Go to Cloudflare Dashboard, create a new Pages project, and connect it to your GitHub repo. Every push to main auto-deploys. Free tier, unlimited bandwidth.</p>
+            </div>
+            <div class="card">
+                <h3>Step 4: Create the skill file</h3>
+                <p>Add a skill file at <code style="color: var(--gold);">.claude/skills/publish-page/SKILL.md</code> in your project. This tells Claude your brand colors, fonts, templates, repo path, and deploy process. Claude reads this file whenever you invoke the skill.</p>
+            </div>
+            <div class="card">
+                <h3>Step 5: Say the magic words</h3>
+                <div class="setup-code">
+                    <span class="comment"># That's it. Just say:</span><br>
+                    "Publish page for [whatever you need]"
+                </div>
+            </div>
+        </div>
+
+        <!-- ALL SKILLS -->
+        <div class="section">
+            <div class="section-title"><span class="icon">~</span> Other Skills in This System</div>
+            <p style="color: var(--text-secondary); margin-bottom: 16px;">The /publish-page skill is one of 8 custom skills built for this workflow:</p>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <div class="skill-name">/follow-up-email</div>
+                    <p>Draft personalized follow-up emails using a 4-email sequence pulled from call transcripts</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">/check-follow-ups</div>
+                    <p>Check the tracker for emails due today or overdue. Runs at session start and close.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">/process-transcript</div>
+                    <p>Auto-save meeting transcripts, extract key info, update indexes. No questions asked.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">/search-transcripts</div>
+                    <p>Smart search across all transcripts without loading full files into context</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">/karma</div>
+                    <p>Generate Karma recognition entries for team members, Slack-ready format</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">/slack-writing</div>
+                    <p>Draft Slack messages in Esteban's voice. No AI giveaways.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">/negotiation</div>
+                    <p>Chris Voss negotiation techniques. Reviews for leverage leaks before sending.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-name">/publish-page</div>
+                    <p>This one. Build and deploy branded pages in under 60 seconds.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="sfa-brand">SEVEN FIGURE AGENCY</div>
+            <p>Publish Page Skill Reference | February 9, 2026</p>
+            <p style="margin-top: 6px;">Built and deployed by Claude Code in under 60 seconds.</p>
+        </div>
+
+    </div>
+</body>
+</html>

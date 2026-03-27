@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Setter Training - The Gatekeeper | Seven Figure Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sfa-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .sfa-brand {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #cc0000;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        h1 span {
+            color: #cc0000;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* Gatekeeper Visual */
+        .gate-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            margin-bottom: 60px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gate-visual {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .leads-side {
+            flex: 1;
+            text-align: center;
+        }
+
+        .leads-crowd {
+            font-size: 2rem;
+            line-height: 1.4;
+            opacity: 0.6;
+        }
+
+        .leads-label {
+            background: rgba(204, 0, 0, 0.15);
+            border: 1px solid rgba(204, 0, 0, 0.4);
+            padding: 10px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: inline-block;
+            font-size: 0.9rem;
+            color: #ff6b6b;
+        }
+
+        .gate-center {
+            width: 160px;
+            text-align: center;
+            position: relative;
+        }
+
+        .gate-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .gate-doors {
+            font-size: 3rem;
+            color: #cc0000;
+            letter-spacing: 5px;
+        }
+
+        .gate-label {
+            background: linear-gradient(135deg, #cc0000, #990000);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .qualified-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cal-box {
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            width: 220px;
+            text-align: center;
+        }
+
+        .cal-accelerate {
+            background: rgba(46, 213, 115, 0.15);
+            border: 1px solid rgba(46, 213, 115, 0.4);
+            color: #2ed573;
+        }
+
+        .cal-launchpad {
+            background: rgba(54, 153, 255, 0.15);
+            border: 1px solid rgba(54, 153, 255, 0.4);
+            color: #3699ff;
+        }
+
+        .cal-dq {
+            background: rgba(255, 107, 107, 0.15);
+            border: 1px solid rgba(255, 107, 107, 0.4);
+            color: #ff6b6b;
+        }
+
+        .gate-arrows {
+            font-size: 2rem;
+            color: #cc0000;
+        }
+
+        /* Core Principle */
+        .principle-box {
+            background: linear-gradient(135deg, #cc0000, #990000);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(204, 0, 0, 0.3);
+        }
+
+        .principle-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .principle-box p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #cc0000;
+            font-size: 1.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            margin-top: -20px;
+            font-size: 0.95rem;
+        }
+
+        /* Three Gates Qualification */
+        .gates-section {
+            margin-bottom: 50px;
+        }
+
+        .three-gates {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gate-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 25px;
+            border-top: 4px solid;
+            text-align: center;
+        }
+
+        .gate-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .gate-card .gate-num {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .gate-card p {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .gate-card .question {
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .gate-clients { border-color: #cc0000; }
+        .gate-clients .gate-num { color: #cc0000; }
+        .gate-mrr { border-color: #f0a500; }
+        .gate-mrr .gate-num { color: #f0a500; }
+        .gate-niche { border-color: #2ed573; }
+        .gate-niche .gate-num { color: #2ed573; }
+
+        /* Routing Table */
+        .routing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 50px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .routing-table th {
+            background: rgba(255,255,255,0.08);
+            padding: 15px;
+            text-align: left;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        .routing-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+
+        .routing-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-accelerate {
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+            border: 1px solid rgba(46, 213, 115, 0.4);
+        }
+
+        .badge-launchpad {
+            background: rgba(54, 153, 255, 0.2);
+            color: #3699ff;
+            border: 1px solid rgba(54, 153, 255, 0.4);
+        }
+
+        .badge-dq {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 107, 107, 0.4);
+        }
+
+        /* Call Flow */
+        .call-flow-section {
+            margin-bottom: 50px;
+        }
+
+        .call-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .call-step {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #333;
+            transition: transform 0.3s;
+        }
+
+        .call-step:hover {
+            transform: translateY(-3px);
+        }
+
+        .call-step.phase-open { border-color: #3699ff; }
+        .call-step.phase-qualify { border-color: #f0a500; }
+        .call-step.phase-desire { border-color: #cc0000; }
+        .call-step.phase-book { border-color: #2ed573; }
+        .call-step.phase-lock { border-color: #a55eea; }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .phase-open .step-number { background: rgba(54, 153, 255, 0.3); color: #3699ff; }
+        .phase-qualify .step-number { background: rgba(240, 165, 0, 0.3); color: #f0a500; }
+        .phase-desire .step-number { background: rgba(204, 0, 0, 0.3); color: #ff6b6b; }
+        .phase-book .step-number { background: rgba(46, 213, 115, 0.3); color: #2ed573; }
+        .phase-lock .step-number { background: rgba(165, 94, 234, 0.3); color: #a55eea; }
+
+        .call-step h4 {
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        .call-step p {
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+
+        .call-step .script-line {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-style: italic;
+            font-size: 0.82rem;
+            color: #ccc;
+            border-left: 2px solid #555;
+        }
+
+        /* Phase Legend */
+        .phase-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .phase-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        .phase-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .phase-dot.open { background: #3699ff; }
+        .phase-dot.qualify { background: #f0a500; }
+        .phase-dot.desire { background: #cc0000; }
+        .phase-dot.book { background: #2ed573; }
+        .phase-dot.lock { background: #a55eea; }
+
+        /* Calendar Colors */
+        .color-section {
+            margin-bottom: 50px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .color-card {
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .color-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .color-card h4 { font-size: 0.9rem; margin-bottom: 2px; }
+        .color-card p { font-size: 0.78rem; color: #aaa; }
+
+        .color-blue { background: rgba(66, 133, 244, 0.1); border: 1px solid rgba(66, 133, 244, 0.3); }
+        .color-blue .color-dot { background: #4285f4; }
+        .color-darkblue { background: rgba(30, 60, 150, 0.15); border: 1px solid rgba(30, 60, 150, 0.4); }
+        .color-darkblue .color-dot { background: #1e3c96; }
+        .color-darkgreen { background: rgba(46, 125, 50, 0.15); border: 1px solid rgba(46, 125, 50, 0.4); }
+        .color-darkgreen .color-dot { background: #2e7d32; }
+        .color-darkgray { background: rgba(117, 117, 117, 0.15); border: 1px solid rgba(117, 117, 117, 0.4); }
+        .color-darkgray .color-dot { background: #757575; }
+        .color-yellow { background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); }
+        .color-yellow .color-dot { background: #ffc107; }
+        .color-red { background: rgba(204, 0, 0, 0.1); border: 1px solid rgba(204, 0, 0, 0.3); }
+        .color-red .color-dot { background: #cc0000; }
+        .color-lightgreen { background: rgba(46, 213, 115, 0.1); border: 1px solid rgba(46, 213, 115, 0.3); }
+        .color-lightgreen .color-dot { background: #2ed573; }
+        .color-purple { background: rgba(156, 39, 176, 0.1); border: 1px solid rgba(156, 39, 176, 0.3); }
+        .color-purple .color-dot { background: #9c27b0; }
+
+        /* Daily Rhythm */
+        .rhythm-section {
+            margin-bottom: 50px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #3699ff, #f0a500, #cc0000, #2ed573);
+        }
+
+        .time-block {
+            position: relative;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .time-block::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 24px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #cc0000;
+            background: #0a0a0a;
+        }
+
+        .time-block h4 {
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .time-block .time-label {
+            font-size: 0.78rem;
+            color: #cc0000;
+            margin-bottom: 8px;
+        }
+
+        .time-block p {
+            font-size: 0.88rem;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .time-block ul {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .time-block li {
+            font-size: 0.85rem;
+            color: #aaa;
+            padding: 3px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .time-block li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: #cc0000;
+            font-weight: bold;
+        }
+
+        /* Confirmation Sequence */
+        .confirm-section {
+            margin-bottom: 50px;
+        }
+
+        .text-sequence {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .text-msg {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+
+        .text-msg h4 {
+            font-size: 0.85rem;
+            color: #cc0000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .text-msg .msg-bubble {
+            background: rgba(46, 213, 115, 0.1);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            border-radius: 12px 12px 12px 2px;
+            padding: 12px 15px;
+            font-size: 0.88rem;
+            color: #ccc;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .text-msg .msg-note {
+            font-size: 0.78rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Critical Rule / Fatal Box */
+        .fatal-box {
+            background: linear-gradient(135deg, #990000, #660000);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 50px;
+            border: 2px solid #cc0000;
+        }
+
+        .fatal-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .fatal-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .fatal-box strong {
+            color: #ffcc00;
+        }
+
+        /* Comparison Table */
+        .comparison {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            border: 1px solid #333;
+        }
+
+        .comparison h2 {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .comparison-col {
+            padding: 25px;
+        }
+
+        .comparison-col.wrong {
+            background: rgba(204, 0, 0, 0.08);
+            border-right: 2px solid rgba(204, 0, 0, 0.3);
+        }
+
+        .comparison-col.right {
+            background: rgba(46, 213, 115, 0.08);
+        }
+
+        .comparison-col h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .comparison-col.wrong h3 { color: #ff6b6b; }
+        .comparison-col.right h3 { color: #2ed573; }
+
+        .comparison-col ul {
+            list-style: none;
+        }
+
+        .comparison-col li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: #ccc;
+        }
+
+        .comparison-col li:last-child {
+            border-bottom: none;
+        }
+
+        .icon { font-size: 1.2rem; }
+
+        /* Warning Box */
+        .warning-box {
+            background: rgba(240, 165, 0, 0.1);
+            border: 2px solid rgba(240, 165, 0, 0.4);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+        }
+
+        .warning-box h3 {
+            color: #f0a500;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .warning-box p {
+            font-size: 0.95rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Setter Notes */
+        .setter-notes {
+            background: rgba(255,255,255,0.03);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 50px;
+            border: 1px solid #333;
+        }
+
+        .setter-notes h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #f0a500;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .note-card {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+        }
+
+        .note-card .note-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .note-card h4 {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .note-card p {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* KPI Box */
+        .kpi-section {
+            margin-bottom: 50px;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .kpi-card {
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .kpi-card .kpi-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #cc0000;
+            display: block;
+        }
+
+        .kpi-card .kpi-label {
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            border-top: 1px solid #333;
+        }
+
+        .footer .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .sfa-footer-brand {
+            color: #cc0000;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+
+            .gate-container { height: auto; padding: 30px 15px; }
+            .gate-visual { flex-direction: column; gap: 20px; }
+
+            .three-gates { grid-template-columns: 1fr; }
+
+            .comparison-grid { grid-template-columns: 1fr; }
+            .comparison-col.wrong {
+                border-right: none;
+                border-bottom: 2px solid rgba(204, 0, 0, 0.3);
+            }
+
+            .call-steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="sfa-header">
+            <div class="sfa-brand">SEVEN FIGURE AGENCY</div>
+            <h1>THE <span>GATEKEEPER</span></h1>
+            <p class="subtitle">Setter Training - You Decide Who Gets Through</p>
+        </div>
+
+        <!-- Gatekeeper Visual -->
+        <div class="gate-container">
+            <div class="gate-visual">
+                <div class="leads-side">
+                    <div class="leads-crowd">
+                        🧑 🧑 🧑 🧑<br>
+                        🧑 🧑 🧑 🧑<br>
+                        🧑 🧑 🧑 🧑
+                    </div>
+                    <div class="leads-label">UNQUALIFIED LEADS<br><small>Auto-booked, cold, unknown</small></div>
+                </div>
+
+                <div class="gate-center">
+                    <span class="gate-icon">🛡️</span>
+                    <div class="gate-doors">| | |</div>
+                    <div class="gate-label">YOU<br><small>The Gatekeeper</small></div>
+                </div>
+
+                <div class="qualified-side">
+                    <div class="cal-box cal-accelerate">
+                        ACCELERATE<br>
+                        <small>Esteban's Calendar</small>
+                    </div>
+                    <div class="cal-box cal-launchpad">
+                        LAUNCHPAD<br>
+                        <small>Henry's Calendar</small>
+                    </div>
+                    <div class="cal-box cal-dq">
+                        DOES NOT QUALIFY<br>
+                        <small>Remove from calendar</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Principle -->
+        <div class="principle-box">
+            <h2>YOUR JOB IN ONE SENTENCE</h2>
+            <p>You are not a salesperson. You are a filter.<br>
+            Your job is to qualify, confirm, and route every lead to the right calendar.<br><br>
+            <strong>Never coach. Never sell. Spark clarity and book the call.</strong></p>
+        </div>
+
+        <!-- Three Gates: Qualification Rule -->
+        <h2 class="section-header">🚪 THE THREE GATES</h2>
+        <p class="section-subtitle">Every lead must pass through all three before you book on Esteban's calendar</p>
+
+        <div class="gates-section">
+            <div class="three-gates">
+                <div class="gate-card gate-clients">
+                    <span class="gate-num">6+</span>
+                    <h3>CLIENTS / LOCATIONS</h3>
+                    <p>This is the determining factor. "Clients" means locations managed, not contracts. Someone with 2 contracts managing 10 locations = 10 clients.</p>
+                    <div class="question">"How many locations are you currently managing?"</div>
+                </div>
+                <div class="gate-card gate-mrr">
+                    <span class="gate-num">$10K+</span>
+                    <h3>MONTHLY REVENUE</h3>
+                    <p>Must be at or above $10K MRR. Someone doing $30K with 6+ clients is Accelerate. Someone doing $30K with 3 clients is LaunchPad.</p>
+                    <div class="question">"What's your approximate monthly recurring revenue?"</div>
+                </div>
+                <div class="gate-card gate-niche">
+                    <span class="gate-num">YES</span>
+                    <h3>WILLING TO NICHE</h3>
+                    <p>Must be already niched or willing to niche down. If they refuse to niche, they don't qualify for EITHER program. Full stop.</p>
+                    <div class="question">"Do you serve a specific niche or are you open to specializing?"</div>
+                </div>
+            </div>
+
+            <!-- Routing Table -->
+            <table class="routing-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Clients</th>
+                        <th>MRR</th>
+                        <th>Niche</th>
+                        <th>Route To</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>8 clients, $15K, already niched</td>
+                        <td>8 ✅</td>
+                        <td>$15K ✅</td>
+                        <td>Yes ✅</td>
+                        <td><span class="badge badge-accelerate">ACCELERATE (Esteban)</span></td>
+                    </tr>
+                    <tr>
+                        <td>3 clients, $10K, willing to niche</td>
+                        <td>3 ❌</td>
+                        <td>$10K ✅</td>
+                        <td>Yes ✅</td>
+                        <td><span class="badge badge-launchpad">LAUNCHPAD (Henry)</span></td>
+                    </tr>
+                    <tr>
+                        <td>4 clients, $30K, willing to niche</td>
+                        <td>4 ❌</td>
+                        <td>$30K ✅</td>
+                        <td>Yes ✅</td>
+                        <td><span class="badge badge-launchpad">LAUNCHPAD (Henry)</span></td>
+                    </tr>
+                    <tr>
+                        <td>10 locations (2 contracts), $12K, niched</td>
+                        <td>10 ✅</td>
+                        <td>$12K ✅</td>
+                        <td>Yes ✅</td>
+                        <td><span class="badge badge-accelerate">ACCELERATE (Esteban)</span></td>
+                    </tr>
+                    <tr>
+                        <td>7 clients, $20K, refuses to niche</td>
+                        <td>7 ✅</td>
+                        <td>$20K ✅</td>
+                        <td>No ❌</td>
+                        <td><span class="badge badge-dq">DOES NOT QUALIFY</span></td>
+                    </tr>
+                    <tr>
+                        <td>5 clients, $8K, willing to niche</td>
+                        <td>5 ❌</td>
+                        <td>$8K ❌</td>
+                        <td>Yes ✅</td>
+                        <td><span class="badge badge-launchpad">LAUNCHPAD (Henry)</span></td>
+                    </tr>
+                    <tr>
+                        <td>Graphic designer, not an agency</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td><span class="badge badge-dq">DOES NOT QUALIFY</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Warning: Clients = Locations -->
+        <div class="warning-box">
+            <h3>⚠️ "CLIENTS" MEANS LOCATIONS, NOT CONTRACTS</h3>
+            <p>If someone says "I have 2 clients" but manages 10 locations across those accounts, that's 10 clients. You HAVE to ask: <strong>"How many locations are you managing?"</strong> The client count is the determining factor, not revenue. Someone can say they're at $10K but if they only have 3 clients, that's not an Accelerate lead.</p>
+        </div>
+
+        <!-- The 12-Step Setter Call -->
+        <h2 class="section-header">📞 THE 12-STEP SETTER CALL</h2>
+        <p class="section-subtitle">Tight. 8-10 minutes. Never longer.</p>
+
+        <div class="phase-legend">
+            <div class="phase-tag"><div class="phase-dot open"></div> OPEN</div>
+            <div class="phase-tag"><div class="phase-dot qualify"></div> QUALIFY</div>
+            <div class="phase-tag"><div class="phase-dot desire"></div> CREATE DESIRE</div>
+            <div class="phase-tag"><div class="phase-dot book"></div> BOOK</div>
+            <div class="phase-tag"><div class="phase-dot lock"></div> LOCK IN</div>
+        </div>
+
+        <div class="call-flow-section">
+            <div class="call-steps">
+                <div class="call-step phase-open">
+                    <span class="step-number">1</span>
+                    <h4>Greeting & Permission</h4>
+                    <p>Confirm identity, introduce yourself, ask for two minutes.</p>
+                    <div class="script-line">"Hey, is this [Name]? This is [You] with Seven Figure Agency. Do you have a quick two minutes? I promise to keep this short."</div>
+                </div>
+
+                <div class="call-step phase-open">
+                    <span class="step-number">2</span>
+                    <h4>Reason for Call</h4>
+                    <p>Resource check. Confirm they got the free resource they opted in for.</p>
+                    <div class="script-line">"The reason I'm calling is to make sure you got access to the Roadmap Implementation Program. Did you get that okay?"</div>
+                </div>
+
+                <div class="call-step phase-open">
+                    <span class="step-number">3</span>
+                    <h4>Clarify Motivation</h4>
+                    <p>Why did they opt in? What's their current situation?</p>
+                    <div class="script-line">"Out of curiosity, what made you download and sign up in the first place?"</div>
+                </div>
+
+                <div class="call-step phase-qualify">
+                    <span class="step-number">4</span>
+                    <h4>Label Their Situation</h4>
+                    <p>Mirror back what they said. Single obstacle triage: leads, conversion, or systems?</p>
+                    <div class="script-line">"Sounds like you're feeling [emotion] because you've been spending too much time IN the business instead of ON it. Does that sound right?"</div>
+                </div>
+
+                <div class="call-step phase-qualify">
+                    <span class="step-number">5</span>
+                    <h4>Light Qualification</h4>
+                    <p>Get the THREE data points. This is where the gates happen.</p>
+                    <div class="script-line">"Just so I can get a clear snapshot: What niche do you serve? How many clients/locations are you managing? What's your approximate MRR?"</div>
+                </div>
+
+                <div class="call-step phase-desire">
+                    <span class="step-number">6</span>
+                    <h4>Sell the Vision</h4>
+                    <p>One question. Let them paint the picture of their future.</p>
+                    <div class="script-line">"If you had solid systems in place to solve [their issue], what would your business look like 3-6 months from now?"</div>
+                </div>
+
+                <div class="call-step phase-desire">
+                    <span class="step-number">7</span>
+                    <h4>Temperature Check</h4>
+                    <p>1-10 scale. Below 8 = push for what would make it a 9 or 10. Above 8 = they're ready.</p>
+                    <div class="script-line">"On a scale of 1 to 10, where 10 means you're ready to fix this yesterday, where would you say you are right now?"</div>
+                </div>
+
+                <div class="call-step phase-book">
+                    <span class="step-number">8</span>
+                    <h4>Offer the Session</h4>
+                    <p>Transition to the Acceleration Session. One of our experts will walk them through it.</p>
+                    <div class="script-line">"Based on what you've shared, you'd be a great fit for our complimentary Agency Acceleration Session."</div>
+                </div>
+
+                <div class="call-step phase-book">
+                    <span class="step-number">9</span>
+                    <h4>Commitment Question</h4>
+                    <p>Investment readiness. Are they prepared to invest if the plan makes sense?</p>
+                    <div class="script-line">"If you knew we could help you fix this and give you a clear roadmap, are you prepared to invest in your business to make it happen?"</div>
+                </div>
+
+                <div class="call-step phase-lock">
+                    <span class="step-number">10</span>
+                    <h4>Pick Day/Time</h4>
+                    <p>Give two options. Confirm timezone. Repeat the confirmed slot.</p>
+                    <div class="script-line">"He's available on [Option 1] or [Option 2]. Which works better for you?"</div>
+                </div>
+
+                <div class="call-step phase-lock">
+                    <span class="step-number">11</span>
+                    <h4>Natural Disaster Question</h4>
+                    <p>Lock commitment to the time. The answer should be nothing stops them.</p>
+                    <div class="script-line">"Is there anything outside of a natural disaster that would stop you from being there for that session?"</div>
+                </div>
+
+                <div class="call-step phase-lock">
+                    <span class="step-number">12</span>
+                    <h4>Device-Ready + Prep Guide</h4>
+                    <p>Accept the invite together. Send the prep guide. Confirm they'll review it before the call.</p>
+                    <div class="script-line">"I'm sending the invite now with the Zoom link. Are you in front of your email so we can accept it together?"</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What Sets Apart Good vs Bad Setters -->
+        <div class="comparison">
+            <h2>GHOST SETTER vs GATEKEEPER</h2>
+            <div class="comparison-grid">
+                <div class="comparison-col wrong">
+                    <h3><span class="icon">👻</span> Ghost Setter</h3>
+                    <ul>
+                        <li><span class="icon">📋</span> Books anyone with a pulse on the calendar</li>
+                        <li><span class="icon">🔵</span> Leaves blue (auto-booked) appointments untouched</li>
+                        <li><span class="icon">🤷</span> Doesn't know client count, MRR, or niche</li>
+                        <li><span class="icon">📱</span> Sends one text, gives up</li>
+                        <li><span class="icon">😴</span> No confirmation process, hopes they show up</li>
+                        <li><span class="icon">🎰</span> Routes high-revenue leads to Esteban without checking client count</li>
+                    </ul>
+                </div>
+                <div class="comparison-col right">
+                    <h3><span class="icon">🛡️</span> Gatekeeper</h3>
+                    <ul>
+                        <li><span class="icon">🔍</span> Qualifies every lead through all three gates before booking</li>
+                        <li><span class="icon">✅</span> Clears blue appointments by end of day, every day</li>
+                        <li><span class="icon">📊</span> Has exact client count, MRR, and niche for every set</li>
+                        <li><span class="icon">📲</span> 7+ touchpoints across call, text, and email</li>
+                        <li><span class="icon">🔒</span> Full confirmation sequence: day before + morning of</li>
+                        <li><span class="icon">🎯</span> Routes by client count first, revenue second</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Color System -->
+        <h2 class="section-header">🎨 CALENDAR COLOR SYSTEM</h2>
+        <p class="section-subtitle">Every appointment must have a color. No exceptions.</p>
+
+        <div class="color-section">
+            <div class="color-grid">
+                <div class="color-card color-blue">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>BLUE - Auto-Booked</h4>
+                        <p>No human contact yet. MUST be worked.</p>
+                    </div>
+                </div>
+                <div class="color-card color-darkblue">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>DARK BLUE - Qualified</h4>
+                        <p>Spoke with them. Meets all criteria.</p>
+                    </div>
+                </div>
+                <div class="color-card color-darkgreen">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>DARK GREEN - Confirmed (Day Before)</h4>
+                        <p>Reconfirmed the day before. Ready.</p>
+                    </div>
+                </div>
+                <div class="color-card color-darkgray">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>DARK GRAY - Confirmed (Same Day)</h4>
+                        <p>Confirmed same day of appointment.</p>
+                    </div>
+                </div>
+                <div class="color-card color-yellow">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>YELLOW - Hot Lead</h4>
+                        <p>Had a Strategy Session. Follow up to close.</p>
+                    </div>
+                </div>
+                <div class="color-card color-red">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>RED - Not a Fit / DQ</h4>
+                        <p>Doesn't qualify. Remove or reassign.</p>
+                    </div>
+                </div>
+                <div class="color-card color-lightgreen">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>LIGHT GREEN - Closed</h4>
+                        <p>Deal closed. Won.</p>
+                    </div>
+                </div>
+                <div class="color-card color-purple">
+                    <div class="color-dot"></div>
+                    <div>
+                        <h4>PURPLE - No Show</h4>
+                        <p>Didn't attend. Must be followed up.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fatal Rule: Blues on Calendar -->
+        <div class="fatal-box">
+            <h2>⚠️ THE #1 RULE</h2>
+            <p>Blues cannot be on the calendar the day of the call.<br><br>
+            If you see a blue appointment for today or tomorrow, that is YOUR responsibility.<br>
+            <strong>Work it, qualify it, confirm it, or remove it. No blue goes to the closer.</strong><br><br>
+            A blue on the calendar = a ghost appointment = wasted closer time.</p>
+        </div>
+
+        <!-- Daily Rhythm (Hunt Mode) -->
+        <h2 class="section-header">⏰ THE DAILY RHYTHM</h2>
+        <p class="section-subtitle">Hunt Mode: your entire day is about one thing. Filling the calendar with qualified appointments.</p>
+
+        <div class="rhythm-section">
+            <div class="timeline">
+                <div class="time-block">
+                    <div class="time-label">FIRST 15 MINUTES</div>
+                    <h4>Morning Confirmation Blitz</h4>
+                    <ul>
+                        <li>Send same-day confirmation to ALL today's appointments</li>
+                        <li>Include Zoom link in every confirmation</li>
+                        <li>Update colors: replied = Dark Gray, already confirmed = stays Dark Green</li>
+                        <li>Flag any blues that slipped through, work them NOW</li>
+                    </ul>
+                </div>
+
+                <div class="time-block">
+                    <div class="time-label">NEXT 2 HOURS</div>
+                    <h4>New Lead Follow-Up</h4>
+                    <ul>
+                        <li>Call every lead from the past 24-48 hours</li>
+                        <li>Double dial (call twice back-to-back)</li>
+                        <li>If no pickup, text immediately (see text scripts below)</li>
+                        <li>Qualify on the call using the Three Gates</li>
+                    </ul>
+                </div>
+
+                <div class="time-block">
+                    <div class="time-label">MID-DAY</div>
+                    <h4>Future Appointment Confirmation</h4>
+                    <ul>
+                        <li>Review tomorrow's calendar for blues</li>
+                        <li>Send confirmation texts for appointments 2-3 days out</li>
+                        <li>5x call burst for unresponsive leads (5 calls in 1-2 minutes)</li>
+                        <li>Unresponsive after multiple attempts = consider removing to free the slot</li>
+                    </ul>
+                </div>
+
+                <div class="time-block">
+                    <div class="time-label">THROUGHOUT THE DAY</div>
+                    <h4>Outbound + Work Your List</h4>
+                    <ul>
+                        <li>Work through aged leads in CRM</li>
+                        <li>Run qualification calls on leads in pipeline</li>
+                        <li>Document everything in GoHighLevel</li>
+                        <li>Use the outbound text script for no-pickups</li>
+                    </ul>
+                </div>
+
+                <div class="time-block">
+                    <div class="time-label">END OF DAY (Last 30 min)</div>
+                    <h4>Night Before Process</h4>
+                    <ul>
+                        <li>Review all of tomorrow's appointments</li>
+                        <li>Send day-before confirmations to every appointment</li>
+                        <li>Pre-qualify any unconfirmed blues for tomorrow</li>
+                        <li>Update all calendar colors based on responses</li>
+                        <li>Log all activity in CRM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmation Text Sequence -->
+        <h2 class="section-header">📲 CONFIRMATION SEQUENCE</h2>
+        <p class="section-subtitle">Manual nurture boosts show rates more than anything else. This is the work that separates winners.</p>
+
+        <div class="confirm-section">
+            <div class="text-sequence">
+                <div class="text-msg">
+                    <h4>After Booking (SDR Intro)</h4>
+                    <div class="msg-bubble">Hey [Name] it's [Your Name] at Seven Figure Agency, great talking with you today. Excited for you to talk with [Closer] about scaling.</div>
+                    <div class="msg-bubble">Here's a quick video that will save time on your call tomorrow: [VSL LINK]</div>
+                    <div class="msg-bubble">Could you check it out?</div>
+                    <div class="msg-note">Wait for reply. If they confirm, thumbs up.</div>
+                </div>
+
+                <div class="text-msg">
+                    <h4>If No Response (EOD)</h4>
+                    <div class="msg-bubble">Hey [Name]! Prepping for my meetings tomorrow. Did you have a chance to check out the video?</div>
+                    <div class="msg-note">Still no reply? Send again morning of.</div>
+                </div>
+
+                <div class="text-msg">
+                    <h4>Morning Of</h4>
+                    <div class="msg-bubble">Good morning [Name]! Excited to talk today.</div>
+                    <div class="msg-bubble">Btw, here is [similar success story]. She is in the same industry and recently attended a workshop!</div>
+                    <div class="msg-note">Testimonial link. Social proof.</div>
+                </div>
+
+                <div class="text-msg">
+                    <h4>1 Hour Before</h4>
+                    <div class="msg-bubble">Talk soon.</div>
+                    <div class="msg-note">Short. Confident. That's it.</div>
+                </div>
+
+                <div class="text-msg">
+                    <h4>If No Reply At All</h4>
+                    <div class="msg-bubble">Hey [Name], I have a few people who would like to take the [time] slot. Could you send a quick thumbs up if you want to keep it? (as you can imagine we are pretty slammed haha)</div>
+                    <div class="msg-note">Scarcity + casual tone. Creates urgency to confirm.</div>
+                </div>
+
+                <div class="text-msg">
+                    <h4>No Pick Up Text</h4>
+                    <div class="msg-bubble">Hey [Name], just tried calling! Wanted to connect before your session. When's a good time to chat for 2 min?</div>
+                    <div class="msg-note">Follow up #2: "Bumping ^"<br>Follow up #3: Send a value video.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Before You Book Checklist -->
+        <div class="warning-box">
+            <h3>✋ BEFORE YOU BOOK ANY SET, YOU NEED:</h3>
+            <p>
+                <strong>1. Exact client/location count</strong> (not "a few" or "several")<br>
+                <strong>2. Exact monthly revenue</strong> (not "significantly over five figures")<br>
+                <strong>3. Niche status</strong> (yes / no but willing / no and not willing)<br><br>
+                If you don't have all three, it's not a set. Don't book it. Get the info first.
+            </p>
+        </div>
+
+        <!-- Setter Mindset Notes -->
+        <div class="setter-notes">
+            <h2>⚡ SETTER MINDSET</h2>
+            <div class="notes-grid">
+                <div class="note-card">
+                    <span class="note-icon">😊</span>
+                    <h4>Use a Smile</h4>
+                    <p>They can hear it. Your voice carries your energy.</p>
+                </div>
+                <div class="note-card">
+                    <span class="note-icon">🎯</span>
+                    <h4>Never Coach</h4>
+                    <p>Spark clarity and book the call. The closer does the coaching.</p>
+                </div>
+                <div class="note-card">
+                    <span class="note-icon">⏱️</span>
+                    <h4>8-10 Minutes Max</h4>
+                    <p>If you're over 10 minutes you're coaching, not setting.</p>
+                </div>
+                <div class="note-card">
+                    <span class="note-icon">🗣️</span>
+                    <h4>Micro-Affirmations</h4>
+                    <p>"Got it." "Makes sense." "Perfect." Keep them talking.</p>
+                </div>
+                <div class="note-card">
+                    <span class="note-icon">💪</span>
+                    <h4>Confident & Relaxed</h4>
+                    <p>You're offering value, not begging for time.</p>
+                </div>
+                <div class="note-card">
+                    <span class="note-icon">📝</span>
+                    <h4>Document Everything</h4>
+                    <p>If it's not in GHL, it didn't happen. Notes on every call.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPIs -->
+        <h2 class="section-header">📊 YOUR NUMBERS</h2>
+
+        <div class="kpi-section">
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-number">4</span>
+                    <span class="kpi-label">Qualified Sets / Day</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-number">20</span>
+                    <span class="kpi-label">Qualified Sets / Week</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-number">80%+</span>
+                    <span class="kpi-label">Show Rate Target</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-number">100%</span>
+                    <span class="kpi-label">Qualification Documented</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-number">7+</span>
+                    <span class="kpi-label">Touch Points Per Lead</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-number">0</span>
+                    <span class="kpi-label">Blues on Day-Of Calendar</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="quote">"The setter's job is Hunt Mode. You're not closing deals. You're filling the calendar with people who are ready, willing, and qualified. The close rate goes up when the setter does their job."</p>
+            <p class="sfa-footer-brand">SEVEN FIGURE AGENCY</p>
+            <p>Setter Training Resource | Internal Use Only</p>
+        </div>
+    </div>
+</body>
+</html>

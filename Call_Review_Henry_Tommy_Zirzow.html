@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Call Review: Henry x Tommy Zirzow | March 6, 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sfa-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #cc0000;
+        }
+
+        .sfa-brand {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #cc0000;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        h1 span {
+            color: #cc0000;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .call-meta {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .meta-pills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .meta-pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .meta-pill.red {
+            background: rgba(204, 0, 0, 0.15);
+            border-color: #cc0000;
+            color: #ff6b6b;
+        }
+
+        /* Boulder Section */
+        .boulder-section {
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #333;
+        }
+
+        .boulder-title {
+            font-size: 1.8rem;
+            color: #cc0000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .boulder-visual {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .boulder-scenario {
+            text-align: center;
+            padding: 20px;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .boulder-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+
+        .wrong { color: #ff4757; }
+        .right { color: #2ed573; }
+
+        .boulder-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .boulder-desc {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        .vs-divider {
+            font-size: 2rem;
+            color: #cc0000;
+            font-weight: bold;
+        }
+
+        /* Scorecard */
+        .scorecard-section {
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid #333;
+        }
+
+        .scorecard-title {
+            font-size: 1.8rem;
+            color: #cc0000;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .scorecard-result {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-big {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #cc0000;
+        }
+
+        .result-label {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .scorecard-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .score-row {
+            display: flex;
+            align-items: center;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .score-num {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .score-num.passed { background: linear-gradient(135deg, #2ed573, #1db954); }
+        .score-num.failed { background: linear-gradient(135deg, #cc0000, #990000); }
+        .score-num.partial { background: linear-gradient(135deg, #f39c12, #e67e22); }
+
+        .score-name {
+            flex: 1;
+            padding: 12px 15px;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .score-detail {
+            flex: 2;
+            padding: 12px 15px;
+            color: #aaa;
+            font-size: 0.9rem;
+            border-left: 1px solid #333;
+        }
+
+        .score-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .badge-pass { background: rgba(46, 213, 115, 0.2); color: #2ed573; }
+        .badge-fail { background: rgba(204, 0, 0, 0.2); color: #ff6b6b; }
+        .badge-partial { background: rgba(243, 156, 18, 0.2); color: #f39c12; }
+
+        /* Phase Breakdown */
+        .phase-section {
+            margin-bottom: 40px;
+        }
+
+        .phase-title {
+            font-size: 1.8rem;
+            color: #cc0000;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .phase-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .phase-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .phase-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(204, 0, 0, 0.2);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .phase-num {
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .phase-num.p-pass { background: linear-gradient(90deg, #2ed573, #1db954); }
+        .phase-num.p-fail { background: linear-gradient(90deg, #cc0000, #990000); }
+        .phase-num.p-partial { background: linear-gradient(90deg, #f39c12, #e67e22); }
+
+        .phase-info {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .phase-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .phase-framework {
+            color: #888;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-bottom: 12px;
+            padding-left: 15px;
+            border-left: 2px solid #333;
+        }
+
+        .phase-analysis {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .phase-quote {
+            background: rgba(204, 0, 0, 0.1);
+            border-left: 4px solid #cc0000;
+            padding: 12px 15px;
+            margin-top: 12px;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: #ff6b6b;
+            font-size: 0.9rem;
+        }
+
+        .phase-shouldve {
+            background: rgba(46, 213, 115, 0.1);
+            border-left: 4px solid #2ed573;
+            padding: 12px 15px;
+            margin-top: 12px;
+            border-radius: 0 10px 10px 0;
+            color: #2ed573;
+            font-size: 0.9rem;
+        }
+
+        /* Comparison */
+        .comparison {
+            background: linear-gradient(145deg, #1a1a1a 0%, #111 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid #333;
+        }
+
+        .comparison h2 {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            text-align: center;
+            color: #cc0000;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .comparison-col {
+            padding: 25px;
+        }
+
+        .comparison-col.wrong-col {
+            background: rgba(204, 0, 0, 0.08);
+            border-right: 2px solid rgba(204, 0, 0, 0.3);
+        }
+
+        .comparison-col.right-col {
+            background: rgba(46, 213, 115, 0.08);
+        }
+
+        .comparison-col h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .comparison-col.wrong-col h3 { color: #ff6b6b; }
+        .comparison-col.right-col h3 { color: #2ed573; }
+
+        .comparison-col ul {
+            list-style: none;
+        }
+
+        .comparison-col li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .comparison-col li:last-child { border-bottom: none; }
+
+        .icon { font-size: 1.2rem; flex-shrink: 0; }
+
+        /* Coaching Priorities */
+        .coaching-section {
+            background: linear-gradient(145deg, #0d1a0d 0%, #0a140a 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 2px solid #2ed573;
+        }
+
+        .coaching-title {
+            font-size: 1.8rem;
+            color: #2ed573;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .coaching-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .coaching-card {
+            background: rgba(46, 213, 115, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(46, 213, 115, 0.3);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .coaching-num {
+            width: 50px;
+            height: 50px;
+            background: #2ed573;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .coaching-content h3 {
+            color: #2ed573;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .coaching-content p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Fatal Mistake */
+        .fatal-box {
+            background: linear-gradient(135deg, #990000, #660000);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 40px;
+            border: 2px solid #cc0000;
+        }
+
+        .fatal-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .fatal-box p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .fatal-box strong {
+            color: #ffcc00;
+        }
+
+        /* Reference Link */
+        .ref-link {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .ref-link a {
+            color: #cc0000;
+            text-decoration: none;
+            font-size: 1rem;
+            border: 1px solid #cc0000;
+            padding: 12px 30px;
+            border-radius: 30px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .ref-link a:hover {
+            background: rgba(204, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 2px solid #cc0000;
+            margin-top: 20px;
+        }
+
+        .footer .sfa-footer-brand {
+            color: #cc0000;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer .quote {
+            font-style: italic;
+            color: #aaa;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .comparison-col.wrong-col {
+                border-right: none;
+                border-bottom: 2px solid rgba(204, 0, 0, 0.3);
+            }
+            .score-detail { display: none; }
+            .phase-num { width: 60px; font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="sfa-header">
+            <div class="sfa-brand">SEVEN FIGURE AGENCY</div>
+            <h1>CALL <span>REVIEW</span></h1>
+        </div>
+        <p class="subtitle">Henry Adams x Tommy Zirzow</p>
+        <div class="call-meta">
+            <div class="meta-pills">
+                <span class="meta-pill">March 6, 2026</span>
+                <span class="meta-pill">56 minutes</span>
+                <span class="meta-pill">TMS+ Digital Marketing</span>
+                <span class="meta-pill">$17-18K MRR</span>
+                <span class="meta-pill">Accelerate ($1,497/mo)</span>
+                <span class="meta-pill red">Result: No Close</span>
+            </div>
+        </div>
+
+        <!-- Boulder Problem -->
+        <div class="boulder-section">
+            <div class="boulder-title">THE BOULDER PROBLEM</div>
+            <div class="boulder-visual">
+                <div class="boulder-scenario">
+                    <div class="boulder-icon wrong">😰🪨⬆️</div>
+                    <div class="boulder-label wrong">WHAT HAPPENED</div>
+                    <div class="boulder-desc">Henry pushed the boulder for 11 straight minutes.<br>Tommy sat back and watched.<br><br><em>"Yep." "Nope." "There was a lot there."</em></div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="boulder-scenario">
+                    <div class="boulder-icon right">🪨⬆️😊</div>
+                    <div class="boulder-label right">WHAT SHOULD HAPPEN</div>
+                    <div class="boulder-desc">Tommy pushes the boulder through questions.<br>Henry guides at the top and tips it over.<br><br><em>"What's kept you from niching for 2 years?"</em></div>
+                </div>
+            </div>
+            <p style="text-align: center; color: #aaa; font-size: 1.1rem; margin-top: 20px;">
+                <em>Tommy never had to earn the close. He never articulated his own pain, urgency, or commitment. Henry did all the work for him.</em>
+            </p>
+        </div>
+
+        <!-- Scorecard -->
+        <div class="scorecard-section">
+            <h2 class="scorecard-title">SCORECARD</h2>
+            <div class="scorecard-result">
+                <div class="result-big">2/13</div>
+                <div class="result-label">Phases Executed</div>
+            </div>
+            <div class="scorecard-grid">
+                <div class="score-row">
+                    <div class="score-num passed">1</div>
+                    <div class="score-name">Rapport</div>
+                    <div class="score-detail">Light, natural. Tommy complimented his glasses. Good energy.</div>
+                    <span class="score-badge badge-pass">PASSED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num passed">2</div>
+                    <div class="score-name">Frame</div>
+                    <div class="score-detail">"30-40 min call. Questions about your agency. If it makes sense, next steps."</div>
+                    <span class="score-badge badge-pass">PASSED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">3</div>
+                    <div class="score-name">Why Chain</div>
+                    <div class="score-detail">Stopped at level 2-3. Never asked "what if you DON'T hit that goal?"</div>
+                    <span class="score-badge badge-fail">FAILED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">4</div>
+                    <div class="score-name">Close Doors</div>
+                    <div class="score-detail">Dad never addressed. Budget not pre-handled. Timeline not locked.</div>
+                    <span class="score-badge badge-fail">FAILED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">5</div>
+                    <div class="score-name">Tie Downs</div>
+                    <div class="score-detail">Zero pain points used during the pitch. All left on the table.</div>
+                    <span class="score-badge badge-fail">FAILED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num partial">6</div>
+                    <div class="score-name">Present Offer</div>
+                    <div class="score-detail">11-min feature dump. Framework says 3-5 min mapped to THEIR pain.</div>
+                    <span class="score-badge badge-partial">PARTIAL</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">7</div>
+                    <div class="score-name">Temp Check #1</div>
+                    <div class="score-detail">Skipped entirely. Went straight to price with no gauge.</div>
+                    <span class="score-badge badge-fail">SKIPPED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">8</div>
+                    <div class="score-name">Stack Loop</div>
+                    <div class="score-detail">Never stacked. Never asked "does that make sense?" Never restacked.</div>
+                    <span class="score-badge badge-fail">SKIPPED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">9</div>
+                    <div class="score-name">Forecast</div>
+                    <div class="score-detail">Never painted the future. "Imagine 90 days from now..." never happened.</div>
+                    <span class="score-badge badge-fail">SKIPPED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num partial">10</div>
+                    <div class="score-name">Price + Silence</div>
+                    <div class="score-detail">Stated $1,497 but kept talking. Guarantee, no contracts, easy cancel.</div>
+                    <span class="score-badge badge-partial">PARTIAL</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">11</div>
+                    <div class="score-name">Temp Check #2</div>
+                    <div class="score-detail">Skipped. Went to "when can you get back to me?" No objection surfacing.</div>
+                    <span class="score-badge badge-fail">SKIPPED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">12</div>
+                    <div class="score-name">Close</div>
+                    <div class="score-detail">Never attempted. No "Visa, MasterCard, or AmEx?" Not once.</div>
+                    <span class="score-badge badge-fail">NEVER ATTEMPTED</span>
+                </div>
+                <div class="score-row">
+                    <div class="score-num failed">13</div>
+                    <div class="score-name">ADT</div>
+                    <div class="score-detail">Tommy: "Give me a week." Henry: "Yeah." No Agree, Duplicate, or Transition.</div>
+                    <span class="score-badge badge-fail">FAILED</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phase Breakdown -->
+        <div class="phase-section">
+            <h2 class="phase-title">13-PHASE BREAKDOWN</h2>
+            <div class="phase-container">
+
+                <!-- Phase 1 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-pass">1</div>
+                        <div class="phase-info">
+                            <div class="phase-name">INTRODUCTION + RAPPORT</div>
+                            <div class="phase-framework">Framework: 2 min. Geographic icebreaker, find connection, use humor.</div>
+                            <div class="phase-analysis">Henry opened light. "Glad to be in the call with you. Heard some good things." Tommy complimented his glasses. Natural, easy, no forced energy.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-pass">2</div>
+                        <div class="phase-info">
+                            <div class="phase-name">FRAMING + EXPECTATIONS</div>
+                            <div class="phase-framework">Framework: Set the rules. Get agreement to be transparent.</div>
+                            <div class="phase-analysis">"This is usually about 30, max 40 minutes. I'll ask questions. If it makes sense, next steps. If not, you leave with value." Clean frame.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">3</div>
+                        <div class="phase-info">
+                            <div class="phase-name">DISCOVERY / WHY CHAIN</div>
+                            <div class="phase-framework">Framework: Keep asking WHY until you hit emotion. Go 5-6 levels deep.</div>
+                            <div class="phase-analysis">Asked "what would 40-50K change?" Got Level 1 (hiring). Asked "personally?" Tommy went to Level 2-3: income, family, freedom, 25 years old, betting everything, wants a family. Then Henry said "thank you for being transparent" and moved on. Never reached Level 4-5.</div>
+                            <div class="phase-shouldve">Should have asked: "What happens if TMS+ doesn't grow?" / "How does staying at $17K/month affect the family timeline you mentioned?" / "You've been talking about niching for 2 years. What's kept it from happening?"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">4</div>
+                        <div class="phase-info">
+                            <div class="phase-name">CLOSE DOORS</div>
+                            <div class="phase-framework">Framework: Pre-handle objections: Decision maker? Burned before? Budget ready? Timeline?</div>
+                            <div class="phase-analysis">Tommy handed Henry three open doors. Dad "is not a believer in coaching." Tommy is only "part of" the decision maker. Tommy later asked how to justify $18K/year vs other investments. Henry closed zero doors.</div>
+                            <div class="phase-quote">Tommy: "My dad is not a believer in it. The whole coaching stuff."<br>Henry: "Gotcha. Okay."</div>
+                            <div class="phase-shouldve">Should have asked: "Should we get Bill on the call Friday?" / "What would your dad need to see to feel good about this?" / "If this is a fit, are you in a position to move forward today?"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 5 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">5</div>
+                        <div class="phase-info">
+                            <div class="phase-name">TIE DOWNS</div>
+                            <div class="phase-framework">Framework: Use THEIR words. Make pain concrete. "Earlier you said..." Hold them accountable.</div>
+                            <div class="phase-analysis">Tommy gave a goldmine of tie-down material: $319/month retainers, no SOPs, no follow-up sequence, no niche after 2 years, "behind the eight ball," "sales process is all over the place," pricing is "insanely low." During the 11-minute pitch, Henry never once used any of Tommy's words. Every feature was presented generically.</div>
+                            <div class="phase-shouldve">Should have said: "You told me your sales process is all over the place. This is the exact SOP that fixes that." / "You said you have no follow-up sequence and you're behind the eight ball. This system automates that entirely."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 6 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-partial">6</div>
+                        <div class="phase-info">
+                            <div class="phase-name">PRESENT THE OFFER</div>
+                            <div class="phase-framework">Framework: 3-5 min. Match THEIR pain to the solution. Show how it fixes THEIR specific problems. NO PRICE YET.</div>
+                            <div class="phase-analysis">Henry ran an 11-minute uninterrupted feature monologue (minutes 35-46). Listed the portal, coaching, SOPs, lead gen, cold outreach, webinars, LinkedIn, ads, white-label vendors, hiring, onboarding, events. None of it was mapped to Tommy's specific problems. Tommy's only responses during this stretch: "yep," "nope," "there was a lot there."</div>
+                            <div class="phase-quote">Tommy: "Yeah. Yep. There was a lot there, but okay."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 7 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">7</div>
+                        <div class="phase-info">
+                            <div class="phase-name">TEMP CHECK #1 (PRE-PRICE)</div>
+                            <div class="phase-framework">Framework: "On a scale of 1-10, where are you?" Separate money from solution if needed.</div>
+                            <div class="phase-analysis">Never happened. Henry went straight from the feature dump to "any questions?" to price. He had no idea if Tommy was at a 4 or a 9 before introducing the investment.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 8 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">8</div>
+                        <div class="phase-info">
+                            <div class="phase-name">STACK THE OFFER (LOOP)</div>
+                            <div class="phase-framework">Framework: "Does that make sense?" Question -> Answer -> RESTACK. Repeat 5-6x if needed.</div>
+                            <div class="phase-analysis">Henry's own technique from the framework: "I've done this 5-6 times on one call." He never stacked once on this call. He dumped features in a monologue and asked "any questions?" at the end. That's not stacking.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 9 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">9</div>
+                        <div class="phase-info">
+                            <div class="phase-name">FORECAST THE FUTURE</div>
+                            <div class="phase-framework">Framework: Paint what happens AFTER they buy. Onboarding, first call, 90-day plan. Make it real.</div>
+                            <div class="phase-analysis">Never happened. Should have painted: "Tommy, imagine 90 days from now. Home services niche locked in. Pricing at $1,500 minimum. SOPs built. Follow-up system running automatically. Same 40 clients = $60K/month instead of $17K. Your dad sees those numbers and says this was the right call."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 10 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-partial">10</div>
+                        <div class="phase-info">
+                            <div class="phase-name">DROP THE PRICE + SHUT UP</div>
+                            <div class="phase-framework">Framework: "The investment is $X per month." Then SILENCE. Even if 2 minutes. Hold the tension.</div>
+                            <div class="phase-analysis">Henry stated "$1,497 month by month" but immediately kept talking: 90-day guarantee, no contracts, month-to-month, easy cancellation, pause anytime. He filled the silence instead of holding it.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 11 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">11</div>
+                        <div class="phase-info">
+                            <div class="phase-name">TEMP CHECK #2 (POST-PRICE)</div>
+                            <div class="phase-framework">Framework: "Now that you know everything and the investment, scale of 1-10, does this solve your problem?"</div>
+                            <div class="phase-analysis">Never asked. Went straight from price to "I understand. When can you get back to me?" No chance to surface objections. No chance to handle them. No idea where Tommy stood.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 12 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">12</div>
+                        <div class="phase-info">
+                            <div class="phase-name">ASSUMPTIVE CLOSE</div>
+                            <div class="phase-framework">Framework: "Most people pay with Visa, MasterCard, or American Express. Which one?"</div>
+                            <div class="phase-analysis">Henry never attempted to close. Not once. No assumptive close. No "should we get you started?" No "are you ready to move forward?" He accepted "I'll need to review" without any attempt.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 13 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-num p-fail">13</div>
+                        <div class="phase-info">
+                            <div class="phase-name">ADT FRAMEWORK</div>
+                            <div class="phase-framework">Framework: Agree -> Duplicate -> Transition with question. Set 3-day follow-up if needed.</div>
+                            <div class="phase-analysis">Tommy said "I hate to pause it, not give you an answer now. Give me a week." Henry said "yeah" and booked a week-out follow-up. Framework says 3 days, not a week.</div>
+                            <div class="phase-quote">Tommy: "I hate to pause it, not give you an answer now."<br>Henry: "Yeah. No worries."</div>
+                            <div class="phase-shouldve"><strong>A:</strong> "I'm with you, Tommy. This is a big decision."<br><strong>D:</strong> "Sounds like you want to run this by your dad before pulling the trigger."<br><strong>T:</strong> "Is there anything else, other than talking to Bill, that's stopping you from moving forward today?"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison -->
+        <div class="comparison">
+            <h2>WHAT HAPPENED vs WHAT SHOULD HAPPEN</h2>
+            <div class="comparison-grid">
+                <div class="comparison-col wrong-col">
+                    <h3><span class="icon">❌</span> The Call</h3>
+                    <ul>
+                        <li><span class="icon">🗣️</span> 11-minute uninterrupted feature monologue (min 35-46). Tommy's only responses: "yep," "nope," "there was a lot there"</li>
+                        <li><span class="icon">🔇</span> Never tied a single feature to Tommy's specific pain points</li>
+                        <li><span class="icon">🚪</span> Tommy said dad is "not a believer in coaching." Henry said "okay" and moved on</li>
+                        <li><span class="icon">⏳</span> Accepted "give me a week" without resistance. Framework says 3 days max</li>
+                        <li><span class="icon">❌</span> Never attempted to close. Not once. Zero close attempts on a 56-minute call</li>
+                    </ul>
+                </div>
+                <div class="comparison-col right-col">
+                    <h3><span class="icon">✅</span> Framework Says</h3>
+                    <ul>
+                        <li><span class="icon">🔗</span> "You told me you have no follow-up sequence. This is the system that fixes that."</li>
+                        <li><span class="icon">🔍</span> "You've had 2 years to pick a niche and haven't. What's been the blocker?"</li>
+                        <li><span class="icon">👨‍👦</span> "Should we get Bill on the call Friday so I can answer his questions directly?"</li>
+                        <li><span class="icon">🎯</span> ADT when Tommy asks for a week: "What specifically needs to happen in that week?"</li>
+                        <li><span class="icon">💳</span> Temp check before price. Temp check after price. Then: "Visa, MasterCard, or AmEx?"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fatal Mistake -->
+        <div class="fatal-box">
+            <h2>THE FATAL MISTAKE</h2>
+            <p>Henry let Tommy off the hook by accepting "maybe" and "give me a week" without challenge.<br><br>
+            The right question: <strong>"What's been stopping you from fixing the pricing, building SOPs, and picking a niche for the past two years on your own?"</strong><br><br>
+            Forces Tommy to confront that he CAN'T do it alone. He's had 2 years to niche and hasn't. 2 years to raise prices and hasn't. 2 years to build SOPs and hasn't. The answer writes itself.</p>
+        </div>
+
+        <!-- Coaching Priorities -->
+        <div class="coaching-section">
+            <h2 class="coaching-title">TOP 3 COACHING PRIORITIES</h2>
+            <div class="coaching-grid">
+                <div class="coaching-card">
+                    <div class="coaching-num">1</div>
+                    <div class="coaching-content">
+                        <h3>Stop Pushing the Boulder</h3>
+                        <p>The 11-minute feature monologue is the #1 problem. Cut it. Replace with questions. "You told me you have no SOPs, no follow-up sequence, and you've been trying to niche for 2 years. What's been the blocker?" Let Tommy tell you why he needs this. When THEY push, they're invested. When YOU push, they watch.</p>
+                    </div>
+                </div>
+                <div class="coaching-card">
+                    <div class="coaching-num">2</div>
+                    <div class="coaching-content">
+                        <h3>Use Both Temp Checks</h3>
+                        <p>Before price: "On a scale of 1-10, putting price aside, does this solve the SOPs, pricing, and niche problem?" After price: "Now that you know it's $1,497/month, where are you?" These two questions surface every objection and give you a chance to handle them. You skipped both. That means you went into price blind and left with no way to recover.</p>
+                    </div>
+                </div>
+                <div class="coaching-card">
+                    <div class="coaching-num">3</div>
+                    <div class="coaching-content">
+                        <h3>Never Accept "Give Me a Week" Without ADT</h3>
+                        <p>Agree: "I'm with you, big decision." Duplicate: "Sounds like you want to run this by your dad first." Transition: "Is there anything ELSE, other than that conversation, stopping you?" Find the real objection. Address it before they leave. And set a 3-day follow-up, not a week. More time = more reasons to say no.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reference -->
+        <div class="ref-link">
+            <a href="https://7fa.pages.dev/">Review the 13-Phase Framework</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="quote">"If they're not willing to push the boulder up the hill to talk about what the problems are and how they want to solve it, then are they going to do the work? We don't need to do the work for them."</p>
+            <p style="color: #aaa; margin-bottom: 15px;">- Alex Portugal</p>
+            <p class="sfa-footer-brand">SEVEN FIGURE AGENCY</p>
+            <p>Call Review Resource | Internal Use Only</p>
+            <p style="margin-top: 10px;">Version 1.0 | Published: March 27, 2026</p>
+        </div>
+    </div>
+</body>
+</html>

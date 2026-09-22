@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<title>A Supply Problem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
+<style>
+:root{
+  /* Seven Figure Agency brand: Red #CF1F36 · White · Black #0A0A0A · Dark Gray #32373C */
+  --bg:#F2F2F3; --card:#FFFFFF; --card2:#FAFAFA;
+  --ink:#0A0A0A; --ink2:#32373C; --muted:#6B7075;
+  --rule:#E3E3E5; --rule2:#C6C7CA;
+  --go:#0E7A4F; --go-soft:#E3F2EA;
+  --amber:#A8690B; --amber-soft:#FBF0DD;
+  --crit:#CF1F36; --crit-soft:#FBE7E9;
+  --sh:0 1px 2px rgba(10,10,10,.05),0 10px 28px -20px rgba(10,10,10,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A0A0A; --card:#16181A; --card2:#101214;
+    --ink:#F5F5F6; --ink2:#C9CCD0; --muted:#8B9095;
+    --rule:#26292C; --rule2:#383C40;
+    --go:#35A672; --go-soft:#0E241A;
+    --amber:#C4871F; --amber-soft:#2A2011;
+    --crit:#E8465C; --crit-soft:#2B1216;
+    --sh:0 1px 2px rgba(0,0,0,.5),0 12px 32px -22px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A0A0A; --card:#16181A; --card2:#101214;
+  --ink:#F5F5F6; --ink2:#C9CCD0; --muted:#8B9095;
+  --rule:#26292C; --rule2:#383C40;
+  --go:#35A672; --go-soft:#0E241A;
+  --amber:#C4871F; --amber-soft:#2A2011;
+  --crit:#E8465C; --crit-soft:#2B1216;
+  --sh:0 1px 2px rgba(0,0,0,.5),0 12px 32px -22px rgba(0,0,0,.9);
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);
+  font-family:Inter,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.w{max-width:940px;margin:0 auto;padding:32px 22px 72px;display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:Inter,-apple-system,"Helvetica Neue",Arial,sans-serif}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+header{display:flex;flex-direction:column;gap:12px}
+.mark{display:flex;align-items:center;gap:13px;margin-bottom:2px}
+.wm{font-size:12.5px;font-weight:800;letter-spacing:.2em;color:var(--crit);white-space:nowrap}
+.mark .rule{flex:1;height:2px;background:var(--crit);opacity:.22;border-radius:1px}
+h1{font-size:clamp(29px,5.2vw,45px);font-weight:800;line-height:1.06;margin:0;letter-spacing:-.032em;text-wrap:balance}
+.dek{font-size:19px;color:var(--ink2);margin:0;max-width:62ch;line-height:1.5}
+.dek b{color:var(--ink);font-weight:600}
+
+/* tabs */
+.tabs{display:flex;gap:2px;background:var(--rule);border:1px solid var(--rule);border-radius:3px;padding:2px;align-self:flex-start;flex-wrap:wrap}
+.tabs button{font-family:Inter,sans-serif;font-size:13.5px;font-weight:600;letter-spacing:.01em;
+  border:none;border-radius:2px;padding:9px 17px;cursor:pointer;background:transparent;color:var(--ink2)}
+.tabs button[aria-selected="true"]{background:var(--card);color:var(--ink);box-shadow:var(--sh)}
+.tabs button:focus-visible{outline:2px solid var(--go);outline-offset:2px}
+.tabhint{font-size:13px;color:var(--muted);margin:0}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+.stat{background:var(--card);padding:15px 17px 14px;display:flex;flex-direction:column;gap:2px}
+.stat .k{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:Inter,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:32px;font-weight:800;line-height:1.05;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .v.bad{color:var(--crit)} .stat .v.good{color:var(--go)}
+.stat .v small{font-size:15px;font-weight:600;color:var(--muted)}
+.stat .n{font-size:13px;color:var(--ink2);line-height:1.35}
+.stat .tgt{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.chip{align-self:flex-start;display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;padding:3px 7px;border-radius:2px;margin:3px 0 1px}
+.chip.on{background:var(--go-soft);color:var(--go)}
+.chip.off{background:var(--crit-soft);color:var(--crit)}
+.chip.risk{background:var(--amber-soft);color:var(--amber)}
+.chip .g{font-size:9px;line-height:1}
+
+.p{background:var(--card);border:1px solid var(--rule);border-radius:3px;box-shadow:var(--sh)}
+.ph{padding:19px 22px 0;display:flex;flex-direction:column;gap:4px}
+.ph h2{font-size:21px;font-weight:700;margin:0;letter-spacing:-.02em;text-wrap:balance}
+.ph .sub{margin:0;font-size:14.5px;color:var(--muted);line-height:1.45}
+.pb{padding:15px 22px 22px}
+.pb > p{margin:0 0 11px} .pb > p:last-child{margin-bottom:0}
+.pb b{color:var(--ink);font-weight:600}
+
+/* chart */
+.chartbox{position:relative}
+svg.c{display:block;width:100%;height:auto;overflow:visible}
+.tip{position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-118%);
+  background:var(--ink);color:var(--bg);border-radius:3px;padding:8px 11px;min-width:142px;
+  font-size:12.5px;line-height:1.45;font-variant-numeric:tabular-nums;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.5);transition:opacity .12s ease;z-index:5}
+.tip b{display:block;font-size:13px;font-weight:700;margin-bottom:3px}
+.tip .r{display:flex;justify-content:space-between;gap:16px}
+.tip .r i{font-style:normal;opacity:.72}
+
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{text-align:right;padding:9px 11px;border-bottom:1px solid var(--rule);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+th:last-child,td:last-child{padding-right:0;text-align:left;white-space:normal}
+thead th{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--rule2);padding-bottom:7px}
+tbody td{color:var(--ink2)} tbody td.k{font-weight:700;color:var(--ink)}
+tr.dead td{background:var(--crit-soft)}
+.bad{color:var(--crit);font-weight:700} .good{color:var(--go);font-weight:700}
+
+.tl{display:grid;grid-template-columns:auto 1fr;gap:0 18px}
+.tl dt{font-family:Inter,-apple-system,"Helvetica Neue",Arial,sans-serif;font-weight:700;font-size:15px;color:var(--crit);
+  padding:11px 0;border-top:1px solid var(--rule);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tl dd{margin:0;padding:11px 0;border-top:1px solid var(--rule);font-size:15px;color:var(--ink2);line-height:1.5}
+.tl dt:first-of-type,.tl dd:first-of-type{border-top:none}
+.tl dd b{color:var(--ink);font-weight:600}
+
+.ev{display:flex;flex-direction:column;gap:13px;margin:0;padding:0}
+.ev li{list-style:none;display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;
+  font-size:15px;color:var(--ink2);line-height:1.5}
+.ev .tick{font-family:Inter,-apple-system,"Helvetica Neue",Arial,sans-serif;font-weight:700;color:var(--go);font-size:15px;padding-top:1px;font-variant-numeric:tabular-nums}
+.ev b{color:var(--ink);font-weight:600}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;
+  background:var(--card2);border:1px solid var(--rule);border-radius:2px;padding:1px 5px}
+
+.note{background:var(--amber-soft);border:1px solid color-mix(in srgb,var(--amber) 32%,transparent);
+  border-left:3px solid var(--amber);border-radius:3px;padding:14px 17px;font-size:14.5px;color:var(--ink2);line-height:1.5}
+.note b{color:var(--ink);font-weight:600}
+.hit{background:var(--go-soft);border:1px solid color-mix(in srgb,var(--go) 35%,transparent);
+  border-left:4px solid var(--go);border-radius:3px;padding:17px 21px;font-size:17px;color:var(--ink);line-height:1.5}
+.hit b{font-weight:700}
+
+.wins{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px}
+.win{border:1px solid var(--rule);border-radius:3px;padding:13px 15px;background:var(--card2);
+  display:flex;flex-direction:column;gap:3px}
+.win .h{font-weight:700;font-size:14px;color:var(--ink)}
+.win .d{font-size:13.5px;color:var(--ink2);line-height:1.4}
+
+.sol{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:13px}
+.solc{border:1px solid var(--rule);border-radius:3px;background:var(--card2);padding:17px 19px;
+  display:flex;flex-direction:column;gap:8px}
+.solc .n{font-family:Inter,-apple-system,"Helvetica Neue",Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--go)}
+.solc h3{margin:0;font-size:18px;font-weight:600;letter-spacing:-.01em}
+.solc p{margin:0;font-size:14.5px;color:var(--ink2);line-height:1.5}
+.solc .q{font-size:14px;color:var(--ink2);border-left:2px solid var(--rule2);padding-left:11px;font-style:italic}
+
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--rule);padding-top:15px;line-height:1.7}
+footer b{color:var(--ink2);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:620px){
+  .w{padding:22px 15px 55px}.ph{padding:17px 16px 0}.pb{padding:12px 16px 19px}
+  .tl{grid-template-columns:1fr;gap:0}
+  .tl dt{padding-bottom:0;border-top:1px solid var(--rule)}
+  .tl dd{padding-top:4px;border-top:none}
+}
+
+.vid{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--crit);
+  border-radius:3px;box-shadow:var(--sh);overflow:hidden}
+.vid .vh{padding:15px 20px 13px;display:flex;flex-direction:column;gap:3px}
+.vid .vh .lab{font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--crit)}
+.vid .vh .vt{font-family:Inter,-apple-system,sans-serif;font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.25}
+.vframe{position:relative;width:100%;padding-top:56.25%;background:#000;border-top:1px solid var(--rule)}
+.vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+</style>
+
+<div class="w">
+
+  <header>
+    <div class="mark"><span class="wm">SEVEN FIGURE AGENCY</span><span class="rule"></span></div>
+    <span class="eyebrow">Q3 Rock Update · 14 qualified membership strategy sessions per week · Esteban Baez · September 22, 2026</span>
+    <h1>Nothing was watching the number the whole rock depended on.</h1>
+    <p class="dek">The Q3 rock finishes off track. The supply of qualified leads it needed had been falling for four months before anything broke, and <b>I never saw it.</b> <b>I set a commitment that depended on a number I never wrote down, never agreed with the department that controls it, and never put a check on.</b> That is the actual failure, and it is mine. This brief is the measurement I never built, and the four systems that mean I never have to write it again. <b>The closing engine is working, the database is deep, and we now know exactly which lever is short. That is a good position to be in eight weeks before we set Q4.</b></p>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Brief sections">
+    <button id="t1" role="tab" aria-controls="p1" aria-selected="true">The situation</button>
+    <button id="t2" role="tab" aria-controls="p2" aria-selected="false">The evidence &amp; audit</button>
+  </div>
+  <p class="tabhint">Start on <b>The situation</b>. Everything on it is sourced in <b>The evidence &amp; audit</b>, where each number can be traced to a Slack message, a payment record or a recording.</p>
+
+  <!-- ================= LAYER 1 ================= -->
+  <div id="p1" role="tabpanel" aria-labelledby="t1" style="display:flex;flex-direction:column;gap:22px">
+
+    <div class="vid">
+      <div class="vh">
+        <span class="lab">Watch first &middot; the walkthrough</span>
+        <span class="vt">Update on the 14 strategy sessions per week, three weeks in a row</span>
+      </div>
+      <div class="vframe">
+        <iframe title="vimeo-player" src="https://player.vimeo.com/video/1229199610?h=6dbded207e" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+
+
+
+    <section class="stats">
+      <div class="stat">
+        <span class="k">Close rate</span><span class="v good">47<small>%</small></span>
+        <span class="chip on"><span class="g">&#9679;</span>On pace</span>
+        <span class="tgt">17 closes · 36 sessions run</span>
+      </div>
+      <div class="stat">
+        <span class="k">Members closed</span><span class="v good">18</span>
+        <span class="chip on"><span class="g">&#9679;</span>Delivering</span>
+        <span class="tgt">8 weeks · 17 mine, 1 Henry's</span>
+      </div>
+      <div class="stat">
+        <span class="k">Qualified leads / wk</span><span class="v bad">13.5</span>
+        <span class="chip off"><span class="g">&#9650;</span>Off pace</span>
+        <span class="tgt">target 26 · was 25.9 in April</span>
+      </div>
+      <div class="stat">
+        <span class="k">Sessions / wk</span><span class="v bad">4.5</span>
+        <span class="chip off"><span class="g">&#9650;</span>Off pace</span>
+        <span class="tgt">target 14 · best week 7</span>
+      </div>
+      <div class="stat">
+        <span class="k">Lead sources</span><span class="v bad">1</span>
+        <span class="chip risk"><span class="g">&#9650;</span>At risk</span>
+        <span class="tgt">paid: Meta only · target 2+</span>
+      </div>
+    </section>
+    <div class="note">
+      <b>Read the five tiles left to right and the argument is already made.</b> The only things on pace are the two the sales floor controls &mdash; the rate we close at, and the members we put on the board. <b>Everything red is supply.</b> One clarification before this gets repeated: <b>we have one paid lead source. We do not have one lead source.</b> Organic, brand search and member referral all produced closes this quarter. It is paid volume that is single-threaded, and that is the exposure.
+    </div>
+
+    <section class="p chartbox">
+      <div class="ph">
+        <h2>Four months of decline, and an outage at the end of it</h2>
+        <p class="sub">Membership-qualified leads entering our CRM each week. The dashed line is the supply level the rock assumed when it was set. Hover any point.</p>
+      </div>
+      <div class="pb">
+        <svg class="c" viewBox="0 0 900 330" role="img" aria-label="Line chart of membership-qualified leads per week by month in 2026. April 25.9, May 22.6, June 21.0, July 16.5, August 13.5, September 19.3, against a dashed reference line at 26 leads per week which is the supply the rock assumed. Supply falls below the line from May onward and reaches its low in August, just after the Meta ad accounts were locked out on July 30.">
+          <!-- gridlines -->
+          <g stroke="var(--rule)" stroke-width="1">
+            <line x1="70" y1="270" x2="880" y2="270"></line>
+            <line x1="70" y1="190" x2="880" y2="190"></line>
+            <line x1="70" y1="110" x2="880" y2="110"></line>
+            <line x1="70" y1="30"  x2="880" y2="30"></line>
+          </g>
+          <g fill="var(--muted)" font-family="Inter, sans-serif" font-size="12" text-anchor="end">
+            <text x="58" y="274">0</text><text x="58" y="194">10</text>
+            <text x="58" y="114">20</text><text x="58" y="34">30</text>
+          </g>
+
+          <!-- hack marker -->
+          <line x1="561" y1="30" x2="561" y2="270" stroke="var(--crit)" stroke-width="1.5" stroke-dasharray="4 4" opacity=".75"></line>
+          <text x="567" y="46" fill="var(--crit)" font-family="Inter, sans-serif" font-size="12" font-weight="700">Jul 30 — ad accounts locked out</text>
+
+          <!-- reference line: the supply the rock assumed -->
+          <line x1="70" y1="62" x2="880" y2="62" stroke="var(--crit)" stroke-width="2" stroke-dasharray="7 5"></line>
+          <text x="880" y="55" fill="var(--crit)" font-family="Inter, sans-serif" font-size="12.5" font-weight="700" text-anchor="end">SUPPLY THE ROCK ASSUMED — 26 / WEEK</text>
+
+          <!-- series -->
+          <polyline fill="none" stroke="var(--go)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+            points="90,62.8 242,89.2 394,102 546,138 698,162 850,115.6"></polyline>
+          <g fill="var(--card)" stroke="var(--go)" stroke-width="2.5">
+            <circle cx="90"  cy="62.8"  r="5"></circle>
+            <circle cx="242" cy="89.2"  r="5"></circle>
+            <circle cx="394" cy="102"   r="5"></circle>
+            <circle cx="546" cy="138"   r="5"></circle>
+            <circle cx="698" cy="162"   r="5"></circle>
+            <circle cx="850" cy="115.6" r="5"></circle>
+          </g>
+
+          <!-- endpoint labels only -->
+          <g font-family="Fraunces, serif" font-size="16" font-weight="700" fill="var(--ink)" text-anchor="middle">
+            <text x="90" y="48">25.9</text>
+            <text x="698" y="184" fill="var(--crit)">13.5</text>
+          </g>
+
+          <!-- month labels -->
+          <g fill="var(--ink2)" font-family="Inter, sans-serif" font-size="12.5" font-weight="600" text-anchor="middle">
+            <text x="90" y="294">Apr</text><text x="242" y="294">May</text><text x="394" y="294">Jun</text>
+            <text x="546" y="294">Jul</text><text x="698" y="294">Aug</text><text x="850" y="294">Sep</text>
+          </g>
+          <text x="70" y="318" fill="var(--muted)" font-family="Inter, sans-serif" font-size="11.5">2026 · September is partial (Sep 1–21)</text>
+
+          <!-- hover targets -->
+          <g id="hit" fill="transparent">
+            <rect x="14"  y="20" width="152" height="260" data-i="0"></rect>
+            <rect x="166" y="20" width="152" height="260" data-i="1"></rect>
+            <rect x="318" y="20" width="152" height="260" data-i="2"></rect>
+            <rect x="470" y="20" width="152" height="260" data-i="3"></rect>
+            <rect x="622" y="20" width="152" height="260" data-i="4"></rect>
+            <rect x="774" y="20" width="152" height="260" data-i="5"></rect>
+          </g>
+        </svg>
+        <div class="tip" id="tip"></div>
+        <p style="margin-top:13px"><b>April is the last month the rock was arithmetically reachable.</b> By August there were fewer membership-qualified leads in the entire business than the rock required sessions — hitting 14 would have needed a <b>103% lead-to-held conversion</b>. No amount of dialling closes that gap.</p>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>The decline started in April, not on July 30</h2>
+        <p class="sub">Qualified membership leads entering the CRM, per week, by month.</p>
+      </div>
+      <div class="pb">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Month</th><th>Qualified leads/wk</th><th>Change</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="k">April</td><td>25.9</td><td>&mdash;</td><td>baseline the rock assumed</td></tr>
+              <tr><td class="k">May</td><td>22.6</td><td>&minus;3.3</td><td>&minus;13%</td></tr>
+              <tr><td class="k">June</td><td>21.0</td><td>&minus;1.6</td><td>&minus;7%</td></tr>
+              <tr><td class="k">July</td><td>16.5</td><td><b>&minus;4.5</b></td><td><b>&minus;21% &mdash; the steepest month, and it is before the outage</b></td></tr>
+              <tr class="dead"><td class="k">August</td><td class="bad">13.5</td><td>&minus;3.0</td><td>&minus;18% &mdash; the outage month</td></tr>
+              <tr><td class="k">September</td><td>19.3</td><td>+5.8</td><td>partial recovery</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="hit" style="margin-top:14px">
+          <b>76% of the fall happened before the ad accounts went down.</b> Of the 12.4 qualified leads a week we lost between April and August, 9.4 were gone by the end of July. The outage on Jul 30 took the last 3.0 and made the recovery slow. <b>It is the end of this story, not the beginning.</b>
+        </div>
+        <p style="margin-top:13px">The rock was set on Jul 28 &mdash; <b>after the supply had already halved.</b> At April's volume, 14 sessions a week was reachable. At July's volume it never was, and I committed to it anyway because nothing in front of me was showing that number move.</p>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>Where the 18 members came from</h2>
+        <p class="sub">The GoHighLevel record on every close: when they entered the database, and what first brought them in.</p>
+      </div>
+      <div class="pb">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>How they were acquired</th><th>Of 18</th><th>Evidence</th></tr></thead>
+            <tbody>
+              <tr><td class="k">&#128309; Paid ads</td><td>6</td><td>All Meta &mdash; each with a named campaign, ad account and click date</td></tr>
+              <tr><td class="k">Organic brand &amp; search</td><td>2</td><td>Google <code>branded_search</code>; an organic Roadmap Live link</td></tr>
+              <tr><td class="k">Member referral</td><td>2</td><td>Both referred by existing members</td></tr>
+              <tr><td class="k">No source recorded</td><td>8</td><td>Two predate our tracking; the rest carry no first-source in either system</td></tr>
+              <tr class="dead"><td class="k"><b>Already in the database before the rock was set</b></td><td><b>13</b></td><td><b>Median lead age at close: about seven months.</b> Two had been with us since 2020 and 2021</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="hit" style="margin-top:15px">
+          <b>These closes are a harvest of a database six years deep, not a return on this quarter's leads.</b> Which is why the supply collapse has not shown up in revenue yet. <b>It lands in Q4 and Q1.</b>
+        </div>
+        <p style="margin-top:13px">&#128308; <b>Five of the 18 entered the database during the rock window, and none of the five carries an ad click on the record</b> &mdash; four arrived direct to our website, one through branded search.</p>
+        <div class="note" style="margin-top:13px">
+          <b>What we can prove:</b> none of those five has an ad click on their record. Four arrived direct to our website, one through branded search. Across all 18, six have a paid touch we can see and eight have no source recorded anywhere at all.
+          <br><br><b>What we cannot prove, and I want to be straight about it:</b> where the intent came from. Our tracking captures the last click before the form. It does not capture the thing that made somebody go looking in the first place.
+          <br><br><b>What is highly possible, and happens constantly:</b> a person is shown a Facebook ad, does not click it, and two days or a week later types <i>sevenfigureagency.com</i> into their browser or searches our name on Google. They arrive as <i>direct</i> or <i>branded search</i>. <b>The ad did the work and the record shows none of it.</b> No tracking system we have, or could reasonably buy, sees that.
+          <br><br>🔴 <b>So the honest statement is not a statement about advertising. It is a statement about visibility.</b> On eighteen deals we can see a paid touch on six and nothing at all on eight. <b>That is how much visibility we have on our own closes.</b> Every paid figure in this brief is therefore a floor and never a total, and <b>nothing here should be used to argue that our ads did or did not produce &mdash; in either direction.</b> We do not have the data to make that argument, and the first thing I would want from a second acquisition channel is a cleaner answer to this exact question.
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>Why I never caught it</h2>
+        <p class="sub">Four checks I never built. Every one of them was mine to ask for.</p>
+      </div>
+      <div class="pb">
+        <ul class="ev">
+          <li><span class="tick">01</span><div><b>I measured the quality of the calls I got, and never the supply of calls to get.</b> Qualified versus unqualified was on the weekly scorecard in front of this room every single week, and it was falling in plain sight &mdash; <b>75% qualified in the week I set the rock, then 43%, 67%, 63%, and 50% by Aug 24&ndash;28.</b> That number did its job. <b>What I never tracked is the pool it was drawn from:</b> how many membership-qualified leads entered the business each week. <b>A ratio tells you what happened to the calls that arrived. It cannot tell you that fewer arrived. The rock needed volume, and I was watching a percentage.</b></div></li>
+          <li><span class="tick">02</span><div><b>The rock's supply assumption was never written down, and marketing was never told it existed.</b> 14 sessions a week implied roughly 26 qualified leads a week. Marketing had no way to know a sales commitment now depended on their volume holding, <b>because I never gave them that heads-up.</b> That is the single thing I would go back and change.</div></li>
+          <li><span class="tick">03</span><div><b>Nothing we tracked had a threshold attached to it.</b> The qualified share fell 25 points across the rock window and <b>I never set a level at which that became something I had to raise.</b> Same for supply, which I was not reporting at all. <b>A metric with no trigger on it is a metric that gets read and then scrolled past</b>, and that is what happened for eight weeks.</div></li>
+          <li><span class="tick">04</span><div><b>Nothing connected an event in one department to a commitment in another.</b> The ad-account outage was reported the day it happened and correctly identified as the cause of falling opt-ins. <b>I never checked it against the sales rock I had set 48 hours earlier, and I was in both of those rooms.</b></div></li>
+        </ul>
+        <div class="note" style="margin-top:15px">
+          <b>Everything I was watching was a measure of the calls I already had.</b> Show rate held at a 73% mean across 23 weeks with no trend. Qualified share was reported weekly and was visibly sliding. Close rate stayed strong at 47%. <b>Not one of those is a supply number</b>, so none of them could tell us the pool was emptying &mdash; and because the ones that looked healthy looked healthy, nothing felt wrong until I went and pulled the supply number myself.
+        </div>
+        <div class="note" style="margin-top:12px">
+          <b>One published number needed correcting.</b> I checked this brief against every weekly scorecard already sent to this room. Four of the five weeks match exactly. <b>Aug 10&ndash;14 went out as 4 membership sessions and the correct number is 5</b>, which moves that week's close ratio from 25% to 20%. The row is corrected and the totals in this brief already use it.
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>The systems going in, so this cannot happen quietly again</h2>
+        <p class="sub">Each one maps to a specific check that was missing above. None of them costs money.</p>
+      </div>
+      <div class="pb">
+        <div class="note" style="margin-bottom:15px">
+          <b>Some context on why this gap existed at all, and why I am glad we found it now.</b> Until May I ran sales and marketing both, so lead quality and lead volume lived in one head and the check happened automatically because it happened inside me. <b>Handing marketing over was the right move for a company at this size</b>, and what never got rebuilt is the version of that check that works <i>between</i> two departments instead of inside one person. That is an ordinary growing pain, and we are going to be a little clunky while we build it.
+          <br><br><b>I would rather have found this in a quarter we can still act on than in a year, at twice the size, with twice as much riding on it.</b> The four systems below are the version that scales past one person paying attention &mdash; which is the thing we actually needed in order to grow this.
+        </div>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>System</th><th>What it catches</th><th>Cadence</th></tr></thead>
+            <tbody>
+              <tr><td class="k"><b>01 &middot; A supply line on the scorecard, measured from both ends</b><br>Qualified membership leads per week, counted two ways and charted side by side: <b>what marketing counts as a membership-qualified lead</b>, and <b>what sales actually saw</b> &mdash; held calls where membership was the programme pitched. Two lines, one chart, every week. <b>Where the two diverge is itself a finding</b>, and neither department has to take the other's word for it</td><td>A four-month erosion in week two instead of week thirty-four &mdash; and a trend line with spikes and dips you can read, instead of a single number with no shape</td><td>Weekly</td></tr>
+              <tr><td class="k"><b>02 &middot; Every commitment ships with its supply assumption</b><br>Any rock I take states the qualified-lead volume it requires, agreed in writing with marketing on the day it is set</td><td>A target that was never achievable from the volume available &mdash; caught before it is committed to, not after it is missed</td><td>At commitment</td></tr>
+              <tr><td class="k"><b>03 &middot; A tripwire with an actual number</b><br>Supply below the level a live commitment assumes, two weeks running, is raised in that week's L10</td><td>Turns a quarter-end post-mortem into a week-two conversation</td><td>Weekly</td></tr>
+              <tr><td class="k"><b>04 &middot; A dependency check on any lead-source event</b><br>Anything material to a lead source &mdash; outage, account change, budget change, funnel change &mdash; gets checked against every live commitment that depends on it</td><td>The exact gap between two meetings that this brief is about</td><td>On event</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note" style="margin-top:15px">
+          <b>Two more already underway.</b> One written definition per metric, so a number means the same thing in two documents. And a monthly reconciliation of closes and sessions against the payment system, with a quarterly review of where members actually came from &mdash; this brief being the first instance of it.
+        </div>
+        <div class="hit" style="margin-top:14px">
+          <b>Had systems 01 and 03 existed in May, this conversation happens in June and the rock is re-cut before it is committed to.</b> That is the whole value of this document.
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>What I recommend we do about it</h2>
+        <p class="sub">We can push the pedal to the metal on the effort we already control. I would rather we added a second and a third engine — so that a single platform can never do this to us again.</p>
+      </div>
+      <div class="pb">
+        <div class="sol">
+          <div class="solc">
+            <span class="n">My recommendation 01</span>
+            <h3>YouTube ads, as a second acquisition channel</h3>
+            <p><b>Aleric Heck</b> of AdOutreach — who has spoken from our own stage — presented at the AI Mastermind in Miami on Sep 19, the event Josh sent me to. He showed a calendar filled <b>entirely</b> from YouTube ads.</p>
+            <p class="q">"Facebook ad costs are going through the roof, and even when you have a great ad they're almost impossible to scale."</p>
+            <p><b>Why it fits us specifically:</b> his custom-intent targeting runs <b>our existing Google Search terms as YouTube targeting.</b> We already run search ads, so the intent data exists today &mdash; people actively searching for the solution rather than being interrupted in a feed.</p>
+            <p><b>And our own data already points here.</b> On the "how did you hear about us" field, members told us <b>YouTube, Podcast, Instagram and Search Engine</b> &mdash; channels we spend nothing on. Edwin Vincent, who tracks as a Facebook lead, told us he found us on <b>YouTube</b>. People are finding Josh organically and converting; this puts spend behind intent that is already there.</p>
+            <p><b>Watch it yourself — <a href="https://youtu.be/iKgDAsWE600" style="color:var(--go);font-weight:600">his presentation is here</a>.</b> His full strategy breakdown is at <code>adoutreach.com/gift</code>.</p>
+            <p><b>The ask:</b> approve a scoping conversation with his team. I would come back with a proposed test budget and a defined success measure, and you would decide the spend then.</p>
+          </div>
+          <div class="solc">
+            <span class="n">My recommendation 02</span>
+            <h3>Cold outbound on infrastructure we own</h3>
+            <p>This is <b>already my second rock</b>. Separate domains and mailboxes, never our primary sending domain, run by a dedicated cold email team.</p>
+            <p>It is the only one of our options that <b>adds new qualified supply</b> rather than recovering supply we used to have — and it is the only channel where an outside platform cannot switch us off.</p>
+            <p><b>The ask:</b> approve a scoping conversation with Lead Gen Jay's team. Pricing comes through their process, so I would come back to this room with a real number and you would make the spend decision then. Today I am only asking for permission to go and get the number.</p>
+          </div>
+        </div>
+        <div class="note" style="margin-top:15px">
+          <b>For the record, on the two vendors named above.</b> I have no commercial relationship, referral fee, affiliate code or arrangement of any kind with Aleric Heck, Lead Gen Jay, or any other speaker or vendor named in this document or in the Miami debrief. I attended their sessions at the event and that is the entire extent of it. I am recommending them because they are the two channels I think close our supply gap, and for no other reason.
+        </div>
+        <div class="note" style="margin-top:15px">
+          <b>What I am not asking for.</b> Email deliverability was raised in one of our IDS sessions as a possible cause, so I went and tested it rather than leaving it as a theory. A fresh opt-in lands in the Primary inbox in about a minute and our authentication all passes. <b>The theory did not hold, and I would rather tell you that than sell you a fix we do not need.</b> Same goes for everything else on this page: <b>there is no finding here that marketing did something wrong.</b> There is a finding that a number sat between two departments and I never built the check that would have caught it.
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>What I need from this room</h2>
+        <p class="sub">Sized and specific. None of these four commits a dollar today.</p>
+      </div>
+      <div class="pb">
+        <ul class="ev">
+          <li><span class="tick">01</span><div><b>Approve the two scoping conversations</b> &mdash; YouTube ads with Aleric Heck's team, and cold outbound with Lead Gen Jay's. Two new lead sources, both scoped and priced before a dollar is committed. The spend decision comes back to this room with a number attached.</div></li>
+          <li><span class="tick">02</span><div><b>A date from marketing on full ad recovery &mdash; not relaunch, recovery.</b> We are still 22% below the pre-outage baseline two weeks after ads were confirmed live again. I would like that gap visible on a scorecard so marketing and sales are tracking the same recovery against the same date.</div></li>
+          <li><span class="tick">03</span><div><b>Accept that the Q3 rock finishes off track, and let me re-cut the Q4 measure &mdash; with numbers attached, not a softer target.</b> 14 sessions a week is an output no single person controls. Hold me to the two inputs I do control. <b>One:</b> an accurate, weekly, published count of qualified membership leads generated, <b>measured by pitch and attendance</b> &mdash; reported the same way every week whether the number flatters me or not. <b>Two:</b> close ratio on the membership sessions I hold, <b>at or above 30%</b> &mdash; the standard we hold the company to and the one we teach.</div></li>
+          <li><span class="tick">04</span><div><b>Put the supply line and the tripwire on the company scorecard, not just on mine.</b> Systems 01 and 03 only work if a falling supply number is something this room sees weekly and is expected to act on. That takes an agreement here, not a tool.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="hit">
+      <b>This is the data-driven version of the decision.</b> We could spend Q4 asking the team to work harder against a supply line that cannot support the target. I would rather spend it building the second and third source of leads, and measure ourselves on the inputs we actually control.
+      <br><br><b>We are closer than this document might read.</b> We close nearly half the membership sessions we run, the database still produces, and the one thing that is short is the one thing two scoping conversations and a weekly number can start fixing this month. <b>Nothing here needs rebuilding. It needs feeding, and it needs watching.</b>
+    </div>
+  </div>
+
+  <!-- ================= LAYER 2 ================= -->
+  <div id="p2" role="tabpanel" aria-labelledby="t2" hidden style="flex-direction:column;gap:22px">
+
+    <section class="p">
+      <div class="ph">
+        <h2>The sequence, on dates</h2>
+        <p class="sub">Dates only. Each one is fixed by a dated Slack message or L10 transcript on file, and can be produced on request.</p>
+      </div>
+      <div class="pb">
+        <dl class="tl">
+          <dt>Apr</dt><dd>Qualified supply at <b>25.9 a week</b>. The last month the 14-a-week target was arithmetically reachable.</dd>
+          <dt>May &ndash; Jul</dt><dd>Supply falls to <b>16.5 a week</b>, a 36% decline across three months. <b>No alert exists, because I am not reporting on this number.</b></dd>
+          <dt>Jul 28</dt><dd>Q3 quarterly. I commit to <b>14 qualified membership strategy sessions per week</b>, due Oct 20 &mdash; against a supply that has already halved.</dd>
+          <dt>Jul 30</dt><dd>Access to both ad accounts is removed. <b>48 hours after the commitment.</b></dd>
+          <dt>Aug 1 &ndash; 10</dt><dd>Ads run on a borrowed backup account at reduced scale: <b>$2,341 spent, 166 leads, 37 booked calls.</b> The backup is then rejected and a third account is built.</dd>
+          <dt>Aug 11</dt><dd>Third account approved, restarting at <b>$160/day against a normal run rate of $450</b>.</dd>
+          <dt>Sep 7</dt><dd>Ads confirmed live again. <b>Thirty-nine days and three ad accounts</b> from lockout to stable.</dd>
+          <dt>Sep 21</dt><dd>Two weeks after recovery, lead volume is still <b>22% below the pre-outage baseline.</b></dd>
+        </dl>
+        <div class="note" style="margin-top:17px">
+          <b>This is not a document about the outage.</b> Three quarters of the supply decline happened before Jul 30, and the recovery of two hacked ad accounts inside five weeks &mdash; three Business Managers, a rejected backup, a rebuild from zero &mdash; was handled well by <b>Brandon and the marketing team</b>. <b><b>The failure this brief is about is that I made a sales commitment that depended on a number I was not reporting on.</b></b>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="p">
+      <div class="ph">
+        <h2>Why the rock stopped being reachable in August</h2>
+        <p class="sub">14 sessions conducted in a week requires a booking, then a show. Here is the conversion the lead supply would have had to deliver in a single week — before the "three weeks in a row" part even applies.</p>
+      </div>
+      <div class="pb">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Month</th><th>Qualified leads/wk</th><th>Sessions needed</th><th>Required lead → held</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="k">April baseline</td><td>25.9</td><td>14</td><td>54%</td><td>hard, but real</td></tr>
+              <tr><td class="k">May</td><td>22.6</td><td>14</td><td>62%</td><td>stretching</td></tr>
+              <tr><td class="k">June</td><td>21.0</td><td>14</td><td>67%</td><td>stretching</td></tr>
+              <tr><td class="k">July · hack hits Jul 30</td><td>16.5</td><td>14</td><td>85%</td><td>not realistic</td></tr>
+              <tr class="dead"><td class="k">August</td><td class="bad">13.5</td><td>14</td><td class="bad">103%</td><td><b class="bad">Mathematically impossible.</b> Fewer qualified leads existed than sessions required.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>Where the ad recovery stands</h2>
+        <p class="sub">Ads were confirmed live again on Sep 7. Here is where we actually are two weeks later. <b>&ldquo;Qualified&rdquo; throughout this brief means one of three GoHighLevel tags &mdash; <code>roadmap-10k+</code>, <code>roadmap-50-83k</code>, <code>roadmap-multiple-7figs</code></b> &mdash; the self-reported revenue bands that make a contact a membership prospect rather than a LaunchPad one. Nothing here uses a different definition.</p>
+      </div>
+      <div class="pb">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Period</th><th>Leads/day</th><th>Qualified/wk</th><th>Qualified % of tagged</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="k">Pre-hack · Mar 1 – Jul 29</td><td>43.5</td><td>22.1</td><td>12.3%</td><td>baseline</td></tr>
+              <tr class="dead"><td class="k">Dark · Jul 30 – Aug 10</td><td class="bad">20.2</td><td class="bad">6.4</td><td>8.9%</td><td><b class="bad">ads off · −71% qualified</b></td></tr>
+              <tr><td class="k">Ramp $160/day · Aug 11 – Sep 6</td><td>29.8</td><td>18.4</td><td>10.9%</td><td>trickle</td></tr>
+              <tr><td class="k">Live again · Sep 7 – Sep 21</td><td>33.9</td><td>17.7</td><td>9.9%</td><td><b class="bad">still −22% volume</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin-top:14px"><b>Two things moved, and they moved by almost exactly the same amount.</b> Volume is down <b>22%</b> against the pre-outage baseline, 43.5 leads a day to 33.9. The share of those leads that clears the membership bar is down <b>19.5%</b>, 12.3% to 9.9%. Net effect, qualified leads per week down about 20%.
+          <br><br><b>Quality is not a footnote. It is half of this, and it is the half that does not fix itself when ad spend returns to normal.</b> Volume recovers when the accounts recover. A falling qualified share does not, and it is the specific thing a search-intent channel is the answer to.</p>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>What we ruled out on the way here</h2>
+        <p class="sub">Each of these was raised as a live theory this quarter &mdash; some in IDS sessions, some mine. Each has now been measured against six months of data rather than left as an opinion.</p>
+      </div>
+      <div class="pb">
+        <div class="wins">
+          <div class="win"><span class="h">Not closing</span><span class="d">47% of sessions run close. That rate clears target at the right volume.</span></div>
+          <div class="win"><span class="h">Not setter effort</span><span class="d"><b>The pool shrank before the bookings did.</b> Qualified supply fell 36% from April to July. I am not asking this room to take a setter conversion rate on trust &mdash; I have not published one, and I will alongside the supply line.</span></div>
+          <div class="win"><span class="h">Not show rate</span><span class="d"><b>73% mean across 23 weeks, Apr 6 &ndash; Sep 18.</b> 160 held of 219 booked. Oscillates 38&ndash;100% with no step function anywhere.</span></div>
+          <div class="win"><span class="h">Not deliverability</span><span class="d">Raised as a possibility in an IDS session, then tested: a fresh opt-in lands in Primary in about a minute, and SPF, DKIM and DMARC all pass.</span></div>
+        </div>
+        <div class="note" style="margin-top:16px">
+          <b>One number worth adding to the scorecard: 42.9% of membership bookings are cancelled before the call.</b> That happens earlier than a no-show and it is a bigger leak. Some are reschedules that later held, so treat it as an upper bound. It has never been measured, and it is worth roughly two sessions a week before a single extra dial gets made.
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>All 18 closes, by where the lead came from</h2>
+        <p class="sub">Pulled from the GoHighLevel contact record on each member: the date they entered our database, their first tracked touch, and what they told us on the &ldquo;how did you hear about us&rdquo; field. <b>Read &ldquo;Direct&rdquo; and &ldquo;branded search&rdquo; as <i>what the tracking recorded</i>, not as <i>where the person came from</i></b> &mdash; an ad seen and not clicked lands in both of those buckets.</p>
+      </div>
+      <div class="pb">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Member</th><th>Closed</th><th>In DB since</th><th>Lead age</th><th>First tracked touch</th><th>They said</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Paul Frodge</td><td>Sep 10</td><td>Oct 2020</td><td>6.0 yrs</td><td>Direct &mdash; nurture email link</td><td>Referral</td></tr>
+              <tr><td class="k">Amanda Sexton</td><td>Jul 30</td><td>Feb 2021</td><td>5.4 yrs</td><td>🔵 <b>Hyros + GHL agree: July Intensive Meta campaign, Jun 2026</b>, plus email nurture tags</td><td>Other</td></tr>
+              <tr><td class="k">Daniel Kelly</td><td>Sep 8</td><td>Aug 2023</td><td>3.0 yrs</td><td>Direct traffic</td><td>Referral</td></tr>
+              <tr><td class="k">Pradnya Kulkarni</td><td>Aug 31</td><td>Nov 2023</td><td>2.8 yrs</td><td>🔵 <b>Meta paid</b> &mdash; retargeting, Client Retention Handbook, clicked <b>Jul 2023</b></td><td>Podcast</td></tr>
+              <tr><td class="k">Shawn Bell</td><td>Sep 8</td><td>Dec 2024</td><td>21 mo</td><td>Hyros: <b>Roadmap Live link, organic</b> &mdash; not a paid ad. GoHighLevel had no source at all</td><td>Search Engine</td></tr>
+              <tr><td class="k">Andrew Brockenbush</td><td>Aug 3</td><td>Jun 2025</td><td>14 mo</td><td>Chat widget &mdash; <b>referred by member William Attaway</b></td><td>Referral</td></tr>
+              <tr><td class="k">Sean Garner</td><td>Aug 4</td><td>Jun 2025</td><td>13.5 mo</td><td>Legacy import. <b>Duplicate record shows Instagram / social</b></td><td>Podcast</td></tr>
+              <tr><td class="k">Ginger Whitson</td><td>Aug 26</td><td>Sep 2025</td><td>11.5 mo</td><td>🔵 <b>Meta paid social</b> &mdash; Hyros lists <b>nine</b> separate Meta campaigns across her history</td><td>Search Engine</td></tr>
+              <tr><td class="k">Dave Hempton</td><td>Jul 27</td><td>Dec 2025</td><td>7.2 mo</td><td>🔵 <b>Meta ad</b> &mdash; Facebook Mobile Feed</td><td>&mdash;</td></tr>
+              <tr><td class="k">Nevilson Christian</td><td>Aug 17</td><td>Jan 2026</td><td>7.0 mo</td><td>Direct, then <b>organic Google</b> to the provider page</td><td>Search Engine</td></tr>
+              <tr><td class="k">Nicholas White</td><td>Aug 11</td><td>Mar 2026</td><td>4.8 mo</td><td>Direct to sevenfigureagency.com</td><td>Search Engine</td></tr>
+              <tr><td class="k">Edwin Vincent</td><td>Sep 2</td><td>Apr 2026</td><td>4.8 mo</td><td>🔵 <b>Meta paid</b> &mdash; Monthly Webinar Method, clicked Apr 9. Hyros merged two of his email addresses to hold this</td><td><b>YouTube</b></td></tr>
+              <tr><td class="k">Travis Ventrella</td><td>Aug 6</td><td>Jul 23 2026</td><td>14 days</td><td>🔵 <b>Hyros: Meta paid</b> &mdash; Roadmap ASO linear ads, clicked Aug 5</td><td>Referral</td></tr>
+              <tr><td class="k">Matisyahu Small</td><td>Aug 31</td><td>Aug 11 2026</td><td>20 days</td><td>Entered manually in the CRM</td><td>&mdash;</td></tr>
+              <tr><td class="k">Matt DeLong</td><td>Aug 28</td><td>Aug 25 2026</td><td><b>3 days</b></td><td>Direct to sevenfigureagency.com</td><td><i>&ldquo;half way through Josh&rsquo;s book&rdquo;</i></td></tr>
+              <tr><td class="k">Camren Lackey</td><td>Aug 28</td><td>Aug 26 2026</td><td><b>2 days</b></td><td>Hyros: Google <code>branded_search</code>, organic &mdash; searched our name</td><td>Search Engine</td></tr>
+              <tr><td class="k">Alonso Ramirez</td><td>Aug 28</td><td>Aug 27 2026</td><td><b>1 day</b></td><td><b>Member referral</b> &mdash; partner Roberto Echeverr&iacute;a is a returning member (Henry&rsquo;s card: <i>Source: Referral</i>). Found us via our paid brand-search ad, clicked Aug 24</td><td><b>Instagram</b></td></tr>
+              <tr><td class="k">Ryan Bahtyar</td><td>Sep 11</td><td>Sep 10 2026</td><td><b>1 day</b></td><td>Direct to sevenfigureagency.com</td><td>Other</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note" style="margin-top:16px">
+          <b>Two systems, checked against each other.</b> The first pass used GoHighLevel alone and reported four members as having no recoverable source. <b>Querying Hyros corrected that</b> &mdash; Shawn Bell resolves to Facebook and Travis Ventrella to a Meta campaign plus branded search, neither of which GoHighLevel knew. <b>A single-system attribution answer is not a reliable one.</b><br><br><b>What still cannot be established.</b> <code>dateAdded</code> is record creation, not necessarily first human contact. Eight of the eighteen return no source in either system &mdash; and the control test proves that is a limit of the lookup rather than a fact about the lead, since Edwin Vincent is a confirmed Meta lead who returns nothing from Hyros. Self-reported &ldquo;how did you hear&rdquo; disagrees with tracking frequently, and consistently <em>in the direction of organic channels we do not buy</em> &mdash; YouTube, podcast, Instagram, search.
+          <br><br>🔴 <b>The largest limitation in this whole analysis, and it runs one way.</b> Neither system can see view-through influence. A person who is shown an ad, does not click, and later searches our name is recorded as <i>direct</i> or <i>branded search</i> &mdash; the ad that created the intent leaves no trace on the record. <b>This is an industry-wide measurement limit, not a failure of our setup, and it means every paid figure in this brief is understated by an unknown amount.</b> It is the reason paid acquisition is reported here as a floor and never as a total, and the reason no conclusion on this page is drawn about whether advertising worked.
+        </div>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>Where I could still be wrong</h2>
+        <p class="sub">Stated up front rather than left for someone to find.</p>
+      </div>
+      <div class="pb">
+        <ul class="ev">
+          <li><span class="tick">!</span><div><b>I cannot yet tell you what caused the April to July slide, and that is the bigger half of this.</b> Three quarters of the decline happened before the outage, across a period when the marketing department was changing shape and I had stepped back to a supporting role in it. I have hypotheses. <b>None of them is proven, and I would rather say that than hand this room a cause I cannot evidence.</b> Establishing it is the first thing a weekly supply line makes possible.</div></li>
+          <li><span class="tick">!</span><div><b>The deliverability theory came out of an IDS session, and testing it did not support it.</b> A 7-day nurture placement test is still running and I will report it either way. We also share a sending IP pool we do not control, which is a real exposure even though the current evidence is clean.</div></li>
+          <li><span class="tick">!</span><div><b>The cancellation figure is an upper bound.</b> It counts every booking cancelled before its slot, and some of those prospects rescheduled and later showed. The direction is solid; the precise number will come down.</div></li>
+          <li><span class="tick">!</span><div><b>YouTube is a proposal, not a proven channel for us.</b> The calendar Aleric Heck showed is his result, not ours. That is exactly why the ask is a scoping conversation first, with any test budget proposed back to this room for a decision rather than assumed here.</div></li>
+          <li><span class="tick">!</span><div><b>I corrected myself several times getting here</b>, including once concluding the opposite — that the break was in the setting layer. That came from opportunity counts, which turned out to be mostly existing contacts re-entering pipelines. The contact-level pull corrected it.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>How this was built</h2>
+        <p class="sub">The method, so the numbers can be judged on how they were produced and not only on what they say. Seven systems were queried; nothing here rests on a single one.</p>
+      </div>
+      <div class="pb">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>System</th><th>What it was used for</th><th>How it was queried</th></tr></thead>
+            <tbody>
+              <tr><td class="k">GoHighLevel</td><td>Lead supply by week, booking and cancellation status, contact-level attribution, payment verification on every close</td><td>Contact and payment APIs, paginated to exhaustion &mdash; 8,126 contacts created Mar 1 &ndash; Sep 21, aggregated locally</td></tr>
+              <tr><td class="k">Hyros</td><td>Cross-device source attribution on the 18 closed members</td><td>Lead endpoint per member email; source tags matched against the platform&rsquo;s own source dictionary</td></tr>
+              <tr><td class="k">Fathom</td><td>Which sessions were actually held, and what programme was pitched at the end of each call</td><td>Recordings pulled via API and paginated to exhaustion; transcripts searched by speaker, not by title</td></tr>
+              <tr><td class="k">Google Calendar</td><td>Booked slots, attendee responses, and the setter&rsquo;s qualification notes on each event</td><td>Full event records including deleted events; complete description read on every slot</td></tr>
+              <tr><td class="k">Gmail</td><td>Independent proof of whether a call took place</td><td>Zoom meeting-room join notifications, cross-referenced against booked slot times</td></tr>
+              <tr><td class="k">Sales Ledger</td><td>The 18 closes, tier and amount</td><td>Row by row, each reconciled to a GoHighLevel payment record</td></tr>
+              <tr><td class="k">Slack</td><td>The ads timeline &mdash; every dated quote in this brief</td><td>Channel history, quoted verbatim with the date it was posted</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note" style="margin-top:17px">
+          <b>Three rules the numbers were held to.</b><br><br>
+          <b>1. Same population on both sides of every ratio.</b> A rate is only meaningful if the numerator and denominator describe the same set of things. The close rate counts closes that landed in the window over sessions that ran in the window &mdash; both inside the same eight weeks.<br><br>
+          <b>2. Two systems before any attribution claim.</b> GoHighLevel alone reported four members as having no recoverable source. Querying Hyros resolved two of them immediately &mdash; Shawn Bell to Facebook, Travis Ventrella to a Meta campaign plus branded search. <b>A single-system attribution answer is not a reliable one, and neither system alone would have produced the figures on this page.</b><br><br>
+          <b>3. The full record read, not a summary of it.</b> Attribution lives in a first-source field that is separate from a lead&rsquo;s tags, and several of these members appear in the system under two email addresses that the platform has merged. <b>Reading only the summary understates paid acquisition</b> &mdash; Edwin Vincent, Travis Ventrella and Pradnya Kulkarni all look sourceless at a glance and all three resolve to named Meta campaigns with click dates once the merged record is opened. Every one of the eighteen was read in full, including the merged duplicates.
+        </div>
+
+        <p style="margin-top:15px"><b>What was deliberately excluded.</b> Last-touch tracking data was discarded rather than used. Almost every member&rsquo;s final tracked touch is our own post-purchase onboarding page, which describes what happened after the sale rather than what caused it &mdash; and order-form checkouts inherit the cookies of whoever completed the form, so two members who bought in different months carry identical tracking identifiers. <b>Only first-touch and campaign-level data was counted.</b></p>
+
+        <p><b>What remains open.</b> Eight of the eighteen return no source in either system. Two sit in legacy imports that predate our current tracking, one arrived through a third-party handoff, and one was entered into the CRM by hand. Session counts drawn from recordings are stated as floors throughout, because a held call whose recording cannot be located is absent from them. <b>Every one of these limits is disclosed here rather than left to be discovered.</b></p>
+      </div>
+    </section>
+
+    <section class="p">
+      <div class="ph">
+        <h2>Source of record</h2>
+        <p class="sub">So any number here can be pulled up and checked rather than taken on trust. Re-verified September 21–22, 2026.</p>
+      </div>
+      <div class="pb">
+        <div class="scroll">
+          <table>
+            <thead><tr><th>Claim</th><th>Value</th><th>Where it comes from</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td class="k">Rock wording</td><td>14/wk, 3 wks running</td><td>Esteban, L10 Aug 31 <code>00:40:02</code>; Sep 3 <code>00:46:44</code>; Q3 quarterly Jul 28</td><td><b class="good">verified</b></td></tr>
+              <tr><td class="k">Ad account access removed</td><td>Jul 30, 5:58 PM</td><td>Josh, Slack <code>#meta-ads-hack</code></td><td><b class="good">verified</b></td></tr>
+              <tr><td class="k">"our primary lead source"</td><td>Jul 31</td><td>Brandon, Slack <code>#7fa-plumerseo</code></td><td><b class="good">verified</b></td></tr>
+              <tr><td class="k">Backup account performance</td><td>$2,341 · 166 leads · 37 calls</td><td>LeadsUpward weekly report, Aug 14</td><td><b class="good">verified</b></td></tr>
+              <tr><td class="k">"ads are live again"</td><td>Sep 7</td><td>LeadsUpward, Slack</td><td><b class="good">verified</b></td></tr>
+              <tr><td class="k">Qualified leads/wk</td><td>25.9 → 13.5 → 19.3</td><td>8,126 GoHighLevel contacts created Mar 1 – Sep 21, paginated to exhaustion; qualifying tags <code>roadmap-10k+</code>, <code>roadmap-50-83k</code>, <code>roadmap-multiple-7figs</code></td><td><b class="good">re-pulled Sep 21</b></td></tr>
+              <tr><td class="k">Recovery table</td><td>43.5 → 33.9 leads/day</td><td>Same contact pull, windowed</td><td><b class="good">re-pulled Sep 21</b></td></tr>
+              <tr><td class="k">Members closed</td><td><b>18</b> · 17 mine</td><td>Sales Ledger rows Jul 27 &ndash; Sep 18, every row verified against a GoHighLevel payment: 2 in July, 11 in August, 5 in September. Alonso Ramirez is Henry's close; credit follows the closer. <b>Independently re-derived Sep 22 from the payment side alone:</b> all 143 GoHighLevel transactions in the window were pulled and paginated to exhaustion, filtered to the membership order forms (<code>/accelerate-coaching</code>, <code>/elite-mastermind</code>, <code>/titan-mastermind</code>, <code>/agency-provider</code>, <code>/application-deposit</code>), then every payer was tested against the preceding 259 transactions (May 20 &ndash; Jul 26) to separate a first payment from a renewal. <b>That produced exactly the same 18 names and dates, built from payments without reference to the Ledger.</b> Six zero-dollar test records dated Sep 17 were excluded</td><td><b class="good">verified twice, independently</b></td></tr>
+              <tr><td class="k">Sessions run</td><td><b>36</b></td><td>Sessions where membership was the programme pitched at the end of the call, read from the Fathom recordings rather than the calendar label. Includes calls recorded inside another meeting's recording, and one taken by phone. <b>A session with no locatable recording is not in this figure, so 36 is a floor</b> &mdash; and that is not theoretical: the Aug 12 Gherbei call was held, was filed as a no-show by the no-recording rule, and was corrected back in on Sep 9 off a Read.ai recap email</td><td><b class="good">verified</b></td></tr>
+              <tr><td class="k">Close rate</td><td><b>47%</b> (17 of 36)</td><td>My closes over my sessions, both inside the same eight weeks. <b>On the full 18 including Henry's close the rate is 50%; I have published the lower, more conservative cut.</b> A session and its close often fall in different weeks, so at the edges one side carries an entry the other does not; over eight weeks that self-corrects. <b>One deliberate exception to the same-population rule, named rather than hidden:</b> Nevilson Christian is an Agency Provider close and sits in the numerator, while an Agency Provider call is not a membership session and so is not in the 36. That is our standing treatment &mdash; AP revenue is membership revenue, an AP call is not a membership pitch. <b>Counting his call in the denominator anyway would move the rate from 47% to 46%</b>, so nothing on this page turns on it</td><td><b class="good">verified both sides</b></td></tr>
+              <tr><td class="k">Lead attribution</td><td><b>6 of 18</b> paid-ad acquired</td><td>Two independent systems. <b>GoHighLevel</b> contact records &mdash; <code>dateAdded</code>, <code>attributionSource</code>, and the campaign/ad-ID custom fields. <b>Hyros</b> (<code>api.hyros.com/v1</code>, lead endpoint) for cross-device source tags, which added Shawn Bell (<code>@fb-rml</code>) and Travis Ventrella, and surfaced <code>@branded_search</code> as a distinct channel. Read from the Hyros <code>firstSource</code> field and the merged <code>originLead</code> record, not from lead tags. <b>6 Meta</b>, each with campaign name, ad account id and click date; cross-confirmed against GoHighLevel campaign fields for 5 of the 6. Alonso Ramirez shows a paid brand-search click but is classified <b>referral</b> &mdash; his partner is a returning member and the decision predated the click (Henry&rsquo;s member card, <i>Source: Referral</i>). <b>Floor, not a total</b> &mdash; 17 of 18 carry Hyros <code>!clicked</code>, which covers email links as well as ads</td><td><b class="amber">8 of 18 have no source in either system</b></td></tr>
+            <tr><td class="k">Show rate</td><td>~73%</td><td><b>Weeks commencing Mon Apr 6 through Sep 18, 2026</b> &mdash; 24 week-starts, of which Jun 22 carried no membership bookings at all, leaving <b>23 weeks with data. 219 booked, 160 Fathom-verified, 73% mean</b>, range 38&ndash;100%. Membership-lane AAS only, unique prospect per week. Window opens Apr 6 because Fathom holds no recordings before April 2026; recordings outside 1 minute to 4 hours were excluded as corrupt. Full week-by-week table in <code>Reports/Show_Rate_and_AEO_Diagnostics_2026-09-21.md</code>. This automated matcher differs slightly from the weekly scorecard series, which applies my qualification judgement and this one does not</td><td><b class="good">verified</b></td></tr>
+              <tr><td class="k">Cancellation rate</td><td>42.9%</td><td>48 cancelled of 112 membership-calendar bookings assigned to me, Aug 1 – Sep 21, pulled live from GoHighLevel. Not yet reconciled against prospects who rescheduled and later held</td><td><b class="amber">upper bound</b></td></tr>
+              <tr><td class="k">YouTube ads proposal</td><td>Aleric Heck, AdOutreach</td><td>7FigCEO AI Mastermind, Miami, Sep 19 2026 — session notes on file. Quote and custom-intent targeting taken from the session. Recorded presentation: <a href="https://youtu.be/iKgDAsWE600" style="color:var(--go)">youtu.be/iKgDAsWE600</a>. Resource: <code>adoutreach.com/gift</code></td><td><b class="amber">proposal, not a result of ours</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <b>A Supply Problem</b> · Leadership brief, Seven Figure Agency · prepared September 22, 2026 · window Mon Jul 27 → Fri Sep 18, 2026<br>
+    Sources: 8,126 GoHighLevel contacts created Mar 1 – Sep 21, aggregated locally · Slack <code>#meta-ads-hack</code>, <code>#7fa-plumerseo</code>, <code>#7fa-leadsupward-diana-burgos</code> and LeadsUpward weekly spend reports · Sales Ledger 2026, reconciled to GoHighLevel payments · Fathom recordings, July–September · Esteban Baez primary Google Calendar · 7FigCEO AI Mastermind session notes, Sep 19 2026 · EOS Q3 Quarterly Planning, Jul 28 2026.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var t1=document.getElementById("t1"), t2=document.getElementById("t2");
+  var p1=document.getElementById("p1"), p2=document.getElementById("p2");
+  function show(which){
+    var one = which===1;
+    t1.setAttribute("aria-selected", one?"true":"false");
+    t2.setAttribute("aria-selected", one?"false":"true");
+    p1.hidden=!one; p2.hidden=one;
+    p1.style.display = one?"flex":"none";
+    p2.style.display = one?"none":"flex";
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  t1.addEventListener("click",function(){show(1)});
+  t2.addEventListener("click",function(){show(2)});
+
+  var data=[
+    {m:"April 2026",   v:"25.9", n:"the last month the rock was reachable"},
+    {m:"May 2026",     v:"22.6", n:"already below the assumed line"},
+    {m:"June 2026",    v:"21.0", n:"slide continues"},
+    {m:"July 2026",    v:"16.5", n:"ad accounts locked out Jul 30"},
+    {m:"August 2026",  v:"13.5", n:"14 sessions would need 103% conversion"},
+    {m:"September 2026", v:"19.3", n:"partial recovery · Sep 1–21"}
+  ];
+  var tip=document.getElementById("tip"), box=tip.parentNode;
+  var hits=document.querySelectorAll("#hit rect");
+  function show2(e,i){
+    var d=data[i];
+    tip.innerHTML='<b>'+d.m+'</b><div class="r"><i>Qualified leads/wk</i><span>'+d.v+'</span></div>'+
+                  '<div class="r" style="margin-top:3px;opacity:.72"><i>'+d.n+'</i></div>';
+    var br=box.getBoundingClientRect(), rr=e.currentTarget.getBoundingClientRect();
+    tip.style.left=(rr.left-br.left+rr.width/2)+"px";
+    tip.style.top=(rr.top-br.top+40)+"px";
+    tip.style.opacity="1";
+  }
+  function hide(){ tip.style.opacity="0"; }
+  for(var i=0;i<hits.length;i++){
+    (function(el,idx){
+      el.style.cursor="pointer";
+      el.addEventListener("mouseenter",function(e){show2(e,idx)});
+      el.addEventListener("mousemove",function(e){show2(e,idx)});
+      el.addEventListener("mouseleave",hide);
+    })(hits[i],i);
+  }
+  window.addEventListener("scroll",hide,{passive:true});
+})();
+</script>
+
+
+<footer style="max-width:960px;margin:0 auto;padding:26px 22px 60px;font-size:12px;color:#8B9095;line-height:1.6">
+  <b style="color:#CF1F36;letter-spacing:.2em;font-weight:800">SEVEN FIGURE AGENCY</b><br>
+  Q3 Rock Update &middot; 14 qualified membership strategy sessions per week &middot; Internal &mdash; do not forward outside the leadership team.<br>
+  Version 1.0 &middot; Published September 22, 2026 &middot; Last updated September 22, 2026
+</footer>
+</body>
+</html>

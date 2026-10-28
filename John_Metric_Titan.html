@@ -47,6 +47,42 @@
       "not people that have done it lately" ....... 00:50:45 (line 937)
       Coaches run or have exited an agency ........ 00:20:13 (line 356)
 
+    v1.3 TONE FIX (Esteban, Oct 28 2026) - THE ANSWERS STOPPED SOUNDING LIKE CORRECTIONS:
+      Esteban, reading v1.2: "he doesn't care if I told him on the call... then you say my words
+        on the call. If you can make it, you know, both I answer on the call. It kind of tells him
+        that he's not reading or listening to me. He doesn't need to feel that way. He just wants
+        the answers to the questions... let's make him feel like he's getting answers, not like
+        he's not listening."
+      This is the SAME rule as `.claude/rules` / memory feedback_dont_narrate_just_say_it (Esteban,
+        Oct 13 2026: quote-attribution "you said" / "you also said" / "you told me" is banned, use
+        a Voss label and keep the quote). That rule was written for EMAILS and was not applied to
+        this page. It applies to any prospect-facing surface.
+      REMOVED from section 01, every instance of answering by citing the call:
+        Q1  "My words on the call: 'we don't really put caps on it.'"  -> cut, answer stands alone
+        Q2  "Both, and I answered this on the call: '...'"             -> "Both." + the content
+        Q3  "Two different things, and I was loose about it on our call." -> "worth separating cleanly"
+        Q3  "On the call: 'that includes access to your A players...'" -> stated plainly
+        Q3  "I also told you 'if you need more access...' That stands." -> "If you need more access,
+            we sort it."
+        Q5  "a fair thing to be confused by"                           -> "a fair question"
+      REMOVED elsewhere:
+        02  "On our call you put it this way: '...'"   -> Voss label "Sounds like what you are really
+            after is a room where everyone is dealing with what you are dealing with:" + his quote
+        02  "What I committed to you then"             -> "Here is the commitment"
+        02  "The gap you named on your own board was"  -> "The gap on your current board:" + his quote
+        04  "Not what I recommend at your size, and I said so on the call" -> clause cut
+      DELIBERATELY KEPT (checked against Esteban's complaint, these do not fire it):
+        Section 03 "Two Corrections From Our Call" incl. "I said the room meets 'three times a
+          year'". That is Esteban correcting HIMSELF and both corrections are in John's favour.
+        "John, you asked for a walkthrough" and "You asked for an alignment call", both of which
+          acknowledge a request John actually made. The second is immediately followed by Esteban
+          taking the blame ("I should have sent you my link instead of waiting for yours").
+      NOTE FOR THE RECORD: Esteban also said the page itself was the wrong call -- "instead of
+        making a whole entire page, can we just answer the questions in an email? Keep it simple.
+        This is wasting so much time, which is why I haven't sent it yet." He chose to ship the
+        page anyway since it is already built. Do not build a page for a prospect who has only
+        asked logistics questions.
+
     v1.2 CHANGES (Esteban, Oct 28 2026):
       ST. LOUIS FRAMING APPROVED. Esteban reviewed the exact rendered wording of answer 5
         on Oct 28 2026 and approved it unchanged: Intensives are Miami three a year, the
@@ -289,29 +325,26 @@
         <h2><span class="num">01</span>Your Five Questions</h2>
 
         <h3>1. Is coach access unlimited?</h3>
-        <p>Yes. You get an assigned Titan coach, and there is no cap beyond what the coaches'
-        calendars allow. My words on the call: <b>"we don't really put caps on it."</b> Every coach
-        is currently running an agency or has exited one.</p>
+        <p>Yes. You get an assigned Titan coach, and <b>there is no cap</b> beyond what the coaches'
+        calendars allow. Every coach is currently running an agency or has exited one.</p>
 
         <h3>2. Virtual attendance and recordings?</h3>
-        <p>Both, and I answered this on the call: "If you can't make it in person, we broadcast the
-        room live while it's happening, and we record everything so you get access to everything."
-        November 11 and 12 run live in Miami and livestreamed.</p>
+        <p>Both. If he can't make it in person, we broadcast the room live while it is happening, and
+        we record everything, so he gets access to everything. November 11 and 12 run live in Miami
+        and livestreamed.</p>
         <p>One caveat your partners should know: confidentiality is a condition of membership, so
         what gets said in the room stays in the group. That is what makes the room worth sitting in.</p>
 
         <h3>3. Who gets access, and who gets in the room?</h3>
-        <p>Two different things, and I was loose about it on our call.</p>
+        <p>Two different things, and worth separating cleanly.</p>
         <p><b>The room is restricted by role.</b> Business owners, presidents, COOs and integrators.
         More than one owner is fine. We segment owners from non-owners deliberately, so your VP of
         Revenue, VP of Finance, BDM and AED would not be in the room.</p>
         <p><b>Membership access is separate</b> and covers up to five key players you name. That is
         where those four roles belong: the portal, the coaching sessions and the subject-matter
-        sessions. On the call: "that includes access to your A players. This membership is not just
-        for you. It's for you and your team."</p>
-        <p>You and your President plus those four is six people against five seats. I also told you
-        "if you need more access, just let us know." That stands. Send me the names and I will sort
-        the sixth.</p>
+        sessions. The membership is not just for you, it is for you and your team.</p>
+        <p>You and your President plus those four is six people against five seats. If you need more
+        access, we sort it. Send me the names and I will handle the sixth.</p>
         <p>So in the room: you, your President, your third partner. On the platform: all six.</p>
 
         <h3>4. What meals are covered?</h3>
@@ -323,7 +356,7 @@
         <p>Titans gatherings carry a welcome and a closing dinner. Travel and lodging are yours.</p>
 
         <h3>5. The website mentions St. Louis. Same series?</h3>
-        <p>No, different, and it is a fair thing to be confused by. The <b>Intensives are Miami</b>,
+        <p>No, different, and it is a fair question. The <b>Intensives are Miami</b>,
         three a year, March, July and November. Your Titan days sit inside those. The Titans
         gatherings are a separate series, and our site lists St. Louis for August 2026. I am getting
         you the confirmed 2027 gathering calendar rather than quoting dates I have not verified.</p>
@@ -336,11 +369,12 @@
         USD by 2030, which is the same year you want to put the company on the market.</p>
 
         <h3>On your request for three Titan founders</h3>
-        <p>You asked me to connect you with three founders at the $5M to $10M level for a validation
-        call. On our call you put it this way: "if I could be in a group of six to eight people, six
-        to eight agencies that are in that four to 10 range, then obviously I'm talking to people
-        that are going through the same stuff that I am."</p>
-        <p>What I committed to you then is a stronger version of that:</p>
+        <p>Three founders at the $5M to $10M level, for a peer-to-peer validation call. Sounds like
+        what you are really after is a room where everyone is dealing with what you are dealing with:
+        "if I could be in a group of six to eight people, six to eight agencies that are in that four
+        to 10 range, then obviously I'm talking to people that are going through the same stuff that
+        I am."</p>
+        <p>Here is the commitment, and it is a stronger version of that:</p>
         <ul>
             <li>"when we do assign a cohort to you, that you are <b>the least paid in the cohort</b>"</li>
             <li>"everybody there, it's going to be at least 5 million plus"</li>
@@ -352,7 +386,7 @@
         I am not going to volunteer their time here as though it were mine to give.</p>
 
         <h3>My read, and it is a read</h3>
-        <p>It sounds like the driver is not the next million. The gap you named on your own board was
+        <p>It sounds like the driver is not the next million. The gap on your current board:
         "not people that have done it lately and had niche as well too." If you sell in 2030, the
         people who move that number are operators who sold a niche agency recently. That is the one
         thing your current group cannot give you: "You're kind of talking apples when they're talking
@@ -395,7 +429,7 @@
                     <li>Built for agencies at one to two million</li>
                     <li>I seat you in the Titan room in November regardless</li>
                     <li>Stay after you have sat in it and you pay the difference to upgrade</li>
-                    <li>Not what I recommend at your size, and I said so on the call</li>
+                    <li>Not what I recommend at your size</li>
                 </ul>
             </div>
         </div>
@@ -445,7 +479,7 @@
     <div class="footer">
         <div class="sfa-footer-brand">SEVEN FIGURE AGENCY</div>
         <p>Prepared for John McDonald, Metric Marketing, by Esteban Baez, Head of Business Development.</p>
-        <p>Version 1.2 | Published: October 26, 2026 | Last Updated: October 28, 2026</p>
+        <p>Version 1.3 | Published: October 26, 2026 | Last Updated: October 28, 2026</p>
     </div>
 
 </div>
